@@ -5,9 +5,9 @@ import VueJsx from '@vitejs/plugin-vue-jsx'
 import Pages from 'vite-plugin-pages'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import VueMacros from 'unplugin-vue-macros/vite'
 import Unocss from 'unocss/vite'
-import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   plugins: [
@@ -15,8 +15,9 @@ export default defineConfig({
     VueJsx(),
     Unocss(),
     Pages(),
+    VueMacros(),
     AutoImport({
-      imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
+      imports: ['vue', 'vue-router', 'pinia', '@vueuse/core', 'vue/macros'],
       dts: 'src/auto-imports.d.ts',
       dirs: ['src/composables'],
       vueTemplate: true,
@@ -27,7 +28,7 @@ export default defineConfig({
       extensions: ['vue', 'tsx'],
       dts: 'src/components.d.ts',
     }),
-    VueSetupExtend(),
+    // VueSetupExtend(),
   ],
   resolve: {
     alias: {

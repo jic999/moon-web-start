@@ -1,4 +1,4 @@
-<script setup lang="ts" name="AppProvider">
+<script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import {
   dateZhCN,
@@ -9,6 +9,9 @@ import {
   zhCN,
 } from 'naive-ui'
 
+defineOptions({
+  name: 'AppProvider',
+})
 const themeOverrides = {
   common: {
     primaryColor: '#0d9488',
