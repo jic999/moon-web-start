@@ -1,0 +1,12 @@
+import { LoadingBarProviderInst, DialogProviderInst, MessageProviderInst, NotificationProviderInst } from 'naive-ui';
+
+export {}
+
+declare global {
+  interface Window {
+    $loadingBar: LoadingBarProviderInst
+    $dialog: DialogProviderInst
+    $message: MessageProviderInst
+    $notification: NotificationProviderInst
+  }
+}

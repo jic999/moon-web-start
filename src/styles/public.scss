@@ -1,0 +1,20 @@
+:root {
+  font-size: 4px;
+}
+html {
+  color: var(--text-c);
+}
+html.dark {
+  background-color: var(--dark-bg-c);
+  color: var(--dark-text-c);
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+  &:hover {
+    background-color: currentColor;
+  }
+}

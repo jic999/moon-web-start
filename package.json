@@ -1,0 +1,40 @@
+{
+  "name": "vite-sprout",
+  "version": "0.0.0",
+  "private": true,
+  "author": "jic999",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.0.2",
+    "pinia": "^2.0.32",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "0.38.4",
+    "@iconify-json/carbon": "^1.1.16",
+    "@iconify/utils": "^2.1.5",
+    "@types/node": "^18.15.11",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "eslint": "^8.37.0",
+    "eslint-plugin-vue": "^9.10.0",
+    "naive-ui": "^2.34.3",
+    "sass": "^1.60.0",
+    "typescript": "^5.0.4",
+    "unocss": "^0.50.6",
+    "unocss-preset-scalpel": "^1.2.6",
+    "unplugin-auto-import": "^0.15.2",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.1.4",
+    "vite-plugin-pages": "^0.29.0",
+    "vite-plugin-vue-setup-extend": "^0.4.0"
+  }
+}
