@@ -9,10 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppHeader: typeof import('./components/AppHeader/index.vue')['default']
     AppProvider: typeof import('./components/AppProvider/index.vue')['default']
-    HelloVue: typeof import('./components/HelloVue.vue')['default']
-    JsxTest: typeof import('./components/JsxTest.tsx')['default']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
@@ -23,6 +20,5 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     Sprout: typeof import('./components/Sprout/index.tsx')['default']
     TheFooter: typeof import('./components/TheFooter/index.vue')['default']
-    TheHeader: typeof import('./components/TheHeader/index.vue')['default']
   }
 }

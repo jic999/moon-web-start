@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": "@antfu",
+  "extends": ["@antfu", "@unocss"],
   "rules": {
     "no-console": "off",
     "dot-notation": "off"
