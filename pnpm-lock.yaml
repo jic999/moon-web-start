@@ -4,6 +4,9 @@ dependencies:
   '@vueuse/core':
     specifier: ^10.0.2
     version: 10.0.2(vue@3.2.47)
+  dayjs:
+    specifier: ^1.11.7
+    version: 1.11.7
   pinia:
     specifier: ^2.0.32
     version: 2.0.33(typescript@5.0.4)(vue@3.2.47)
@@ -2132,6 +2135,10 @@ packages:
     resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
     engines: {node: '>=0.11'}
     dev: true
+
+  /dayjs@1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}

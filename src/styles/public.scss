@@ -3,6 +3,8 @@
 }
 html {
   color: var(--text-c);
+  background-color: var(--bg-c);
+  transition: background 0.8s;
 }
 html.dark {
   background-color: var(--dark-bg-c);

@@ -35,6 +35,7 @@ declare global {
   const customRef: typeof import('vue')['customRef']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
+  const defaultTheme: typeof import('./composables/theme')['defaultTheme']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
@@ -53,6 +54,7 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const loadSettings: typeof import('./stores/setting')['loadSettings']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']
@@ -107,6 +109,7 @@ declare global {
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const templateRef: typeof import('@vueuse/core')['templateRef']
+  const themeVars: typeof import('./composables/theme')['themeVars']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const toRaw: typeof import('vue')['toRaw']
@@ -115,6 +118,7 @@ declare global {
   const toRefs: typeof import('vue')['toRefs']
   const toValue: typeof import('@vueuse/core')['toValue']
   const toggleDark: typeof import('./composables/dark')['toggleDark']
+  const toggleTheme: typeof import('./composables/theme')['toggleTheme']
   const triggerRef: typeof import('vue')['triggerRef']
   const tryOnBeforeMount: typeof import('@vueuse/core')['tryOnBeforeMount']
   const tryOnBeforeUnmount: typeof import('@vueuse/core')['tryOnBeforeUnmount']
@@ -206,6 +210,7 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
+  const useModalStore: typeof import('./stores/modal')['useModalStore']
   const useMounted: typeof import('@vueuse/core')['useMounted']
   const useMouse: typeof import('@vueuse/core')['useMouse']
   const useMouseInElement: typeof import('@vueuse/core')['useMouseInElement']
@@ -242,7 +247,9 @@ declare global {
   const useScroll: typeof import('@vueuse/core')['useScroll']
   const useScrollLock: typeof import('@vueuse/core')['useScrollLock']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
+  const useSettingStore: typeof import('./stores/setting')['useSettingStore']
   const useShare: typeof import('@vueuse/core')['useShare']
+  const useSiteStore: typeof import('./stores/site')['useSiteStore']
   const useSlots: typeof import('vue')['useSlots']
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
@@ -341,6 +348,7 @@ declare module 'vue' {
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
+    readonly defaultTheme: UnwrapRef<typeof import('./composables/theme')['defaultTheme']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
@@ -359,6 +367,7 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly loadSettings: UnwrapRef<typeof import('./stores/setting')['loadSettings']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
@@ -413,6 +422,7 @@ declare module 'vue' {
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
+    readonly themeVars: UnwrapRef<typeof import('./composables/theme')['themeVars']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -421,6 +431,7 @@ declare module 'vue' {
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('@vueuse/core')['toValue']>
     readonly toggleDark: UnwrapRef<typeof import('./composables/dark')['toggleDark']>
+    readonly toggleTheme: UnwrapRef<typeof import('./composables/theme')['toggleTheme']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -512,6 +523,7 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
+    readonly useModalStore: UnwrapRef<typeof import('./stores/modal')['useModalStore']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
     readonly useMouseInElement: UnwrapRef<typeof import('@vueuse/core')['useMouseInElement']>
@@ -548,7 +560,9 @@ declare module 'vue' {
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
+    readonly useSettingStore: UnwrapRef<typeof import('./stores/setting')['useSettingStore']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
+    readonly useSiteStore: UnwrapRef<typeof import('./stores/site')['useSiteStore']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>

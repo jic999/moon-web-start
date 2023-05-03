@@ -1,0 +1,26 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
+const route = useRoute()
+
+function getIconClass(routeName: string) {
+  return {
+    'text-$primary-c opacity-100': routeName === route.name,
+  }
+}
+</script>
+
+<template>
+  <div flex justify-between py-12>
+    <RouterLink to="/">
+      <div text="$primary-c" flex-center text-16 italic>
+        <span i-cus-moonset inline-block text-24 />
+        <span ml-4>MoonStart</span>
+      </div>
+    </RouterLink>
+    <div flex gap-x-8>
+      <RouterLink :class="getIconClass('home')" to="/" i-carbon:home icon-btn />
+      <RouterLink :class="getIconClass('setting')" to="/setting" i-carbon:settings icon-btn />
+    </div>
+  </div>
+</template>
