@@ -3,8 +3,8 @@ import type { ThemeName } from '@/composables/theme'
 
 const themeOptions = [
   { name: '初春', enName: 'earlySpring' },
-  { name: '大漠', enName: 'theDesert' },
   { name: '瀚海', enName: 'vastOcean' },
+  { name: '大漠', enName: 'theDesert' },
   { name: '月白', enName: 'moonWhite' },
 ]
 const settingStore = useSettingStore()

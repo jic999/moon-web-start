@@ -10,6 +10,9 @@ dependencies:
   pinia:
     specifier: ^2.0.32
     version: 2.0.33(typescript@5.0.4)(vue@3.2.47)
+  solarlunar-es:
+    specifier: ^1.0.9
+    version: 1.0.9
   vue:
     specifier: ^3.2.47
     version: 3.2.47
@@ -4324,6 +4327,10 @@ packages:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 4.0.0
     dev: true
+
+  /solarlunar-es@1.0.9:
+    resolution: {integrity: sha512-Phsk53NMRexjZkXmL6Q9l1UOtJ0GPt+/KUu+mCZkGIV9GlXpYxwjjh4hGhSd7j7k/PrVtX5Uh7/iW5R7fJ+STg==}
+    dev: false
 
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}

@@ -16,6 +16,7 @@
     "@vueuse/core": "^10.0.2",
     "dayjs": "^1.11.7",
     "pinia": "^2.0.32",
+    "solarlunar-es": "^1.0.9",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
