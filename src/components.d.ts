@@ -22,7 +22,6 @@ declare module '@vue/runtime-core' {
     NSelect: typeof import('naive-ui')['NSelect']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Sprout: typeof import('./components/Sprout/index.tsx')['default']
     TheFooter: typeof import('./components/TheFooter/index.vue')['default']
   }
 }

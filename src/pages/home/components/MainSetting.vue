@@ -1,13 +1,27 @@
 <script setup lang="ts">
 import type { ThemeName } from '@/composables/theme'
+import { presetThemeList } from '@/utils'
 
-const themeOptions = [
+interface ThemeOption {
+  name: string
+  enName: string
+}
+const themeOptions: ThemeOption[] = [
   { name: '初春', enName: 'earlySpring' },
   { name: '大漠', enName: 'theDesert' },
   { name: '瀚海', enName: 'vastOcean' },
   { name: '月白', enName: 'moonWhite' },
 ]
 const settingStore = useSettingStore()
+function renderThemeLabel(option: ThemeOption): VNode {
+  const bgColor = presetThemeList[option.enName as ThemeName].bgC
+  return h('div', { class: 'flex items-center gap-x-8' },
+    [
+      h('div', { class: 'w-16 h-16 circle border-1', style: { backgroundColor: bgColor } }),
+      h('div', option.name),
+    ],
+  )
+}
 </script>
 
 <template>
@@ -15,6 +29,7 @@ const settingStore = useSettingStore()
     <n-select
       v-model:value="settingStore.settings.theme"
       :options="themeOptions"
+      :render-label="renderThemeLabel"
       label-field="name"
       value-field="enName"
       w-300
