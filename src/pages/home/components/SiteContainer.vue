@@ -5,7 +5,7 @@ import SiteModal from './SiteModal.vue'
 </script>
 
 <template>
-  <div p-24>
+  <div px-24>
     <SiteNavBar />
     <SiteGroupList />
     <SiteModal />

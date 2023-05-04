@@ -13,6 +13,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.0.2",
     "dayjs": "^1.11.7",
     "pinia": "^2.0.32",
