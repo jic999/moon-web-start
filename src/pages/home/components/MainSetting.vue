@@ -17,7 +17,7 @@ function renderThemeLabel(option: ThemeOption): VNode {
   const bgColor = presetThemeList[option.enName as ThemeName].bgC
   return h('div', { class: 'flex items-center gap-x-8' },
     [
-      h('div', { class: 'w-16 h-16 circle border-1', style: { backgroundColor: bgColor } }),
+      h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
       h('div', option.name),
     ],
   )

@@ -57,7 +57,7 @@ function toggleSelection() {
         <div
           v-if="selectionVisible"
           v-on-click-outside="toggleSelection"
-          dark="border-gray-6 bg-black" absolute z-9 border bg-fff l-0 t-100p
+          dark="border-gray-8 bg-black" absolute z-9 border bg-fff l-0 t-100p
           w-200
         >
           <div
@@ -76,7 +76,7 @@ function toggleSelection() {
           </div>
         </div>
       </div>
-      <input v-model="keyword" bg-inherit text-16 w-260 @keydown.enter="search">
+      <input v-model="keyword" bg-inherit text="16 text-$text-c-1" dark="text-$text-dark-c-1" w-260 @keydown.enter="search">
       <button flex-center gap-x-4 w-72 btn @click="search">
         <span i-carbon:search inline-block text-14 />
         搜索
