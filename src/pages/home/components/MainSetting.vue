@@ -28,11 +28,11 @@ function renderThemeLabel(option: ThemeOption): VNode {
   <div v-if="$route.name === 'setting'" p-24>
     <n-select
       v-model:value="settingStore.settings.theme"
+      class="md:w-300"
       :options="themeOptions"
       :render-label="renderThemeLabel"
       label-field="name"
       value-field="enName"
-      w-300
       :on-update-value="(theme: string) => toggleTheme(theme as ThemeName)"
     />
   </div>

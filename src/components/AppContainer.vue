@@ -3,11 +3,7 @@
 </script>
 
 <template>
-  <div lg="w-1240" mx-auto>
+  <div lg="w-1240" mx-auto w-92p>
     <slot />
   </div>
 </template>
-
-<style lang="scss" scoped>
-
-</style>
