@@ -84,7 +84,6 @@ export const useModalStore = defineStore('modal', () => {
     now = Date.now()
     commitHandler[action.value][target.value]()
     modalVisible.value = false
-    cachingData()
     setTimeout(() => isCommit = false, 1000)
   }
   function handleDelete() {
@@ -93,14 +92,10 @@ export const useModalStore = defineStore('modal', () => {
     // If delete a cate, cateIndex--
     if (target.value === 'cate' && siteStore.cateIndex > 0)
       siteStore.setCateIndex(siteStore.cateIndex - 1)
-    cachingData()
   }
   function clearInput() {
     let key: keyof typeof inputValues
     for (key in inputValues) inputValues[key] = ''
-  }
-  function cachingData() {
-    localStorage.setItem('cache', JSON.stringify(siteStore.data))
   }
 
   return {

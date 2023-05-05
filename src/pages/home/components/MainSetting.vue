@@ -29,15 +29,20 @@ function renderThemeLabel(option: ThemeOption): VNode {
     <div my-16 text="16 $primary-dark-c" italic>
       设置
     </div>
-    <n-select
-      v-model:value="settingStore.settings.theme"
-      class="md:w-300"
-      :options="themeOptions"
-      :render-label="renderThemeLabel"
-      label-field="name"
-      value-field="enName"
-      :on-update-value="(theme: string) => toggleTheme(theme as ThemeName)"
-    />
+    <div>
+      <div flex items-center gap-x-8>
+        <span text="14">主题：</span>
+        <n-select
+          v-model:value="settingStore.settings.theme"
+          class="md:w-300"
+          :options="themeOptions"
+          :render-label="renderThemeLabel"
+          label-field="name"
+          value-field="enName"
+          :on-update-value="(theme: string) => toggleTheme(theme as ThemeName)"
+        />
+      </div>
+    </div>
   </div>
 </template>
 

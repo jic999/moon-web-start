@@ -62,6 +62,13 @@ export const useSiteStore = defineStore('site', () => {
   function deleteCate() {
     data.value.splice(cateIndex.value, 1)
   }
+  function cachingData() {
+    localStorage.setItem('cache', JSON.stringify(data.value))
+  }
+
+  watch(data, () => {
+    cachingData()
+  }, { deep: true })
 
   return {
     data,
