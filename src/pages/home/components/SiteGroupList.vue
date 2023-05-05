@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import draggable from 'vuedraggable'
 import { getFaviconUrl } from '@/utils'
+import type { Group, Site } from '@/stores/site'
 
 // TODO 拖动排序
 
@@ -19,53 +21,97 @@ function handleGroupClick(groupIndex: number) {
 }
 
 const addGroupVisible = computed(() => route.name === 'setting' && siteStore.data.length > 0)
-const isSetting = computed(() => route.name === 'setting')
+const { draggableOptions } = useDrag()
+
+const settingStore = useSettingStore()
 </script>
 
 <template>
   <section py-24 text-14>
-    <div v-for="(group, i) in siteStore.currentCateData.groupList" :key="group.id" :class="{ 'group--setting': isSetting }">
-      <!-- Group header -->
-      <div px-6>
-        <div :class="{ 'group__header--setting mb-12': isSetting }" flex items-center justify-between px-12 py-4>
-          <span class="group__name" :class="{ 'cursor-pointer': isSetting }" px-12 py-4 @click="handleGroupClick(i)">
-            {{ group.name }}
-          </span>
-          <div>
-            <!-- Add site button -->
-            <n-button
-              v-if="$route.name === 'setting'"
-              type="primary"
-              size="small"
-              secondary
-              circle
-              :focusable="false"
-              @click="modalStore.showModal('add', 'site', i)"
-            >
-              <template #icon>
-                <div i-carbon:add />
-              </template>
-            </n-button>
-          </div>
-        </div>
-      </div>
-      <!-- Group content -->
-      <div grid grid-cols="lg:8 md:6 3" gap-y-8>
-        <!-- Site item -->
-        <div v-for="(site, index) in group.siteList" :key="site.id" px-6>
+    <draggable
+      :list="siteStore.data[siteStore.cateIndex].groupList"
+      item-key="id"
+      handle=".group__handle"
+      drag-class="dragging-group"
+      :component-data="{
+        tag: 'div',
+        type: 'transition-group',
+      }"
+      v-bind="draggableOptions"
+      @start="addCursorStyle"
+      @end="removeCursorStyle"
+    >
+      <template #item="{ element: group, index: i }: { element: Group, index: number }">
+        <div :class="{ 'group--setting': settingStore.isSetting }">
+          <!-- Group header -->
           <div
-            :class="{ 'site--setting': isSetting }"
-            :href="site.url" target="_blank"
-            hover="bg-$site-hover-c"
-            inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
-            @click="handleSiteClick(site.url, i, index)"
+            :class="{ 'cursor-pointer ': settingStore.isSetting }"
+            px-6
+            @click="handleGroupClick(i)"
           >
-            <img :src="site.favicon ? site.favicon : getFaviconUrl(site.url)" h-20 w-20>
-            <span whitespace-nowrap overflow-hidden>{{ site.name }}</span>
+            <div
+              class="group__handle"
+              :class="{ 'group__header--setting mb-12 hover:bg-$site-hover-c': settingStore.isSetting }"
+              flex items-center justify-between px-12 py-4
+            >
+              <span class="group__name" :class="{ 'cursor-pointer': settingStore.isSetting }" px-12 py-4>
+                {{ group.name }}
+              </span>
+              <div>
+                <!-- Add site button -->
+                <n-button
+                  v-if="$route.name === 'setting'"
+                  type="primary"
+                  size="small"
+                  secondary
+                  circle
+                  :focusable="false"
+                  @click="modalStore.showModal('add', 'site', i)"
+                >
+                  <template #icon>
+                    <div i-carbon:add />
+                  </template>
+                </n-button>
+              </div>
+            </div>
+          </div>
+          <!-- Group content -->
+          <div>
+            <draggable
+              :list="siteStore.data[siteStore.cateIndex].groupList[i].siteList"
+              item-key="id"
+              group="site"
+              handle=".site__handle"
+              drag-class="dragging-site"
+              :component-data="{
+                tag: 'div',
+                type: 'transition-group',
+                class: 'grid grid-cols-3 gap-y-8 lg:grid-cols-8 md:grid-cols-6',
+              }"
+              v-bind="draggableOptions"
+              @start="addCursorStyle"
+              @end="removeCursorStyle"
+            >
+              <template #item="{ element: site, index }: { element: Site, index: number }">
+                <div px-6>
+                  <div
+                    class="site__handle"
+                    :class="{ 'site--setting': settingStore.isSetting }"
+                    :href="site.url" target="_blank"
+                    hover="bg-$site-hover-c"
+                    inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
+                    @click="handleSiteClick(site.url, i, index)"
+                  >
+                    <img :src="site.favicon || getFaviconUrl(site.url)" h-20 w-20>
+                    <span whitespace-nowrap overflow-hidden>{{ site.name }}</span>
+                  </div>
+                </div>
+              </template>
+            </draggable>
           </div>
         </div>
-      </div>
-    </div>
+      </template>
+    </draggable>
     <!-- Add group button -->
     <div v-if="addGroupVisible" my-12>
       <n-button type="primary" size="small" secondary w-full :focusable="false" @click="modalStore.showModal('add', 'group')">
@@ -85,13 +131,14 @@ const isSetting = computed(() => route.name === 'setting')
   position: relative;
   &::before {
     content: '';
-    width: 3px;
+    width: 4px;
     height: 72%;
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     background: var(--primary-c);
+    border-radius: 2px;
   }
 }
 .group--setting {

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import draggable from 'vuedraggable'
+import type { Category } from '@/stores/site'
+
 const modalStore = useModalStore()
 const siteStore = useSiteStore()
 const route = useRoute()
@@ -9,27 +12,50 @@ function handleCateClick(cateIndex: number) {
   else
     siteStore.setCateIndex(cateIndex)
 }
+const settingStore = useSettingStore()
+const { draggableOptions } = useDrag()
+
+function handleDragEnd(e: any) {
+  removeCursorStyle()
+  if (e.oldIndex === siteStore.cateIndex && e.newIndex !== siteStore.cateIndex)
+    siteStore.setCateIndex(e.newIndex)
+}
 </script>
 
 <template>
-  <section flex-center gap-x-12 text-14>
-    <div
-      v-for="(cate, i) in siteStore.cateList" :key="cate.id"
-      :class="{ 'border-$primary-c text-$primary-c': siteStore.cateIndex === i }"
-      border="b-2 transparent"
-      cursor-pointer transition-color duration-300 p-8
-      hover="text-$primary-c"
-      @click="handleCateClick(i)"
+  <section flex-center text-14>
+    <draggable
+      class="flex gap-x-12"
+      :list="siteStore.data"
+      item-key="id"
+      :component-data="{
+        tag: 'div',
+        type: 'transition-group',
+      }"
+      v-bind="draggableOptions"
+      @start="addCursorStyle"
+      @end="handleDragEnd"
     >
-      {{ cate.name }}
-    </div>
+      <template #item="{ element: cate, index: i }: { element: Category, index: number }">
+        <div
+          class="dragging-cate"
+          :class="{ 'border-$primary-c text-$primary-c': siteStore.cateIndex === i }"
+          border="b-2 transparent"
+          cursor-pointer transition-color duration-300 p-8
+          hover="text-$primary-c"
+          @click="handleCateClick(i)"
+        >
+          {{ cate.name }}
+        </div>
+      </template>
+    </draggable>
     <n-button
-      v-if="$route.name === 'setting'"
+      v-if="settingStore.isSetting"
+      class="ml-12"
       type="primary"
       size="small"
-      secondary
-      circle
       :focusable="false"
+      secondary circle
       @click="modalStore.showModal('add', 'cate')"
     >
       <template #icon>

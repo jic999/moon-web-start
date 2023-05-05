@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// TODO 搜索框
 import { vOnClickOutside } from '@vueuse/components'
 import { getFaviconUrl } from '@/utils'
 
@@ -34,6 +33,7 @@ function changeSearch(i: number) {
 
 const selectionVisible = ref(false)
 
+// Don't use 'useClickOutside' because it will still trigger the click event when the selection is closed
 let toggleTimer: NodeJS.Timer | null
 function toggleSelection() {
   if (toggleTimer)
@@ -41,7 +41,7 @@ function toggleSelection() {
   toggleTimer = setTimeout(() => {
     selectionVisible.value = !selectionVisible.value
     toggleTimer = null
-  }, 50)
+  }, 10)
 }
 </script>
 

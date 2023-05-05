@@ -19,7 +19,8 @@
     "pinia": "^2.0.32",
     "solarlunar-es": "^1.0.9",
     "vue": "^3.2.47",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "0.38.4",

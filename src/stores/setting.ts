@@ -8,6 +8,9 @@ export function loadSettings(): Settings | undefined {
   return settings ? JSON.parse(settings) : undefined
 }
 export const useSettingStore = defineStore('theme', () => {
+  const route = useRoute()
+  const isSetting = computed(() => route.name === 'setting')
+
   const settings = reactive<Settings>(loadSettings() || {
     theme: 'earlySpring',
   })
@@ -16,6 +19,7 @@ export const useSettingStore = defineStore('theme', () => {
   }, { deep: true })
 
   return {
+    isSetting,
     settings,
   }
 })

@@ -25,7 +25,7 @@ function renderThemeLabel(option: ThemeOption): VNode {
 </script>
 
 <template>
-  <div v-if="$route.name === 'setting'" p-24>
+  <div v-if="settingStore.isSetting" p-24>
     <n-select
       v-model:value="settingStore.settings.theme"
       class="md:w-300"

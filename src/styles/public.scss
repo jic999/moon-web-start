@@ -20,3 +20,24 @@ html.dark {
     background-color: currentColor;
   }
 }
+
+/* draggable */
+// 托拖拽时 原元素样式
+.ghost {
+  visibility: hidden;
+}
+.dragging-site {
+  opacity: 1 !important;
+  .site__handle {
+    background-color: var(--site-hover-c);
+  }
+}
+.dragging-group {
+  opacity: 1 !important;
+  .group__handle {
+    background-color: var(--site-hover-c);
+  }
+}
+.dragging-cate {
+  opacity: 1 !important;
+}
