@@ -26,18 +26,12 @@ html.dark {
 .ghost {
   visibility: hidden;
 }
-.dragging-site {
+.dragging {
   opacity: 1 !important;
   .site__handle {
     background-color: var(--site-hover-c);
   }
-}
-.dragging-group {
-  opacity: 1 !important;
   .group__handle {
     background-color: var(--site-hover-c);
   }
-}
-.dragging-cate {
-  opacity: 1 !important;
 }

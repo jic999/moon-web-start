@@ -13,12 +13,21 @@ function handleCateClick(cateIndex: number) {
     siteStore.setCateIndex(cateIndex)
 }
 const settingStore = useSettingStore()
-const { draggableOptions } = useDrag()
+const { draggableOptions, handleStart, handleEnd } = useDrag()
 
 function handleDragEnd(e: any) {
-  removeCursorStyle()
-  if (e.oldIndex === siteStore.cateIndex && e.newIndex !== siteStore.cateIndex)
+  handleEnd()
+  // 若移动了当前分类 跟随移动
+  if (e.oldIndex === siteStore.cateIndex && e.newIndex !== siteStore.cateIndex) {
     siteStore.setCateIndex(e.newIndex)
+  }
+  // 若移动到当前分类
+  else if (e.newIndex === siteStore.cateIndex) {
+    if (e.oldIndex < siteStore.cateIndex)
+      siteStore.setCateIndex(siteStore.cateIndex - 1)
+    else
+      siteStore.setCateIndex(siteStore.cateIndex + 1)
+  }
 }
 </script>
 
@@ -33,16 +42,18 @@ function handleDragEnd(e: any) {
         type: 'transition-group',
       }"
       v-bind="draggableOptions"
-      @start="addCursorStyle"
+      @start="handleStart"
       @end="handleDragEnd"
     >
       <template #item="{ element: cate, index: i }: { element: Category, index: number }">
         <div
-          class="dragging-cate"
-          :class="{ 'border-$primary-c text-$primary-c': siteStore.cateIndex === i }"
+          class="dragging"
+          :class="{
+            'border-$primary-c text-$primary-c': siteStore.cateIndex === i,
+            'hover:text-$primary-c': !settingStore.isSetting,
+          }"
           border="b-2 transparent"
           cursor-pointer transition-color duration-300 p-8
-          hover="text-$primary-c"
           @click="handleCateClick(i)"
         >
           {{ cate.name }}

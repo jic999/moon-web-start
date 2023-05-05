@@ -21,7 +21,7 @@ function handleGroupClick(groupIndex: number) {
 }
 
 const addGroupVisible = computed(() => route.name === 'setting' && siteStore.data.length > 0)
-const { draggableOptions } = useDrag()
+const { draggableOptions, handleStart, handleEnd } = useDrag()
 
 const settingStore = useSettingStore()
 </script>
@@ -32,47 +32,35 @@ const settingStore = useSettingStore()
       :list="siteStore.data[siteStore.cateIndex].groupList"
       item-key="id"
       handle=".group__handle"
-      drag-class="dragging-group"
+      drag-class="dragging"
       :component-data="{
         tag: 'div',
         type: 'transition-group',
       }"
       v-bind="draggableOptions"
-      @start="addCursorStyle"
-      @end="removeCursorStyle"
+      @start="handleStart"
+      @end="handleEnd"
     >
       <template #item="{ element: group, index: i }: { element: Group, index: number }">
         <div :class="{ 'group--setting': settingStore.isSetting }">
           <!-- Group header -->
           <div
             :class="{ 'cursor-pointer ': settingStore.isSetting }"
-            px-6
+            my-8 px-6
             @click="handleGroupClick(i)"
           >
             <div
               class="group__handle"
-              :class="{ 'group__header--setting mb-12 hover:bg-$site-hover-c': settingStore.isSetting }"
+              :class="{
+                'group__header--setting mb-12': settingStore.isSetting,
+                'hover:bg-$site-hover-c': settingStore.isSetting && !settingStore.isDragging,
+              }"
               flex items-center justify-between px-12 py-4
             >
               <span class="group__name" :class="{ 'cursor-pointer': settingStore.isSetting }" px-12 py-4>
                 {{ group.name }}
               </span>
-              <div>
-                <!-- Add site button -->
-                <n-button
-                  v-if="$route.name === 'setting'"
-                  type="primary"
-                  size="small"
-                  secondary
-                  circle
-                  :focusable="false"
-                  @click="modalStore.showModal('add', 'site', i)"
-                >
-                  <template #icon>
-                    <div i-carbon:add />
-                  </template>
-                </n-button>
-              </div>
+              <div />
             </div>
           </div>
           <!-- Group content -->
@@ -82,15 +70,15 @@ const settingStore = useSettingStore()
               item-key="id"
               group="site"
               handle=".site__handle"
-              drag-class="dragging-site"
+              drag-class="dragging"
               :component-data="{
                 tag: 'div',
                 type: 'transition-group',
                 class: 'grid grid-cols-3 gap-y-8 lg:grid-cols-8 md:grid-cols-6',
               }"
               v-bind="draggableOptions"
-              @start="addCursorStyle"
-              @end="removeCursorStyle"
+              @start="handleStart"
+              @end="handleEnd"
             >
               <template #item="{ element: site, index }: { element: Site, index: number }">
                 <div px-6>
@@ -105,6 +93,15 @@ const settingStore = useSettingStore()
                     <img :src="site.favicon || getFaviconUrl(site.url)" h-20 w-20>
                     <span whitespace-nowrap overflow-hidden>{{ site.name }}</span>
                   </div>
+                </div>
+              </template>
+              <template #footer>
+                <div v-if="settingStore.isSetting" px-6 min-h-38>
+                  <n-button class="h-full" type="primary" secondary :focusable="false" @click="modalStore.showModal('add', 'site', i)">
+                    <template #icon>
+                      <div i-carbon:add />
+                    </template>
+                  </n-button>
                 </div>
               </template>
             </draggable>

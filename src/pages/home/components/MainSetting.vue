@@ -26,6 +26,9 @@ function renderThemeLabel(option: ThemeOption): VNode {
 
 <template>
   <div v-if="settingStore.isSetting" p-24>
+    <div my-16 text="16 $primary-dark-c" italic>
+      设置
+    </div>
     <n-select
       v-model:value="settingStore.settings.theme"
       class="md:w-300"

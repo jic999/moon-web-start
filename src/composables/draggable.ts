@@ -1,10 +1,3 @@
-export function addCursorStyle() {
-  document.body.style.cursor = 'pointer'
-}
-export function removeCursorStyle() {
-  document.body.style.cursor = ''
-}
-
 export function useDrag() {
   const settingStore = useSettingStore()
 
@@ -15,7 +8,18 @@ export function useDrag() {
     forceFallback: true,
   }))
 
+  function handleStart() {
+    document.body.style.cursor = 'pointer'
+    settingStore.setIsDragging(true)
+  }
+  function handleEnd() {
+    document.body.style.cursor = ''
+    settingStore.setIsDragging(false)
+  }
+
   return {
     draggableOptions,
+    handleStart,
+    handleEnd,
   }
 }

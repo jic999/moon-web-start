@@ -18,8 +18,15 @@ export const useSettingStore = defineStore('theme', () => {
     localStorage.setItem('settings', JSON.stringify(toRaw(settings)))
   }, { deep: true })
 
+  const isDragging = ref(false)
+  function setIsDragging(status: boolean) {
+    isDragging.value = status
+  }
+
   return {
     isSetting,
     settings,
+    isDragging,
+    setIsDragging,
   }
 })
