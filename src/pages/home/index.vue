@@ -11,7 +11,7 @@ defineOptions({
 </script>
 
 <template>
-  <div mt-6vh p-24 bg="$main-bg-c" dark="bg-$dark-main-bg-c">
+  <div my-6vh p-24 bg="$main-bg-c" dark="bg-$dark-main-bg-c">
     <MainHeader />
     <MainClock />
     <MainSearch />

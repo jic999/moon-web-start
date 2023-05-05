@@ -3,8 +3,6 @@ import draggable from 'vuedraggable'
 import { getFaviconUrl } from '@/utils'
 import type { Group, Site } from '@/stores/site'
 
-// TODO 拖动排序
-
 const modalStore = useModalStore()
 const siteStore = useSiteStore()
 const route = useRoute()
@@ -84,9 +82,8 @@ const settingStore = useSettingStore()
                 <div px-6>
                   <div
                     class="site__handle"
-                    :class="{ 'site--setting': settingStore.isSetting }"
+                    :class="{ 'site--setting': settingStore.isSetting, 'hover:bg-$site-hover-c': !settingStore.isDragging }"
                     :href="site.url" target="_blank"
-                    hover="bg-$site-hover-c"
                     inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
                     @click="handleSiteClick(site.url, i, index)"
                   >

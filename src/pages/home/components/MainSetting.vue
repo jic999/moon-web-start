@@ -2,6 +2,8 @@
 import type { ThemeName } from '@/composables/theme'
 import { presetThemeList } from '@/utils'
 
+// TODO 完善设置
+
 interface ThemeOption {
   name: string
   enName: string
@@ -30,11 +32,11 @@ function renderThemeLabel(option: ThemeOption): VNode {
       设置
     </div>
     <div>
-      <div flex items-center gap-x-8>
-        <span text="14">主题：</span>
+      <div flex items-center gap-x-8 flex-shrink-0>
+        <span inline-block text="14" w-20p md:w-auto>主题：</span>
         <n-select
           v-model:value="settingStore.settings.theme"
-          class="md:w-300"
+          class="md:w-240"
           :options="themeOptions"
           :render-label="renderThemeLabel"
           label-field="name"
@@ -45,7 +47,3 @@ function renderThemeLabel(option: ThemeOption): VNode {
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-
-</style>
