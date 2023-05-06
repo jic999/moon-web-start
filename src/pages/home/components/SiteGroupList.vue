@@ -108,7 +108,7 @@ const settingStore = useSettingStore()
     </draggable>
     <!-- Add group button -->
     <div v-if="addGroupVisible" my-12>
-      <n-button type="primary" size="small" secondary w-full :focusable="false" @click="modalStore.showModal('add', 'group')">
+      <n-button type="primary" secondary w-full :focusable="false" @click="modalStore.showModal('add', 'group')">
         <template #icon>
           <div i-carbon:add />
         </template>

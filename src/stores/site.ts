@@ -65,6 +65,9 @@ export const useSiteStore = defineStore('site', () => {
   function cachingData() {
     localStorage.setItem('cache', JSON.stringify(data.value))
   }
+  function setData(value: Category[]) {
+    data.value = value
+  }
 
   watch(data, () => {
     cachingData()
@@ -87,5 +90,6 @@ export const useSiteStore = defineStore('site', () => {
     deleteSite,
     deleteGroup,
     deleteCate,
+    setData,
   }
 })

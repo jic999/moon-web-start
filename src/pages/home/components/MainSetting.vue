@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
+import type { Settings } from '@/stores/setting'
+import type { Category } from '@/stores/site'
 import type { Theme } from '@/utils'
 import { searchList, themeList } from '@/utils'
 
@@ -18,6 +20,48 @@ function renderThemeLabel(option: Theme): VNode {
   )
 }
 /* Search */
+
+/* 导入导出 */
+interface CacheData {
+  data: Category[]
+  settings: Settings
+}
+const siteStore = useSiteStore()
+function exportData() {
+  const data = {
+    data: siteStore.data,
+    settings: settingStore.settings,
+  }
+  const jsonStr = JSON.stringify(data)
+  const blob = new Blob([jsonStr], { type: 'application/json' })
+
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.download = `MoonStart_Data_${new Date().toLocaleString()}.json`
+  a.href = url
+  document.body.appendChild(a)
+  a.click()
+  URL.revokeObjectURL(url)
+}
+function importData() {
+  const inputElement = document.createElement('input')
+  inputElement.type = 'file'
+  inputElement.click()
+
+  inputElement.addEventListener('change', (event: any) => {
+    const file = event.target.files[0]
+    const reader = new FileReader()
+    reader.onload = function (event: any) {
+      const jsonStr = event.target.result
+      const data = JSON.parse(jsonStr) as CacheData
+      console.log(data)
+      siteStore.setData(data.data)
+      settingStore.setSettings(data.settings)
+      toggleTheme(data.settings.theme)
+    }
+    reader.readAsText(file)
+  })
+}
 </script>
 
 <template>
@@ -27,8 +71,7 @@ function renderThemeLabel(option: Theme): VNode {
     </div>
     <div flex flex-wrap justify-between gap-12>
       <SettingSelection
-        v-model:value="settingStore.settings.theme"
-
+        v-model="settingStore.settings.theme"
         title="主题"
         :options="themeList"
         :render-label="renderThemeLabel"
@@ -44,6 +87,19 @@ function renderThemeLabel(option: Theme): VNode {
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
       />
+    </div>
+    <div mt-24 flex justify-end gap-x-12>
+      <n-button type="primary" secondary @click="importData">
+        导入数据
+      </n-button>
+      <n-button type="primary" @click="exportData">
+        导出数据
+      </n-button>
+    </div>
+    <div my-24 flex-center>
+      <n-button size="large" type="primary" @click="$router.back()">
+        完成
+      </n-button>
     </div>
   </section>
 </template>

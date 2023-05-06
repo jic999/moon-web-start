@@ -14,7 +14,9 @@ const props = defineProps({
   },
 })
 const emits = defineEmits(['update:modelValue'])
-
+defineOptions({
+  inheritAttrs: false,
+})
 const modelValue = computed({
   get: () => props.modelValue,
   set: val => emits('update:modelValue', val),
@@ -22,13 +24,12 @@ const modelValue = computed({
 </script>
 
 <template>
-  <div flex items-center justify-between flex-shrink-0 w-320>
-    <div text="14" inline-block overflow-hidden w-20p w-80 md:w-auto>
+  <div w-full flex items-center justify-between>
+    <div text="14" inline-block overflow-hidden w-20p w-80>
       {{ title }}
     </div>
     <n-select
       v-model:value="modelValue"
-      class="w-240"
       :options="options"
       v-bind="$attrs"
     />
