@@ -1,7 +1,6 @@
-import type { ThemeName } from '@/composables/theme'
-
 export interface Settings {
-  theme: ThemeName
+  theme: string
+  search: String
 }
 export function loadSettings(): Settings | undefined {
   const settings = localStorage.getItem('settings')
@@ -12,7 +11,8 @@ export const useSettingStore = defineStore('theme', () => {
   const isSetting = computed(() => route.name === 'setting')
 
   const settings = reactive<Settings>(loadSettings() || {
-    theme: 'earlySpring',
+    theme: 'EarlySpring',
+    search: 'Bing',
   })
   watch(settings, () => {
     localStorage.setItem('settings', JSON.stringify(toRaw(settings)))
@@ -22,11 +22,15 @@ export const useSettingStore = defineStore('theme', () => {
   function setIsDragging(status: boolean) {
     isDragging.value = status
   }
+  function setSettings(newSettings: Partial<Settings>) {
+    Object.assign(settings, newSettings)
+  }
 
   return {
     isSetting,
     settings,
     isDragging,
     setIsDragging,
+    setSettings,
   }
 })

@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import type { ThemeName } from '@/composables/theme'
-import { presetThemeList } from '@/utils'
+import type { Theme } from '@/utils'
+import { searchList, themeList } from '@/utils'
 
 // TODO 完善设置
 
-interface ThemeOption {
-  name: string
-  enName: string
-}
-const themeOptions: ThemeOption[] = [
-  { name: '初春', enName: 'earlySpring' },
-  { name: '瀚海', enName: 'vastOcean' },
-  { name: '大漠', enName: 'theDesert' },
-  { name: '月白', enName: 'moonWhite' },
-]
 const settingStore = useSettingStore()
-function renderThemeLabel(option: ThemeOption): VNode {
-  const bgColor = presetThemeList[option.enName as ThemeName].bgC
+/* Theme */
+function renderThemeLabel(option: Theme): VNode {
+  const currentTheme = themeList.find(item => item.enName === option.enName)!
+  const bgColor = currentTheme!.theme.bgC
   return h('div', { class: 'flex items-center gap-x-8' },
     [
       h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
@@ -24,26 +16,42 @@ function renderThemeLabel(option: ThemeOption): VNode {
     ],
   )
 }
+/* Search */
 </script>
 
 <template>
-  <div v-if="settingStore.isSetting" p-24>
+  <section v-if="settingStore.isSetting" p-24>
     <div my-16 text="16 $primary-dark-c" italic>
       设置
     </div>
-    <div>
-      <div flex items-center gap-x-8 flex-shrink-0>
-        <span inline-block text="14" w-20p md:w-auto>主题：</span>
+    <div flex flex-wrap justify-between gap-12>
+      <div flex items-center justify-between flex-shrink-0 w-320>
+        <div text="14" inline-block overflow-hidden w-20p w-60 md:w-auto>
+          主题
+        </div>
         <n-select
           v-model:value="settingStore.settings.theme"
-          class="md:w-240"
-          :options="themeOptions"
+          class="w-240"
+          :options="themeList"
           :render-label="renderThemeLabel"
           label-field="name"
           value-field="enName"
-          :on-update-value="(theme: string) => toggleTheme(theme as ThemeName)"
+          :on-update-value="(theme: string) => toggleTheme(theme)"
+        />
+      </div>
+      <div flex items-center justify-between flex-shrink-0 w-320>
+        <div text="14" inline-block overflow-hidden w-20p w-80 md:w-auto>
+          搜索引擎
+        </div>
+        <n-select
+          v-model:value="settingStore.settings.search"
+          class="w-240"
+          :options="searchList"
+          label-field="name"
+          value-field="enName"
+          :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
         />
       </div>
     </div>
-  </div>
+  </section>
 </template>

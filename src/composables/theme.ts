@@ -1,39 +1,29 @@
-import { presetThemeList } from '@/utils'
+import type { ThemeColor } from '@/utils'
+import { themeList } from '@/utils'
 
-interface Theme {
-  primaryC: string
-  primaryLightC: string
-  primaryDarkC: string
-  siteHoverC: string
-  settingBorderC: string
-  settingGroupBgC: string
-  bgC: string
-  mainBgC: string
-}
-type ThemeVar = keyof Theme
-type ThemeVars<T> = { [K in keyof T]: Ref<string> }
-
-const themeList = presetThemeList
-
-export type ThemeName = keyof typeof themeList
+type ThemeVar = keyof ThemeColor
+type ThemeVars<T extends ThemeColor> = { [K in keyof T]: Ref<string> }
 
 const settingsCache = loadSettings()
-const defaultTheme: ThemeName = settingsCache ? settingsCache.theme : 'earlySpring'
+const defaultTheme: string = settingsCache ? settingsCache.theme : 'EarlySpring'
 function camelToCssVar(str: string) {
   return `--${str.replace(/[A-Z]|[0-9]+/g, (match: string) => `-${match.toLowerCase()}`)}`
 }
 
-export const themeVars: ThemeVars<Theme> = Object.keys(themeList[defaultTheme]).reduce(
+const currentTheme = themeList.find(item => item.enName === defaultTheme)!
+export const themeVars: ThemeVars<ThemeColor> = Object.keys(
+  currentTheme.theme).reduce(
   (obj, key) => {
     const cssVar = camelToCssVar(key)
-    document.documentElement.style.setProperty(cssVar, themeList[defaultTheme][key as ThemeVar])
+    document.documentElement.style.setProperty(cssVar, currentTheme.theme[key as ThemeVar])
     obj[key as ThemeVar] = useCssVar(cssVar)
     return obj
   },
-  {} as Partial<ThemeVars<Theme>>,
-) as ThemeVars<Theme>
+  {} as Partial<ThemeVars<ThemeColor>>,
+) as ThemeVars<ThemeColor>
 
-export function toggleTheme(theme: ThemeName) {
-  for (const key in themeList[theme])
-    themeVars[key as ThemeVar].value = themeList[theme][key as ThemeVar]
+export function toggleTheme(theme: string) {
+  const newTheme = themeList.find(item => item.enName === theme)!
+  for (const key in newTheme.theme)
+    themeVars[key as ThemeVar].value = newTheme.theme[key as ThemeVar]
 }

@@ -25,7 +25,7 @@ function handleDragEnd(e: any) {
   else if (e.newIndex === siteStore.cateIndex) {
     if (e.oldIndex < siteStore.cateIndex)
       siteStore.setCateIndex(siteStore.cateIndex - 1)
-    else
+    else if (e.oldIndex > siteStore.cateIndex)
       siteStore.setCateIndex(siteStore.cateIndex + 1)
   }
 }
