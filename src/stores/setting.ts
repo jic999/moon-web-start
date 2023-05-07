@@ -1,4 +1,5 @@
 import { iconStyleList, searchList, themeList } from '@/utils'
+import preset from '@/preset.json'
 
 export interface Settings {
   theme: string
@@ -27,11 +28,7 @@ export const useSettingStore = defineStore('theme', () => {
   const isSetting = computed(() => route.name === 'setting')
 
   const settingCache = loadSettings()
-  const presetSetting = {
-    theme: 'EarlySpring',
-    search: 'Bing',
-    iconStyle: 'Vivid',
-  }
+  const presetSetting = preset.settings
   const settings = reactive<Settings>((() => {
     if (settingCache) {
       // 判断设置项是否变更

@@ -1,11 +1,12 @@
 import type { Theme } from '@/utils'
 import { themeList } from '@/utils'
+import preset from '@/preset.json'
 
 type ThemeVar = keyof Theme
 type ThemeVars<T extends Theme> = { [K in keyof T]: Ref<string> }
 
 const settingsCache = loadSettings()
-const defaultTheme: string = settingsCache ? settingsCache.theme : 'EarlySpring'
+const defaultTheme: string = settingsCache ? settingsCache.theme : preset.settings.theme
 function camelToCssVar(str: string) {
   return `--${str.replace(/[A-Z]|[0-9]+/g, (match: string) => `-${match.toLowerCase()}`)}`
 }

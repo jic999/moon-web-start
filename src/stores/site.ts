@@ -1,4 +1,4 @@
-import { presetData } from '@/utils'
+import preset from '@/preset.json'
 
 export interface Site {
   id: number
@@ -22,7 +22,7 @@ function loadData(): Category[] | undefined {
   return data ? JSON.parse(data) : undefined
 }
 export const useSiteStore = defineStore('site', () => {
-  const data = ref<Category[]>(loadData() || presetData)
+  const data = ref<Category[]>(loadData() || preset.data)
   const cateIndex = ref(0)
   const groupIndex = ref(0)
   const siteIndex = ref(0)
@@ -35,7 +35,6 @@ export const useSiteStore = defineStore('site', () => {
   const currentCateData = computed(() => data.value[cateIndex.value] || { groupList: [] })
 
   function addSite(site: Site) {
-    console.log('addSite => ', site)
     data.value[cateIndex.value].groupList[groupIndex.value].siteList.push(site)
   }
   function addGroup(group: Group) {

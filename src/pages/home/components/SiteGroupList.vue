@@ -46,7 +46,7 @@ const { iconStyle } = useIconStyle()
           <!-- Group header -->
           <div
             :class="{ 'cursor-pointer ': settingStore.isSetting }"
-            my-8 px-6
+            my-8
             @click="handleGroupClick(i)"
           >
             <div
@@ -74,14 +74,14 @@ const { iconStyle } = useIconStyle()
               :component-data="{
                 tag: 'div',
                 type: 'transition-group',
-                class: 'grid grid-cols-3 gap-y-8 lg:grid-cols-8 md:grid-cols-6',
+                class: 'grid grid-cols-2 gap-8 lg:grid-cols-6 md:grid-cols-3',
               }"
               v-bind="draggableOptions"
               @start="handleStart"
               @end="handleEnd"
             >
               <template #item="{ element: site, index }: { element: Site, index: number }">
-                <div px-6>
+                <div>
                   <!-- Site item -->
                   <div
                     class="site__handle"
@@ -90,13 +90,13 @@ const { iconStyle } = useIconStyle()
                     inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
                     @click="handleSiteClick(site.url, i, index)"
                   >
-                    <img :src="site.favicon || getFaviconUrl(site.url)" :style="iconStyle" h-20 w-20>
-                    <span whitespace-nowrap overflow-hidden>{{ site.name }}</span>
+                    <img :src="site.favicon || getFaviconUrl(site.url)" :style="iconStyle" h-22 w-22>
+                    <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
                   </div>
                 </div>
               </template>
               <template #footer>
-                <div v-if="settingStore.isSetting" px-6 min-h-38>
+                <div v-if="settingStore.isSetting" min-h-38>
                   <n-button class="h-full" type="primary" secondary :focusable="false" @click="modalStore.showModal('add', 'site', i)">
                     <template #icon>
                       <div i-carbon:add />

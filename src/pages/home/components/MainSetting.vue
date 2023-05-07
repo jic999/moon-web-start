@@ -5,7 +5,7 @@ import type { Category } from '@/stores/site'
 import type { ThemeSetting } from '@/utils'
 import { iconStyleList, searchList, themeList } from '@/utils'
 
-// TODO 完善设置
+// TODO 设置项完善
 
 const settingStore = useSettingStore()
 /* ThemeSetting */
@@ -50,12 +50,18 @@ function importData() {
   inputElement.addEventListener('change', async () => {
     const file = inputElement.files?.[0]
     if (file) {
-      const jsonStr = await file.text()
-      const data = JSON.parse(jsonStr) as CacheData
-      console.log(data)
-      siteStore.setData(data.data)
-      settingStore.setSettings(data.settings)
-      toggleTheme(data.settings.theme)
+      try {
+        const jsonStr = await file.text()
+        const data = JSON.parse(jsonStr) as CacheData
+        if (!data.data || !data.settings)
+          throw new Error('非法的数据文件')
+        siteStore.setData(data.data)
+        settingStore.setSettings(data.settings)
+        toggleTheme(data.settings.theme)
+      }
+      catch (error) {
+        window.$notification.error({ content: '请导入合法的数据文件', duration: 3000 })
+      }
     }
   })
   inputElement.click()
