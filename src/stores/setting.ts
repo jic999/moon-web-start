@@ -46,7 +46,6 @@ export const useSettingStore = defineStore('theme', () => {
   function getSettingItem(key: SettingKey) {
     return settingData[key].find(item => item.enName === settings[key])!
   }
-  console.log(getSettingItem('iconStyle'))
 
   function setSettings(newSettings: Partial<Settings>) {
     Object.assign(settings, newSettings)

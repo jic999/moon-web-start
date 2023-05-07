@@ -24,7 +24,6 @@ const { draggableOptions, handleStart, handleEnd } = useDrag()
 const settingStore = useSettingStore()
 
 const { iconStyle } = useIconStyle()
-console.log('iconStyle', iconStyle)
 </script>
 
 <template>

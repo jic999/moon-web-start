@@ -60,8 +60,6 @@ function importData() {
   })
   inputElement.click()
 }
-
-console.log('settingStore.settings.', settingStore.settings)
 </script>
 
 <template>

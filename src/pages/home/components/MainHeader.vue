@@ -14,8 +14,7 @@ function getIconClass(routeName: string) {
   <div flex justify-between py-12>
     <RouterLink to="/">
       <div text="$primary-c" flex-center text-16 italic>
-        <span i-cus-moonset inline-block text-24 />
-        <span ml-4>MoonStart</span>
+        <span i-cus-moonset inline-block text-32 />
       </div>
     </RouterLink>
     <div flex gap-x-8>
