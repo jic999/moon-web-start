@@ -140,7 +140,7 @@ const { iconStyle } = useIconStyle()
 }
 .group--setting {
   margin-bottom: 12px;
-  padding: 12px 0;
+  padding: 12px 6px;
   background: var(--setting-group-bg-c);
 }
 .group__header--setting {

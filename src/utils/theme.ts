@@ -65,7 +65,7 @@ export const themeList: ThemeSetting[] = [
       primaryDarkC: '#333333',
       siteHoverC: '#77777722',
       settingBorderC: '#333333aa',
-      settingGroupBgC: '#E7E6E122',
+      settingGroupBgC: '#77777730',
       bgC: '#E7E6E1',
       mainBgC: '#f3f4f6',
     },
