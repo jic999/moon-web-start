@@ -22,6 +22,9 @@ const addGroupVisible = computed(() => route.name === 'setting' && siteStore.dat
 const { draggableOptions, handleStart, handleEnd } = useDrag()
 
 const settingStore = useSettingStore()
+
+const { iconStyle } = useIconStyle()
+console.log('iconStyle', iconStyle)
 </script>
 
 <template>
@@ -80,6 +83,7 @@ const settingStore = useSettingStore()
             >
               <template #item="{ element: site, index }: { element: Site, index: number }">
                 <div px-6>
+                  <!-- Site item -->
                   <div
                     class="site__handle"
                     :class="{ 'site--setting': settingStore.isSetting, 'hover:bg-$site-hover-c': !settingStore.isDragging }"
@@ -87,7 +91,7 @@ const settingStore = useSettingStore()
                     inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
                     @click="handleSiteClick(site.url, i, index)"
                   >
-                    <img :src="site.favicon || getFaviconUrl(site.url)" h-20 w-20>
+                    <img :src="site.favicon || getFaviconUrl(site.url)" :style="iconStyle" h-20 w-20>
                     <span whitespace-nowrap overflow-hidden>{{ site.name }}</span>
                   </div>
                 </div>

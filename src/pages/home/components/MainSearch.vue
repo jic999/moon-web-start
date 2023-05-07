@@ -20,7 +20,7 @@ function search() {
   if (!keyword.value.trim())
     return
   const currentSearch = searchList[currentIndex.value]
-  window.open(`${currentSearch.url}?${currentSearch.key}=${keyword.value}`)
+  window.open(`${currentSearch.value.url}?${currentSearch.value.key}=${keyword.value}`)
 }
 function _getFavicon(search: Search) {
   return search.favicon || getFaviconUrl(search.url)
@@ -42,6 +42,8 @@ function toggleSelection() {
     toggleTimer = null
   }, 10)
 }
+
+const { iconStyle } = useIconStyle()
 </script>
 
 <template>
@@ -49,15 +51,16 @@ function toggleSelection() {
     <div flex bg-gray-200 h-40 dark="bg-black">
       <div relative flex-center w-40>
         <img
-          :src="_getFavicon(searchList[currentIndex])"
+          :src="_getFavicon(searchList[currentIndex].value)"
+          :style="iconStyle"
           cursor-pointer circle h-26 w-26
           @click="toggleSelection"
         >
         <div
           v-if="selectionVisible"
           v-on-click-outside="toggleSelection"
-          dark="border-gray-8 bg-black" absolute z-9 border bg-fff l-0 t-100p
-          w-200
+          absolute z-9 border bg-fff l-0 t-100p w-200
+          dark="border-gray-8 bg-black"
         >
           <div
             v-for="(item, i) in searchList"
@@ -68,7 +71,7 @@ function toggleSelection() {
             @click="changeSearch(i)"
           >
             <div flex items-center gap-x-8>
-              <img :src="_getFavicon(item)" circle h-20 w-20>
+              <img :src="_getFavicon(item.value)" :style="iconStyle" circle h-20 w-20>
               <div>{{ item.name }}</div>
             </div>
             <div v-if="currentIndex === i " i-carbon:checkmark text-18 />

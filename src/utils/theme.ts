@@ -1,4 +1,6 @@
-export interface ThemeColor {
+import type { SettingItem } from '@/stores/setting'
+
+export interface Theme {
   primaryC: string
   primaryLightC: string
   primaryDarkC: string
@@ -9,17 +11,13 @@ export interface ThemeColor {
   mainBgC: string
 }
 
-export interface Theme {
-  name: string
-  enName: string
-  theme: ThemeColor
-}
+export type ThemeSetting = SettingItem<Theme>
 
-export const themeList: Theme[] = [
+export const themeList: ThemeSetting[] = [
   {
     name: '初春',
     enName: 'EarlySpring',
-    theme: {
+    value: {
       primaryC: '#0d9488',
       primaryLightC: '#37a399',
       primaryDarkC: '#096b62',
@@ -33,7 +31,7 @@ export const themeList: Theme[] = [
   {
     name: '瀚海',
     enName: 'VastOcean',
-    theme: {
+    value: {
       primaryC: '#146C94',
       primaryLightC: '#1a8dc2',
       primaryDarkC: '#115d80',
@@ -47,7 +45,7 @@ export const themeList: Theme[] = [
   {
     name: '大漠',
     enName: 'EndlessDesert',
-    theme: {
+    value: {
       primaryC: '#bc6c25',
       primaryLightC: '#d47a2a',
       primaryDarkC: '#96561e',
@@ -61,7 +59,7 @@ export const themeList: Theme[] = [
   {
     name: '月白',
     enName: 'MoonWhite',
-    theme: {
+    value: {
       primaryC: '#555555',
       primaryLightC: '#777777 ',
       primaryDarkC: '#333333',

@@ -2,16 +2,16 @@
 import SettingSelection from './SettingSelection.vue'
 import type { Settings } from '@/stores/setting'
 import type { Category } from '@/stores/site'
-import type { Theme } from '@/utils'
-import { searchList, themeList } from '@/utils'
+import type { ThemeSetting } from '@/utils'
+import { iconStyleList, searchList, themeList } from '@/utils'
 
 // TODO 完善设置
 
 const settingStore = useSettingStore()
-/* Theme */
-function renderThemeLabel(option: Theme): VNode {
+/* ThemeSetting */
+function renderThemeLabel(option: ThemeSetting): VNode {
   const currentTheme = themeList.find(item => item.enName === option.enName)!
-  const bgColor = currentTheme!.theme.bgC
+  const bgColor = currentTheme!.value.bgC
   return h('div', { class: 'flex items-center gap-x-8' },
     [
       h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
@@ -19,7 +19,7 @@ function renderThemeLabel(option: Theme): VNode {
     ],
   )
 }
-/* Search */
+/* Icon Style */
 
 /* 导入导出 */
 interface CacheData {
@@ -46,22 +46,22 @@ function exportData() {
 function importData() {
   const inputElement = document.createElement('input')
   inputElement.type = 'file'
-  inputElement.click()
-
-  inputElement.addEventListener('change', (event: any) => {
-    const file = event.target.files[0]
-    const reader = new FileReader()
-    reader.onload = function (event: any) {
-      const jsonStr = event.target.result
+  inputElement.accept = '.json'
+  inputElement.addEventListener('change', async () => {
+    const file = inputElement.files?.[0]
+    if (file) {
+      const jsonStr = await file.text()
       const data = JSON.parse(jsonStr) as CacheData
       console.log(data)
       siteStore.setData(data.data)
       settingStore.setSettings(data.settings)
       toggleTheme(data.settings.theme)
     }
-    reader.readAsText(file)
   })
+  inputElement.click()
 }
+
+console.log('settingStore.settings.', settingStore.settings)
 </script>
 
 <template>
@@ -86,6 +86,14 @@ function importData() {
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.iconStyle"
+        title="图标风格"
+        :options="iconStyleList"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
       />
     </div>
     <div mt-24 flex justify-end gap-x-12>
