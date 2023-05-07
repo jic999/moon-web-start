@@ -9,7 +9,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-[[headers]]
-  [headers.values]
-    Content-Type = "application/manifest+json"
