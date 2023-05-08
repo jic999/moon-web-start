@@ -21,8 +21,8 @@ function handleDragEnd(e: any) {
   if (e.oldIndex === siteStore.cateIndex && e.newIndex !== siteStore.cateIndex) {
     siteStore.setCateIndex(e.newIndex)
   }
-  // 若移动到当前分类
-  else if (e.newIndex === siteStore.cateIndex) {
+  // 若移动其他分类
+  else {
     if (e.oldIndex < siteStore.cateIndex)
       siteStore.setCateIndex(siteStore.cateIndex - 1)
     else if (e.oldIndex > siteStore.cateIndex)
