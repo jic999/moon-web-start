@@ -5,6 +5,8 @@ import { getFaviconUrl, searchList } from '@/utils'
 
 const settingStore = useSettingStore()
 
+// TODO 搜索词联想
+
 const keyword = ref('')
 // 从settings获取初始index
 const currentIndex = ref(0)
