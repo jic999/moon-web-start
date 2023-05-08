@@ -1,10 +1,11 @@
+
 一个简约风格的网址导航页，借鉴了[0x3](https://0x3.com/)。
 
-<a  href="https://moon-start.netlify.app/" style="display: block; text-align: center;">
-  在线演示
-</a>
-
 ![Snipaste_2023-05-08_09-15-08](https://static.bchend.cn/blog/Snipaste_2023-05-08_09-15-08.png)
+
+<p align='center'>
+<a href="https://moon-start.netlify.app/">在线演示</a>
+</p>
 
 ---
 
