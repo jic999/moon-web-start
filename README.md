@@ -41,10 +41,10 @@ pnpm dev
 
 该插件暂未在Chrome应用商店发布，若要使用，请按照以下步骤：
 
-1. 解压本项目下`extension/moon-chrome-extension.zip'`
+1. 解压本项目下`extension/moon-chrome-extension.zip'`。
 
 2. 在谷歌浏览器的扩展程序界面，打开右上角的`开发者模式`。
 
 3. 点击左上角`加载已解压的扩展程序`。
 
-4. 选择刚刚解压的`moon-chrome-extension`目录
+4. 选择刚刚解压的`moon-chrome-extension`目录。
