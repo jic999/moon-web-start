@@ -80,7 +80,20 @@ const { iconStyle } = useIconStyle()
           </div>
         </div>
       </div>
-      <input v-model="keyword" bg-inherit text="16 text-$text-c-1" dark="text-$text-dark-c-1" w-260 @keydown.enter="search">
+      <div flex items-center w-260>
+        <input
+          v-model="keyword"
+          h-full w-full bg-inherit text="14 text-$text-c-1"
+          dark="text-$text-dark-c-1"
+          @keydown.enter="search"
+        >
+        <div
+          v-if="keyword.length > 0"
+          hover="op-80 rotate-180 scale-110"
+          i-carbon:close mx-4 cursor-pointer text-20 op-40 transition duration-300
+          @click="keyword = ''"
+        />
+      </div>
       <button flex-center gap-x-4 w-72 btn @click="search">
         <span i-carbon:search inline-block text-14 />
         搜索
