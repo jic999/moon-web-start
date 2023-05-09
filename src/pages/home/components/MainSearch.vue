@@ -46,6 +46,12 @@ function toggleSelection() {
 }
 
 const { iconStyle } = useIconStyle()
+
+const searchInputRef = ref<HTMLInputElement>()
+function handleCloseClick() {
+  keyword.value = ''
+  searchInputRef.value?.focus()
+}
 </script>
 
 <template>
@@ -82,6 +88,7 @@ const { iconStyle } = useIconStyle()
       </div>
       <div flex items-center w-260>
         <input
+          ref="searchInputRef"
           v-model="keyword"
           h-full w-full bg-inherit text="14 text-$text-c-1"
           dark="text-$text-dark-c-1"
@@ -91,7 +98,7 @@ const { iconStyle } = useIconStyle()
           v-if="keyword.length > 0"
           hover="op-80 rotate-180 scale-110"
           i-carbon:close mx-4 cursor-pointer text-20 op-40 transition duration-300
-          @click="keyword = ''"
+          @click="handleCloseClick"
         />
       </div>
       <button flex-center gap-x-4 w-72 btn @click="search">
