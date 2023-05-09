@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
-import { getFaviconUrl } from '@/utils'
+import { DEFAULT_FAVICON, getFaviconUrl } from '@/utils'
 import type { Group, Site } from '@/stores/site'
 
 const modalStore = useModalStore()
@@ -90,7 +90,12 @@ const { iconStyle } = useIconStyle()
                     inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
                     @click="handleSiteClick(site.url, i, index)"
                   >
-                    <img :src="site.favicon || getFaviconUrl(site.url)" :style="iconStyle" h-22 w-22>
+                    <img
+                      :src="site.favicon || getFaviconUrl(site.url)"
+                      :style="iconStyle"
+                      h-22 w-22
+                      @error="(e: any) => e.target.src = DEFAULT_FAVICON"
+                    >
                     <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
                   </div>
                 </div>
