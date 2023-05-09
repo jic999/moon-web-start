@@ -17,16 +17,23 @@ const { draggableOptions, handleStart, handleEnd } = useDrag()
 
 function handleDragEnd(e: any) {
   handleEnd()
+  const { oldIndex, newIndex } = e
+  const { cateIndex } = siteStore
   // 若移动了当前分类 跟随移动
-  if (e.oldIndex === siteStore.cateIndex && e.newIndex !== siteStore.cateIndex) {
-    siteStore.setCateIndex(e.newIndex)
+  if (oldIndex === cateIndex && newIndex !== cateIndex) {
+    siteStore.setCateIndex(newIndex)
   }
   // 若移动其他分类
   else {
-    if (e.oldIndex < siteStore.cateIndex)
-      siteStore.setCateIndex(siteStore.cateIndex - 1)
-    else if (e.oldIndex > siteStore.cateIndex)
-      siteStore.setCateIndex(siteStore.cateIndex + 1)
+    // 若在同一侧移动 不会改变当前分类
+    if (
+      (oldIndex < cateIndex && newIndex < cateIndex)
+      || (oldIndex > cateIndex && newIndex > cateIndex)
+    ) return
+    if (oldIndex < cateIndex)
+      siteStore.setCateIndex(cateIndex - 1)
+    else if (oldIndex > cateIndex)
+      siteStore.setCateIndex(cateIndex + 1)
   }
 }
 </script>
