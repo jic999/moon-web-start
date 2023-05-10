@@ -7,7 +7,21 @@
 <a href="https://moon-start.netlify.app/">在线演示</a>
 </p>
 
----
+## TODO
+
+- 搜索词联想
+
+- 设置项完善
+
+- 移动端适配
+
+- 后端服务
+
+  - 获取 favicon
+
+  - 存储网页数据
+
+- 更多...
 
 ## 说明
 
@@ -15,12 +29,12 @@
 
 ## 运行
 
-克隆本仓库
+克隆仓库
 ```bash
 git clone https://github.com/jic999/moon-web-start.git
 ```
 
-进入项目目录
+进入目录
 ```bash
 cd moon-web-start
 ```

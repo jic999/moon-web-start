@@ -35,14 +35,8 @@ function changeSearch(i: number) {
 const selectionVisible = ref(false)
 
 // Don't use 'useClickOutside' because it will still trigger the click event when the selection is closed
-let toggleTimer: NodeJS.Timer | null
 function toggleSelection() {
-  if (toggleTimer)
-    return
-  toggleTimer = setTimeout(() => {
-    selectionVisible.value = !selectionVisible.value
-    toggleTimer = null
-  }, 10)
+  selectionVisible.value = !selectionVisible.value
 }
 
 const { iconStyle } = useIconStyle()
@@ -57,7 +51,7 @@ function handleCloseClick() {
 <template>
   <div my-24 flex-center>
     <div flex bg-gray-200 h-40 dark="bg-black">
-      <div relative flex-center w-40>
+      <div v-on-click-outside="() => selectionVisible = false" relative flex-center w-40>
         <img
           :src="_getFavicon(searchList[currentIndex].value)"
           :style="iconStyle"
@@ -65,8 +59,7 @@ function handleCloseClick() {
           @click="toggleSelection"
         >
         <div
-          v-if="selectionVisible"
-          v-on-click-outside="toggleSelection"
+          v-show="selectionVisible"
           absolute z-9 border bg-fff l-0 t-100p w-200
           dark="border-gray-8 bg-black"
         >
