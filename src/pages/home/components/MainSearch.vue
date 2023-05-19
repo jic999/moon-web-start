@@ -83,7 +83,7 @@ function handleCloseClick() {
         <input
           ref="searchInputRef"
           v-model="keyword"
-          h-full w-full bg-inherit text="14 text-$text-c-1"
+          h-full w-full bg-inherit op-80 text="14 text-$text-c-1"
           dark="text-$text-dark-c-1"
           @keydown.enter="search"
         >

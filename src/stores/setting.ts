@@ -34,7 +34,7 @@ export const useSettingStore = defineStore('theme', () => {
       // 判断设置项是否变更
       for (const key in presetSetting) {
         if (!settingCache[key as SettingKey])
-          return Object.assign(settingCache, presetSetting)
+          return Object.assign(presetSetting, settingCache)
       }
       return settingCache
     }
