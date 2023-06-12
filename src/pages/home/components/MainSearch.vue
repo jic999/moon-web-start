@@ -50,7 +50,7 @@ function handleCloseClick() {
 
 <template>
   <div my-24 flex-center>
-    <div flex bg-gray-200 h-40 dark="bg-black">
+    <div flex bg-gray-200 h-40 dark="bg-18181a">
       <div v-on-click-outside="() => selectionVisible = false" relative flex-center w-40>
         <img
           :src="_getFavicon(searchList[currentIndex].value)"

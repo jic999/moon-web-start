@@ -5,10 +5,6 @@ import MainSearch from './components/MainSearch.vue'
 import SiteContainer from './components/SiteContainer.vue'
 import MainSetting from './components/MainSetting.vue'
 
-// TODO 移动端适配
-// TODO UI美化
-// TODO 添加动效（Optional）
-
 defineOptions({
   name: 'HomePage',
 })
