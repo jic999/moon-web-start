@@ -11,6 +11,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppContainer: typeof import('./components/AppContainer.vue')['default']
     AppProvider: typeof import('./components/AppProvider/index.vue')['default']
+    FloatBanner: typeof import('./components/FloatBanner.vue')['default']
+    MoonStarsBg: typeof import('./components/MoonStarsBg.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
@@ -22,6 +24,7 @@ declare module '@vue/runtime-core' {
     NSelect: typeof import('naive-ui')['NSelect']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TheDoc: typeof import('./components/TheDoc.vue')['default']
     TheFooter: typeof import('./components/TheFooter/index.vue')['default']
   }
 }

@@ -11,14 +11,17 @@ defineOptions({
 </script>
 
 <template>
-  <div my-6vh p-24 bg="$main-bg-c" dark="bg-$dark-main-bg-c">
-    <MainHeader />
-    <MainClock />
-    <MainSearch />
-    <SiteContainer />
-    <MainSetting />
-    <TheFooter />
-  </div>
+  <MoonStarsBg v-if="isDark" />
+  <TheDoc op-80>
+    <div my-6vh p-24 bg="$main-bg-c" dark="bg-$dark-main-bg-c">
+      <MainHeader />
+      <MainClock />
+      <MainSearch />
+      <SiteContainer />
+      <MainSetting />
+      <TheFooter />
+    </div>
+  </TheDoc>
 </template>
 
 <route lang="json">

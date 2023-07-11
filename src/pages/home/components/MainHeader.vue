@@ -20,6 +20,7 @@ function getIconClass(routeName: string) {
     <div flex gap-x-8>
       <RouterLink :class="getIconClass('home')" to="/" i-carbon:home icon-btn />
       <RouterLink :class="getIconClass('setting')" to="/setting" i-carbon:settings icon-btn />
+      <div i-carbon:moon dark:i-carbon:light icon-btn @click="toggleDark()" />
     </div>
   </div>
 </template>
