@@ -61,7 +61,7 @@ function handleDragEnd(e: any) {
           }"
           border="b-2 transparent"
           cursor-pointer transition-color duration-300 p-8
-          @mouseenter="handleCateClick(i)"
+          @click="handleCateClick(i)"
         >
           {{ cate.name }}
         </div>

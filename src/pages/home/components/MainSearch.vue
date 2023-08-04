@@ -46,6 +46,18 @@ function handleCloseClick() {
   keyword.value = ''
   searchInputRef.value?.focus()
 }
+function handleKeyDown(e: KeyboardEvent) {
+  const target = keyword.value.match(/^#[a-z]+/)
+  if (target && e.key === 'Tab') {
+    e.preventDefault()
+    const s = target[0].replace('#', '')
+    const index = searchList.findIndex(item => item.value.s === s)
+    if (index === -1)
+      return
+    currentIndex.value = index
+    keyword.value = ''
+  }
+}
 </script>
 
 <template>
@@ -58,6 +70,7 @@ function handleCloseClick() {
           cursor-pointer circle h-26 w-26
           @click="toggleSelection"
         >
+        <!-- 搜索引擎选择 -->
         <div
           v-show="selectionVisible"
           absolute z-9 border bg-fff l-0 t-100p w-200
@@ -71,9 +84,10 @@ function handleCloseClick() {
             hover="bg-$site-hover-c"
             @click="changeSearch(i)"
           >
-            <div flex items-center gap-x-8>
+            <div flex-center gap-x-8>
               <img :src="_getFavicon(item.value)" :style="iconStyle" circle h-20 w-20>
               <div>{{ item.name }}</div>
+              <span text="gray-400"> #{{ item.value.s }}</span>
             </div>
             <div v-if="currentIndex === i " i-carbon:checkmark text-18 />
           </div>
@@ -86,6 +100,7 @@ function handleCloseClick() {
           h-full w-full bg-inherit op-80 text="14 text-$text-c-1"
           dark="text-$text-dark-c-1"
           @keydown.enter="search"
+          @keydown="handleKeyDown"
         >
         <div
           v-if="keyword.length > 0"
