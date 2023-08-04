@@ -14,6 +14,9 @@
 
 <style lang="scss" scoped>
 .DLetter {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+/* .DLetter {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   width: 100%;
   padding: 48rpx 24rpx;
@@ -43,5 +46,5 @@
   right: -3px;
   top: 1px;
   transform: rotate(1.4deg);
-}
+} */
 </style>
