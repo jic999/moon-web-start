@@ -104,7 +104,7 @@ function handleKeyDown(e: KeyboardEvent) {
         >
         <div
           v-if="keyword.length > 0"
-          hover="op-80 rotate-180 scale-110"
+          hover="op-80"
           i-carbon:close mx-4 cursor-pointer text-20 op-40 transition duration-300
           @click="handleCloseClick"
         />

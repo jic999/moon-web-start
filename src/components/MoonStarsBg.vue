@@ -4,7 +4,7 @@
 
 <template>
   <div class="background-container" z="-1">
-    <img src="/public/img/moon2.png" alt="">
+    <img src="/img/moon2.png" alt="">
     <div class="stars" />
     <div class="twinkling" />
     <div class="clouds" />
@@ -56,7 +56,7 @@
 }
 
 .stars {
-  background: black url("/public/img/stars.png") repeat;
+  background: black url("/img/stars.png") repeat;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -69,7 +69,7 @@
 .twinkling{
   width:10000px;
   height: 100%;
-  background: transparent url("/public/img/twinkling.png") repeat;
+  background: transparent url("/img/twinkling.png") repeat;
   background-size: 1000px 1000px;
   position: absolute;
   right: 0;
@@ -86,7 +86,7 @@
 .clouds{
   width:10000px;
   height: 100%;
-  background: transparent url("/public/img/clouds_repeat.png") repeat;
+  background: transparent url("/img/clouds_repeat.png") repeat;
   background-size: 1000px 1000px;
   position: absolute;
   right: 0;
