@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { SelectMixedOption } from 'naive-ui/es/select/src/interface'
+
 const props = defineProps({
   title: {
     type: String,
@@ -30,7 +32,7 @@ const modelValue = computed({
     </div>
     <n-select
       v-model:value="modelValue"
-      :options="options"
+      :options="options as unknown as SelectMixedOption[]"
       v-bind="$attrs"
     />
   </div>

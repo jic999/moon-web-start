@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
-import type { Settings } from '@/stores/setting'
-import type { Category } from '@/stores/site'
-import type { ThemeSetting } from '@/utils'
+import type { Category, SettingItem, Settings, Theme } from '@/_types'
 import { iconStyleList, searchList, themeList } from '@/utils'
 
 // TODO 设置项完善
 
 const settingStore = useSettingStore()
 /* ThemeSetting */
-function renderThemeLabel(option: ThemeSetting): VNode {
+function renderThemeLabel(option: SettingItem<Theme>): VNode {
   const currentTheme = themeList.find(item => item.enName === option.enName)!
   const bgColor = currentTheme!.value.bgC
   return h('div', { class: 'flex items-center gap-x-8' },

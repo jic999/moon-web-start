@@ -1,23 +1,13 @@
 import { iconStyleList, searchList, themeList } from '@/utils'
+import type { SettingKey, Settings } from '@/_types'
 import preset from '@/preset.json'
 
-export interface Settings {
-  theme: string
-  search: String
-  iconStyle: String
-}
-export interface SettingItem<T> {
-  name: string
-  enName: string
-  value: T
-}
-export type SettingKey = keyof Settings
 export function loadSettings(): Settings | undefined {
   const settings = localStorage.getItem('settings')
   return settings ? JSON.parse(settings) : undefined
 }
 
-export const settingData: { [K in SettingKey]: SettingItem<any>[] } = {
+export const settingData = {
   theme: themeList,
   search: searchList,
   iconStyle: iconStyleList,

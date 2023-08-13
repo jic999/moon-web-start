@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
-import type { Category } from '@/stores/site'
+import type { Category } from '@/_types'
 
 const modalStore = useModalStore()
 const siteStore = useSiteStore()
@@ -85,22 +85,24 @@ function handleDragEnd(e: any) {
 <style lang="scss" scoped>
 .nav__item {
   position: relative;
-    cursor: pointer;
+  transition: all .3s;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background-color: var(--primary-c);
     transition: all .3s;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &--active {
+    color: var(--primary-c);
     &::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      width: 0;
-      height: 2px;
-      border-radius: 2px;
-      background-color: var(--primary-c);
-      transition: all .3s;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    &--active::after {
       width: 100%;
     }
+  }
 }
 </style>

@@ -1,19 +1,6 @@
-import type { SettingItem } from '@/stores/setting'
+import type { SettingData, Theme } from '@/_types'
 
-export interface Theme {
-  primaryC: string
-  primaryLightC: string
-  primaryDarkC: string
-  siteHoverC: string
-  settingBorderC: string
-  settingGroupBgC: string
-  bgC: string
-  mainBgC: string
-}
-
-export type ThemeSetting = SettingItem<Theme>
-
-export const themeList: ThemeSetting[] = [
+export const themeList: SettingData<Theme> = [
   {
     name: '初春',
     enName: 'EarlySpring',

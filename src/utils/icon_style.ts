@@ -1,14 +1,6 @@
-import type { SettingItem } from '@/stores/setting'
+import type { IconStyle, SettingData } from '@/_types'
 
-export interface IconStyle {
-  name: string
-  enName: string
-  style: Partial<CSSStyleDeclaration>
-}
-
-export type IconStyleSetting = SettingItem<IconStyle>
-
-export const iconStyleList: IconStyleSetting[] = [
+export const iconStyleList: SettingData<IconStyle> = [
   {
     name: '鲜艳',
     enName: 'Vivid',
