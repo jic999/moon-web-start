@@ -11,9 +11,8 @@ defineOptions({
 </script>
 
 <template>
-  <MoonStarsBg v-show="isDark" />
-  <TheDoc dark:op-80>
-    <div my-6vh p-24 bg="$main-bg-c" dark="bg-$dark-main-bg-c">
+  <TheDoc>
+    <div my-6vh p-24 bg="$main-bg-c">
       <MainHeader />
       <MainClock />
       <MainSearch />
@@ -26,9 +25,6 @@ defineOptions({
 
 <route lang="json">
 {
-  "path": "/",
-  "meta": {
-    "auth": true
-  }
+  "path": "/"
 }
 </route>

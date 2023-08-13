@@ -57,7 +57,7 @@ onBeforeUnmount(() => {
     <div text-48>
       {{ time }}
     </div>
-    <div text="14 $text-c-1" dark="text-$dark-text-c-1" lh-100p>
+    <div text="14 $text-c-1" lh-100p>
       <p>
         <span>{{ date }}</span>
         <span ml-12>{{ week }}</span>

@@ -54,12 +54,11 @@ function handleDragEnd(e: any) {
     >
       <template #item="{ element: cate, index: i }: { element: Category, index: number }">
         <div
-          class="dragging"
+          class="dragging nav__item"
           :class="{
-            'border-$primary-c text-$primary-c': siteStore.cateIndex === i,
             'hover:text-$primary-c': !settingStore.isSetting,
+            'nav__item--active': siteStore.cateIndex === i,
           }"
-          border="b-2 transparent"
           cursor-pointer transition-color duration-300 p-8
           @click="handleCateClick(i)"
         >
@@ -82,3 +81,26 @@ function handleDragEnd(e: any) {
     </n-button>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.nav__item {
+  position: relative;
+    cursor: pointer;
+    transition: all .3s;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      width: 0;
+      height: 2px;
+      border-radius: 2px;
+      background-color: var(--primary-c);
+      transition: all .3s;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &--active::after {
+      width: 100%;
+    }
+}
+</style>

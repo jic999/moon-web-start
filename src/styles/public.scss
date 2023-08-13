@@ -6,14 +6,11 @@ html {
   background-color: var(--bg-c);
   transition: background 0.8s;
 }
-html.dark {
-  background-color: var(--dark-bg-c);
-  color: var(--dark-text-c);
-}
 
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
+  background-color: var(--bg-c);
 }
 ::-webkit-scrollbar-thumb {
   border: 4px solid transparent;
