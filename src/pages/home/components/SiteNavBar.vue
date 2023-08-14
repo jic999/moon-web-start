@@ -85,7 +85,6 @@ function handleDragEnd(e: any) {
 <style lang="scss" scoped>
 .nav__item {
   position: relative;
-  transition: all .3s;
   &::after {
     content: '';
     position: absolute;
