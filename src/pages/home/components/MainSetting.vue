@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
 import type { Category, SettingItem, Settings, Theme } from '@/_types'
-import { iconStyleList, searchList, themeList } from '@/utils'
+import { deepClone, iconStyleList, searchList, themeList } from '@/utils'
 import presetData from '@/preset.json'
 
 // TODO 设置项完善
@@ -26,6 +26,7 @@ interface CacheData {
   settings: Settings
 }
 const siteStore = useSiteStore()
+
 function exportData() {
   const data = {
     data: siteStore.data,
@@ -41,6 +42,7 @@ function exportData() {
   document.body.appendChild(a)
   a.click()
   URL.revokeObjectURL(url)
+  window.$notification.success({ content: '已导出~', duration: 3000 })
 }
 function importData() {
   const inputElement = document.createElement('input')
@@ -53,11 +55,12 @@ function importData() {
         const jsonStr = await file.text()
         const data = JSON.parse(jsonStr) as CacheData
         if (!data.data || !data.settings)
-          throw new Error('非法的数据文件')
+          throw new Error('请导入合法的数据文件')
         loadData(data)
+        window.$notification.success({ content: '导入成功~', duration: 3000 })
       }
-      catch (error) {
-        window.$notification.error({ content: '请导入合法的数据文件', duration: 3000 })
+      catch (err: any) {
+        window.$notification.error({ content: err.message, duration: 3000 })
       }
     }
   })
@@ -70,7 +73,8 @@ function resetData() {
     positiveText: '确认',
     negativeText: '取消',
     onPositiveClick() {
-      loadData(presetData)
+      loadData(deepClone(presetData))
+      window.$notification.success({ content: '已重置~', duration: 3000 })
     },
   })
 }
