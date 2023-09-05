@@ -2,6 +2,7 @@
 import SettingSelection from './SettingSelection.vue'
 import type { Category, SettingItem, Settings, Theme } from '@/_types'
 import { iconStyleList, searchList, themeList } from '@/utils'
+import presetData from '@/preset.json'
 
 // TODO 设置项完善
 
@@ -53,9 +54,7 @@ function importData() {
         const data = JSON.parse(jsonStr) as CacheData
         if (!data.data || !data.settings)
           throw new Error('非法的数据文件')
-        siteStore.setData(data.data)
-        settingStore.setSettings(data.settings)
-        toggleTheme(data.settings.theme)
+        loadData(data)
       }
       catch (error) {
         window.$notification.error({ content: '请导入合法的数据文件', duration: 3000 })
@@ -63,6 +62,22 @@ function importData() {
     }
   })
   inputElement.click()
+}
+function resetData() {
+  window.$dialog.warning({
+    title: '警告',
+    content: '你确认要重置数据吗？',
+    positiveText: '确认',
+    negativeText: '取消',
+    onPositiveClick() {
+      loadData(presetData)
+    },
+  })
+}
+function loadData(data: any) {
+  siteStore.setData(data.data)
+  settingStore.setSettings(data.settings)
+  toggleTheme(data.settings.theme)
 }
 </script>
 
@@ -99,7 +114,10 @@ function importData() {
       />
     </div>
     <div mt-24 flex justify-end gap-x-12>
-      <n-button type="primary" secondary @click="importData">
+      <n-button type="primary" secondary @click="resetData">
+        重置数据
+      </n-button>
+      <n-button type="success" secondary @click="importData">
         导入数据
       </n-button>
       <n-button type="primary" @click="exportData">
