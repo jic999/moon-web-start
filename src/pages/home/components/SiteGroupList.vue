@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
-import { DEFAULT_FAVICON, getFaviconUrl } from '@/utils'
+import Favicon from './Favicon.vue'
 import type { Group, Site } from '@/_types'
 
 const modalStore = useModalStore()
@@ -22,8 +22,6 @@ const addGroupVisible = computed(() => route.name === 'setting' && siteStore.dat
 const { draggableOptions, handleStart, handleEnd } = useDrag()
 
 const settingStore = useSettingStore()
-
-const { iconStyle } = useIconStyle()
 </script>
 
 <template>
@@ -90,12 +88,7 @@ const { iconStyle } = useIconStyle()
                     inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
                     @click="handleSiteClick(site.url, i, index)"
                   >
-                    <img
-                      :src="site.favicon || getFaviconUrl(site.url)"
-                      :style="iconStyle"
-                      h-22 w-22
-                      @error="(e: any) => e.target.src = DEFAULT_FAVICON"
-                    >
+                    <Favicon :site="site" />
                     <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
                   </div>
                 </div>
