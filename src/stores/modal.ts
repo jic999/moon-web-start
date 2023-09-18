@@ -1,3 +1,5 @@
+import { getCommonProps } from '@/utils'
+
 export type ActionType = 'add' | 'update'
 export type ActionTarget = 'cate' | 'group' | 'site'
 
@@ -24,19 +26,6 @@ export const useModalStore = defineStore('modal', () => {
     bgColor: '',
   })
 
-  // ! get common props
-  type CommonProperties<T, U> = {
-    [K in Extract<keyof T, keyof U>]: T[K] | U[K];
-  }
-  function getCommonProps<T extends object, U extends object>(obj1: T, obj2: U): CommonProperties<T, U> {
-    const commonProps = {} as CommonProperties<T, U>
-    Object.keys(obj1).forEach((key) => {
-      const K = key as keyof CommonProperties<T, U>
-      if (obj1[K] !== undefined && obj2[K] !== undefined)
-        commonProps[K] = obj2[K]
-    })
-    return commonProps
-  }
   function showModal(actionType: ActionType, actionTarget: ActionTarget, groupIndex = -1, siteIndex = -1) {
     action.value = actionType
     target.value = actionTarget
