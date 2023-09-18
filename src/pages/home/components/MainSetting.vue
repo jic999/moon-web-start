@@ -135,3 +135,4 @@ function loadData(data: any) {
     </div>
   </section>
 </template>
+@/types

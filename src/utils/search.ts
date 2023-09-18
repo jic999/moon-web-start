@@ -1,4 +1,4 @@
-import type { Search, SettingData } from '@/_types'
+import type { Search, SettingData } from '@/types'
 
 export const searchList: SettingData<Search> = [
   {

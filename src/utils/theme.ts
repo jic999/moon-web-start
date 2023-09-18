@@ -1,4 +1,4 @@
-import type { SettingData, Theme } from '@/_types'
+import type { SettingData, Theme } from '@/types'
 
 export const themeList: SettingData<Theme> = [
   {

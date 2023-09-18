@@ -1,4 +1,4 @@
-import type { IconStyle, SettingData } from '@/_types'
+import type { IconStyle, SettingData } from '@/types'
 
 export const iconStyleList: SettingData<IconStyle> = [
   {

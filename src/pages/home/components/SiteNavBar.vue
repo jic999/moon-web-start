@@ -105,3 +105,4 @@ function handleDragEnd(e: any) {
   }
 }
 </style>
+@/types

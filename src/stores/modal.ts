@@ -21,6 +21,7 @@ export const useModalStore = defineStore('modal', () => {
     name: '',
     url: '',
     favicon: '',
+    bgColor: '',
   })
 
   // ! get common props

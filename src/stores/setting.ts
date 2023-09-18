@@ -1,5 +1,5 @@
 import { iconStyleList, searchList, themeList } from '@/utils'
-import type { SettingKey, Settings } from '@/_types'
+import type { SettingKey, Settings } from '@/types'
 import preset from '@/preset.json'
 
 export function loadSettings(): Settings | undefined {

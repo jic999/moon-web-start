@@ -1,5 +1,5 @@
 import preset from '@/preset.json'
-import type { Category, Group, Site } from '@/_types'
+import type { Category, Group, Site } from '@/types'
 
 function loadData(): Category[] | undefined {
   const data = localStorage.getItem('cache')

@@ -1,4 +1,4 @@
-import type { Theme } from '@/_types'
+import type { Theme } from '@/types'
 import { themeList } from '@/utils'
 import preset from '@/preset.json'
 

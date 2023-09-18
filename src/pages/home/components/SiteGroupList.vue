@@ -88,7 +88,7 @@ const settingStore = useSettingStore()
                     inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
                     @click="handleSiteClick(site.url, i, index)"
                   >
-                    <Favicon :site="site" />
+                    <Favicon :site="site" :site-index="index" :group-index="i" />
                     <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
                   </div>
                 </div>
@@ -145,3 +145,4 @@ const settingStore = useSettingStore()
   border: 1px dashed var(--setting-border-c);
 }
 </style>
+@/types

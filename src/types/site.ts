@@ -3,6 +3,7 @@ export interface Site {
   name: string
   url: string
   favicon?: string
+  bgColor?: string
 }
 export interface Group {
   id: number
