@@ -1,5 +1,5 @@
 import type { StyleValue } from 'vue'
-import type { IconStyle } from '@/types'
+import type { IconStyle } from '@/utils'
 
 export function useIconStyle() {
   const settingStore = useSettingStore()

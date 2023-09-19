@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import 'uno.css'
 import '@/styles/index.scss'
+// import 'default-passive-events';
 
 // const meta = document.createElement('meta')
 // meta.name = 'naive-ui-style'

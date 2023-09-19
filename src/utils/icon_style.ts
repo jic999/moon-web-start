@@ -1,6 +1,14 @@
-import type { IconStyle, SettingData } from '@/types'
+import type { SettingItem } from '@/stores/setting'
 
-export const iconStyleList: SettingData<IconStyle> = [
+export interface IconStyle {
+  name: string
+  enName: string
+  style: Partial<CSSStyleDeclaration>
+}
+
+export type IconStyleSetting = SettingItem<IconStyle>
+
+export const iconStyleList: IconStyleSetting[] = [
   {
     name: '鲜艳',
     enName: 'Vivid',
@@ -9,7 +17,7 @@ export const iconStyleList: SettingData<IconStyle> = [
   {
     name: '朴素',
     enName: 'Plain',
-    value: { name: '朴素', enName: 'Plain', style: { opacity: '0.8', filter: 'saturate(64%)' } },
+    value: { name: '朴素', enName: 'Plain', style: { opacity: '0.8', filter: 'saturate(72%)' } },
   },
   {
     name: '灰白',

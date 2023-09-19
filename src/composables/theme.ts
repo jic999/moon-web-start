@@ -1,21 +1,18 @@
-import type { Theme } from '@/types'
+import type { Theme } from '@/utils'
 import { themeList } from '@/utils'
 import preset from '@/preset.json'
 
 type ThemeVar = keyof Theme
-type ThemeVars = { [K in keyof Theme]: Ref<string> }
+type ThemeVars<T extends Theme> = { [K in keyof T]: Ref<string> }
 
 const settingsCache = loadSettings()
 const defaultTheme: string = settingsCache ? settingsCache.theme : preset.settings.theme
-
 function camelToCssVar(str: string) {
   return `--${str.replace(/[A-Z]|[0-9]+/g, (match: string) => `-${match.toLowerCase()}`)}`
 }
 
 const currentTheme = themeList.find(item => item.enName === defaultTheme)!.value
-
-// 根据主题设置 CSS 变量
-export const themeVars: ThemeVars = Object.keys(
+export const themeVars: ThemeVars<Theme> = Object.keys(
   currentTheme).reduce(
   (obj, key) => {
     const cssVar = camelToCssVar(key)
@@ -23,8 +20,8 @@ export const themeVars: ThemeVars = Object.keys(
     obj[key as ThemeVar] = useCssVar(cssVar)
     return obj
   },
-  {} as Partial<ThemeVars>,
-) as ThemeVars
+  {} as Partial<ThemeVars<Theme>>,
+) as ThemeVars<Theme>
 
 export function toggleTheme(theme: string) {
   const newTheme = themeList.find(item => item.enName === theme)!.value

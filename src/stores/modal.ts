@@ -1,5 +1,3 @@
-import { getCommonProps } from '@/utils'
-
 export type ActionType = 'add' | 'update'
 export type ActionTarget = 'cate' | 'group' | 'site'
 
@@ -23,16 +21,30 @@ export const useModalStore = defineStore('modal', () => {
     name: '',
     url: '',
     favicon: '',
-    bgColor: '',
   })
 
+  // ! get common props
+  type CommonProperties<T, U> = {
+    [K in Extract<keyof T, keyof U>]: T[K] | U[K];
+  }
+  function getCommonProps<T extends object, U extends object>(obj1: T, obj2: U): CommonProperties<T, U> {
+    const commonProps = {} as CommonProperties<T, U>
+    Object.keys(obj1).forEach((key) => {
+      const K = key as keyof CommonProperties<T, U>
+      if (obj1[K] !== undefined && obj2[K] !== undefined)
+        commonProps[K] = obj2[K]
+    })
+    return commonProps
+  }
   function showModal(actionType: ActionType, actionTarget: ActionTarget, groupIndex = -1, siteIndex = -1) {
     action.value = actionType
     target.value = actionTarget
-    if (groupIndex !== -1)
+    if (groupIndex !== -1) {
       siteStore.setGroupIndex(groupIndex)
-    if (siteIndex !== -1)
+    }
+    if (siteIndex !== -1) {
       siteStore.setSiteIndex(siteIndex)
+    }
     modalVisible.value = true
     // init inputs
     if (actionType === 'update') {
@@ -68,8 +80,9 @@ export const useModalStore = defineStore('modal', () => {
   }
   let isCommit = false
   function handleCommit() {
-    if (isCommit)
+    if (isCommit) {
       return
+    }
     isCommit = true
     now = Date.now()
     commitHandler[action.value][target.value]()
@@ -80,12 +93,15 @@ export const useModalStore = defineStore('modal', () => {
     deleteHandler[target.value]()
     modalVisible.value = false
     // If delete a cate, cateIndex--
-    if (target.value === 'cate' && siteStore.cateIndex > 0)
+    if (target.value === 'cate' && siteStore.cateIndex > 0) {
       siteStore.setCateIndex(siteStore.cateIndex - 1)
+    }
   }
   function clearInput() {
     let key: keyof typeof inputValues
-    for (key in inputValues) inputValues[key] = ''
+    for (key in inputValues) {
+      inputValues[key] = ''
+    }
   }
 
   return {

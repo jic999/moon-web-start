@@ -11,10 +11,10 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppContainer: typeof import('./components/AppContainer.vue')['default']
     AppProvider: typeof import('./components/AppProvider/index.vue')['default']
+    MoonStarsBg: typeof import('./components/MoonStarsBg.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
-    NFormItem: typeof import('naive-ui')['NFormItem']
     NInput: typeof import('naive-ui')['NInput']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']

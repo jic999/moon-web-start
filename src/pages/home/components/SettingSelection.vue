@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { SelectMixedOption } from 'naive-ui/es/select/src/interface'
-
 const props = defineProps({
   title: {
     type: String,
@@ -15,10 +13,13 @@ const props = defineProps({
     required: true,
   },
 })
+
 const emits = defineEmits(['update:modelValue'])
+
 defineOptions({
   inheritAttrs: false,
 })
+
 const modelValue = computed({
   get: () => props.modelValue,
   set: val => emits('update:modelValue', val),
@@ -26,14 +27,15 @@ const modelValue = computed({
 </script>
 
 <template>
-  <div w-full flex items-center justify-between>
-    <div text="14" inline-block overflow-hidden w-20p w-80>
+  <div>
+    <div text="14" overflow-hidden w-20p w-90 mb-10>
       {{ title }}
     </div>
     <n-select
       v-model:value="modelValue"
-      :options="options as unknown as SelectMixedOption[]"
+      :options="options"
       v-bind="$attrs"
+      :show-checkmark="false"
     />
   </div>
 </template>

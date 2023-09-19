@@ -1,5 +1,21 @@
 import preset from '@/preset.json'
-import type { Category, Group, Site } from '@/types'
+
+export interface Site {
+  id: number
+  name: string
+  url: string
+  favicon?: string
+}
+export interface Group {
+  id: number
+  name: string
+  siteList: Site[]
+}
+export interface Category {
+  id: number
+  name: string
+  groupList: Group[]
+}
 
 function loadData(): Category[] | undefined {
   const data = localStorage.getItem('cache')
@@ -18,7 +34,18 @@ export const useSiteStore = defineStore('site', () => {
   const cateList = computed(() => data.value.map(cate => ({ id: cate.id, name: cate.name })))
   const currentCateData = computed(() => data.value[cateIndex.value] || { groupList: [] })
 
+  function ensureHttps(url: string | undefined) {
+    if (url === undefined || url === null) {
+      return ''
+    }
+    if (!url.match(/^(http:\/\/|https:\/\/).*/)) {
+      url = "https://" + url
+    }
+    return url
+  }
+
   function addSite(site: Site) {
+    site.url = ensureHttps(site?.url)
     data.value[cateIndex.value].groupList[groupIndex.value].siteList.push(site)
   }
   function addGroup(group: Group) {
@@ -28,6 +55,7 @@ export const useSiteStore = defineStore('site', () => {
     data.value.push(cate)
   }
   function updateSite(site: Partial<Site>) {
+    site.url = ensureHttps(site.url)
     Object.assign(data.value[cateIndex.value].groupList[groupIndex.value].siteList[siteIndex.value], site)
   }
   function updateGroup(group: Partial<Group>) {
