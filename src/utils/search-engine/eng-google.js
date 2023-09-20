@@ -1,8 +1,8 @@
-import axios from 'axios';
-import jsonpAdapter from 'axios-jsonp';
+import axios from 'axios'
+import jsonpAdapter from 'axios-jsonp'
 
 function target(wd) {
-  return 'https://www.google.com/search?q=' + encodeURIComponent(wd)
+  return `https://www.google.com/search?q=${encodeURIComponent(wd)}`
 }
 
 function complete(wd, callback) {
@@ -13,11 +13,11 @@ function complete(wd, callback) {
       q: wd,
     },
     adapter: jsonpAdapter,
-  }).then(resposnse => {
+  }).then((response) => {
     callback({
       eng: 'google',
-      wd: resposnse.data[0],
-      list: resposnse.data[1].map(a => a[0]),
+      wd: response.data[0],
+      list: response.data[1].map(a => a[0]),
     })
   }).catch(error => console.error(error))
 }

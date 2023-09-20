@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div w="full  xl:1280!" mx-auto>
-    <slot />
+  <div>
+    <h1>About</h1>
   </div>
 </template>

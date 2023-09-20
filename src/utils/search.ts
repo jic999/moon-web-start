@@ -1,15 +1,6 @@
-import type { SettingItem } from '@/stores/setting'
+import type { Search, SettingData } from '@/types'
 
-export interface Search {
-  name: string
-  enName: string
-  url: string
-  key: string
-  favicon: string
-  s: string
-}
-export type SearchSetting = SettingItem<Search>
-export const searchList: SearchSetting[] = [
+export const searchList: SettingData<Search> = [
   {
     name: '必应',
     enName: 'Bing',
@@ -27,12 +18,12 @@ export const searchList: SearchSetting[] = [
   },
   {
     name: '搜狗',
-    enName: 'Sogou',
-    value: { name: '搜狗', enName: 'Sogou', url: 'https://www.sogou.com/web', key: 'query', favicon: '/svg/sogou.svg', s: 'sg' },
+    enName: 'Sougou',
+    value: { name: '搜狗', enName: 'Sougou', url: 'https://www.sogou.com/web', key: 'query', favicon: '/svg/sogou.svg', s: 'sg' },
   },
   {
     name: '维基',
     enName: 'Wikipedia',
-    value: { name: '维基百科', enName: 'Wikipedia', url: 'https://zh.wikipedia.org/w/index.php', key: 'search', favicon: '/svg/wikipedia.svg', s: 'sg' },
+    value: { name: '维基百科', enName: 'Wikipedia', url: 'https://zh.wikipedia.org/w/index.php', key: 'search', favicon: '/svg/wikipedia.svg', s: 'vk' },
   },
 ]

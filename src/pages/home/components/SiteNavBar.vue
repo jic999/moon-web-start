@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
-import type { Category } from '@/stores/site'
+import type { Category } from '@/types'
 
 const modalStore = useModalStore()
 const siteStore = useSiteStore()
@@ -12,28 +12,29 @@ function handleCateClick(cateIndex: number) {
   else
     siteStore.setCateIndex(cateIndex)
 }
-
 const settingStore = useSettingStore()
-
 const { draggableOptions, handleStart, handleEnd } = useDrag()
 
 function handleDragEnd(e: any) {
   handleEnd()
   const { oldIndex, newIndex } = e
   const { cateIndex } = siteStore
+  // 若移动了当前分类 跟随移动
   if (oldIndex === cateIndex && newIndex !== cateIndex) {
     siteStore.setCateIndex(newIndex)
-  } else {
-    if ((oldIndex < cateIndex && newIndex < cateIndex) ||
-          (oldIndex > cateIndex && newIndex > cateIndex)) {
+  }
+  // 若移动其他分类
+  else {
+    // 若在同一侧移动 不会改变当前分类
+    if (
+      (oldIndex < cateIndex && newIndex < cateIndex)
+      || (oldIndex > cateIndex && newIndex > cateIndex)
+    )
       return
-    }
-
-    if (oldIndex < cateIndex) {
+    if (oldIndex < cateIndex)
       siteStore.setCateIndex(cateIndex - 1)
-    } else if (oldIndex > cateIndex) {
+    else if (oldIndex > cateIndex)
       siteStore.setCateIndex(cateIndex + 1)
-    }
   }
 }
 </script>
@@ -41,11 +42,9 @@ function handleDragEnd(e: any) {
 <template>
   <section flex-center text-14>
     <draggable
-      class="flex gap-x-12 "
+      class="nav w-auto flex-center gap-x-12 w-90p sm:max-w-480"
       :list="siteStore.data"
       item-key="id"
-      :delay="1"
-      :fallbackTolerance="3"
       :component-data="{
         tag: 'div',
         type: 'transition-group',
@@ -53,21 +52,16 @@ function handleDragEnd(e: any) {
       v-bind="draggableOptions"
       @start="handleStart"
       @end="handleDragEnd"
-      style="overflow: scroll; white-space: nowrap;"
     >
       <template #item="{ element: cate, index: i }: { element: Category, index: number }">
         <div
-          class="dragging"
+          class="dragging nav__item shrink-0"
           :class="{
-            'border-$primary-c text-$primary-c': siteStore.cateIndex === i,
             'hover:text-$primary-c': !settingStore.isSetting,
-            'site--setting': settingStore.isSetting,
-            'site--select': siteStore.cateIndex === i && settingStore.isSetting
+            'nav__item--active': siteStore.cateIndex === i,
           }"
-          border="b-2 transparent"
-          cursor-pointer transition-color duration-300 p-4
-          v-on:click.native="handleCateClick(i)"
-          style="text-align: center;"
+          cursor-pointer px-8 py-10 transition-color duration-300
+          @click="handleCateClick(i)"
         >
           {{ cate.name }}
         </div>
@@ -79,8 +73,8 @@ function handleDragEnd(e: any) {
       type="primary"
       size="small"
       :focusable="false"
-      secondary
-      v-on:click.native="modalStore.showModal('add', 'cate')"
+      secondary circle
+      @click="modalStore.showModal('add', 'cate')"
     >
       <template #icon>
         <div i-carbon:add />
@@ -90,11 +84,33 @@ function handleDragEnd(e: any) {
 </template>
 
 <style lang="scss" scoped>
-.site--setting {
-  border: 1px dashed var(--setting-border-c);
-}
+.nav {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 
-.site--select {
-  background-color: var(--category-c);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.nav__item {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background-color: var(--primary-c);
+    transition: all .3s;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &--active {
+    color: var(--primary-c);
+    &::after {
+      width: 100%;
+    }
+  }
 }
 </style>

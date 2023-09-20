@@ -1,48 +1,32 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
-import type { Settings } from '@/stores/setting'
-import type { Category } from '@/stores/site'
-import type { ThemeSetting } from '@/utils'
-import { iconStyleList, searchList, themeList, siteStyleList } from '@/utils'
-import ResetModal from './ResetModal.vue'
-import preset from '@/preset.json'
-import router from '@/router'
-import { toggleSiteSytle } from '@/composables/dark'
+import type { Category, SettingItem, Settings, Theme } from '@/types'
+import { deepClone, iconStyleList, searchList, themeList } from '@/utils'
+import presetData from '@/preset.json'
 
-const resetStore = useResetModalStore()
+// TODO 设置项完善
+
 const settingStore = useSettingStore()
+const renderStore = useRenderStore()
 
 /* ThemeSetting */
-function renderThemeLabel(option: ThemeSetting): VNode {
+function renderThemeLabel(option: SettingItem<Theme>): VNode {
   const currentTheme = themeList.find(item => item.enName === option.enName)!
-  const buttonColor = currentTheme!.value.buttonC
-  const darkConfig = isDark.value ? { style: { color: '#ffffff' } } : {}
+  const bgColor = currentTheme!.value.bgC
   return h('div', { class: 'flex items-center gap-x-8' },
     [
-      h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: buttonColor } }),
-      h('div', darkConfig , option.name),
+      h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
+      h('div', option.name),
     ],
   )
 }
-
-/* render color */
-function renderColor(option: any): VNode {
-  const darkConfig = isDark.value ? { style: { color: '#ffffff' } } : {}
-  return h('div', { class: 'flex items-center gap-x-8' },
-    [
-      h('div', darkConfig, option.name),
-    ],
-  )
-}
-
 /* Icon Style */
 
-/* import and export */
+/* 导入导出 */
 interface CacheData {
   data: Category[]
   settings: Settings
 }
-
 const siteStore = useSiteStore()
 
 function exportData() {
@@ -55,13 +39,13 @@ function exportData() {
 
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
-  a.download = `COMECOME_Data_${new Date().toLocaleString()}.json`
+  a.download = `MoonStart_Data_${new Date().toLocaleString()}.json`
   a.href = url
   document.body.appendChild(a)
   a.click()
   URL.revokeObjectURL(url)
+  window.$notification.success({ content: '已导出~', duration: 3000 })
 }
-
 function importData() {
   const inputElement = document.createElement('input')
   inputElement.type = 'file'
@@ -73,49 +57,47 @@ function importData() {
         const jsonStr = await file.text()
         const data = JSON.parse(jsonStr) as CacheData
         if (!data.data || !data.settings)
-          throw new Error('非法的数据文件')
-        siteStore.setData(data.data)
-        settingStore.setSettings(data.settings)
-        toggleTheme(data.settings.theme)
-        toggleSiteSytle()
+          throw new Error('请导入合法的数据文件')
+        loadData(data)
+        window.$notification.success({ content: '导入成功~', duration: 3000 })
       }
-      catch (error) {
-        window.$notification.error({ content: '请导入合法的数据文件', duration: 3000 })
+      catch (err: any) {
+        window.$notification.error({ content: err.message, duration: 3000 })
       }
     }
   })
   inputElement.click()
 }
-
 function resetData() {
-  resetStore.title = '重置确认'
-  resetStore.content = '是否确认要重置所有设置?'
-  resetStore.resetVisible = true
-  resetStore.afterCommit = () => {
-    router.back()
-  }
-  resetStore.finishCommit = () => {
-    // console.log("finishCOmmit", preset)
-    const clonedPreset = JSON.parse(JSON.stringify(preset))
-    // console.log("clonedPreset", clonedPreset)
-
-    const data = clonedPreset as CacheData
-    siteStore.setData(data.data)
-    settingStore.setSettings(data.settings)
-    toggleTheme(data.settings.theme)
-    toggleSiteSytle()
-    siteStore.cateIndex = 0
-  }
+  window.$dialog.warning({
+    title: '提示',
+    content: '数据重置后无法恢复，你确认要重置数据吗？',
+    positiveText: '确认',
+    negativeText: '取消',
+    onPositiveClick() {
+      loadData(deepClone(presetData))
+      window.$notification.success({ content: '已重置~', duration: 3000 })
+      // 重新渲染 site group list，否则自定义图标的背景色会丢失
+      renderStore.refreshSiteGroupList()
+    },
+  })
 }
-
+function loadData(data: any) {
+  siteStore.setData(data.data)
+  settingStore.setSettings(data.settings)
+  toggleTheme(data.settings.theme)
+}
 </script>
 
 <template>
-  <section v-if="settingStore.isSetting" px="md:60 lg:120" mt-10>
-    <div grid grid-cols-2 gap-24 lg:grid-cols-2 md:grid-cols-2>
+  <section v-if="settingStore.isSetting" py-24 px="md:32 lg:64">
+    <div my-16 text="16 $text-c-1" italic>
+      设置
+    </div>
+    <div flex flex-wrap sm="grid grid-cols-2" justify-between gap-12>
       <SettingSelection
         v-model="settingStore.settings.theme"
-        title="风格样式"
+        title="主题"
         :options="themeList"
         :render-label="renderThemeLabel"
         label-field="name"
@@ -126,49 +108,34 @@ function resetData() {
         v-model="settingStore.settings.search"
         title="搜索引擎"
         :options="searchList"
-        :render-label="renderColor"
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
       />
       <SettingSelection
         v-model="settingStore.settings.iconStyle"
-        title="图标颜色"
+        title="图标风格"
         :options="iconStyleList"
-        :render-label="renderColor"
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
       />
-      <SettingSelection
-        v-model="settingStore.settings.siteStyle"
-        title="主题模式"
-        :options="siteStyleList"
-        :render-label="renderColor"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(enName: string) => {
-          settingStore.setSettings({ siteStyle: enName })
-          toggleSiteSytle()
-        }"
-      />
     </div>
-    <div mt-24 flex justify-center gap-x-24>
-      <n-button @click="resetData">
+    <div mt-24 flex sm="justify-center" justify-between gap-x-12>
+      <n-button type="primary" secondary @click="resetData">
         重置数据
       </n-button>
-      <n-button @click="importData">
+      <n-button type="success" secondary @click="importData">
         导入数据
       </n-button>
-      <n-button @click="exportData">
+      <n-button type="primary" @click="exportData">
         导出数据
       </n-button>
     </div>
-    <div my-24 mb-48 flex-center gap-x-24>
-      <n-button type="primary" text-color='#ffffff' size="large" @click="$router.back()">
-        返回
+    <div my-24 flex-center>
+      <n-button size="large" type="primary" @click="$router.back()">
+        完成
       </n-button>
     </div>
   </section>
-  <ResetModal />
 </template>

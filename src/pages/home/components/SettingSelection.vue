@@ -13,13 +13,10 @@ const props = defineProps({
     required: true,
   },
 })
-
 const emits = defineEmits(['update:modelValue'])
-
 defineOptions({
   inheritAttrs: false,
 })
-
 const modelValue = computed({
   get: () => props.modelValue,
   set: val => emits('update:modelValue', val),
@@ -27,15 +24,14 @@ const modelValue = computed({
 </script>
 
 <template>
-  <div>
-    <div text="14" overflow-hidden w-20p w-90 mb-10>
+  <div w-full flex items-center justify-between>
+    <div text="14" inline-block overflow-hidden w-20p w-80>
       {{ title }}
     </div>
     <n-select
       v-model:value="modelValue"
-      :options="options"
+      :options="options as any"
       v-bind="$attrs"
-      :show-checkmark="false"
     />
   </div>
 </template>

@@ -12,9 +12,7 @@ declare module 'vue' {
 
 declare global {
   interface Window {
-    $loadingBar: LoadingBarProviderInst
     $dialog: DialogProviderInst
-    $message: MessageProviderInst
     $notification: NotificationProviderInst
   }
 }

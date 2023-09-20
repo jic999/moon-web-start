@@ -1,18 +1,19 @@
-import axios from 'axios';
-import jsonpAdapter from 'axios-jsonp';
+import axios from 'axios'
+import jsonpAdapter from 'axios-jsonp'
 
 function target(wd) {
-  return 'https://www.sogou.com/web?query=' + encodeURIComponent(wd)
+  return `https://www.sogou.com/web?query=${encodeURIComponent(wd)}`
 }
 
 function complete(wd, callback) {
-  let url = 'https://wap.sogou.com/web/sugg/' + encodeURIComponent(wd)
-  window.sug = function(resposnse) {
+  const url = `https://wap.sogou.com/web/sugg/${encodeURIComponent(wd)}`
+  window.sug = function (response) {
     callback({
       eng: 'sogou',
-      wd: resposnse.q,
-      list: resposnse.s ?
-        resposnse.s.map(s => s.q) : [],
+      wd: response.q,
+      list: response.s
+        ? response.s.map(s => s.q)
+        : [],
     })
   }
   axios.get(url, {
@@ -21,9 +22,9 @@ function complete(wd, callback) {
       s: 1,
       source: 'wapsearch',
       encrypt: 0,
-      cb: 'sug'
+      cb: 'sug',
     },
-    adapter: jsonpAdapter
+    adapter: jsonpAdapter,
   }).catch(error => console.error(error))
 }
 

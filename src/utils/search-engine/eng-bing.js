@@ -1,8 +1,8 @@
-import axios from 'axios';
-import jsonpAdapter from 'axios-jsonp';
+import axios from 'axios'
+import jsonpAdapter from 'axios-jsonp'
 
 function target(wd) {
-  return 'https://www.bing.com/search?mkt=zh-cn&q=' + encodeURIComponent(wd)
+  return `https://www.bing.com/search?mkt=zh-cn&q=${encodeURIComponent(wd)}`
 }
 
 function complete(wd, callback) {
@@ -13,20 +13,21 @@ function complete(wd, callback) {
       q: wd,
     },
     adapter: jsonpAdapter,
-    callbackParamName: 'cb'
-  }).then(resp => {
+    callbackParamName: 'cb',
+  }).then((resp) => {
     const asRes = resp.data.AS.Results
     let list
     if (!asRes) {
       list = []
-    } else {
+    }
+    else {
       list = asRes.map(r => r.Suggests)
         .reduce(
           (sa1, sa2) => sa1.concat(sa2),
-          []
+          [],
         )
         .sort(
-          (s1, s2) => (s1.Sk > s2.Sk) ? 1 : -1
+          (s1, s2) => (s1.Sk > s2.Sk) ? 1 : -1,
         )
         .map(s => s.Txt)
     }
@@ -34,7 +35,7 @@ function complete(wd, callback) {
     callback({
       eng: 'bing',
       wd: resp.data.AS.Query,
-      list: list,
+      list,
     })
   }).catch(error => console.error(error))
 }

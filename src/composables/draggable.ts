@@ -6,6 +6,8 @@ export function useDrag() {
     disabled: !settingStore.isSetting,
     ghostClass: 'ghost',
     forceFallback: true,
+    delay: 1,
+    fallbackTolerance: 3,
   }))
 
   function handleStart() {

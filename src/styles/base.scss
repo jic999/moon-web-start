@@ -4,7 +4,11 @@
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
-  border-color: #e5e7eb;
+  border-color: #e8e8e8;
+}
+
+.dark *, ::after, ::before {
+  border-color: #282828;
 }
 
 * {
