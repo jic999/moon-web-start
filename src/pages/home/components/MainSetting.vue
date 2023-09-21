@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
 import type { Category, SettingItem, Settings, Theme } from '@/types'
-import { deepClone, iconStyleList, searchList, themeList } from '@/utils'
+import { deepClone, iconStyle, search, showLunar, theme } from '@/utils'
 import presetData from '@/preset.json'
 
 // TODO 设置项完善
-
 const settingStore = useSettingStore()
 const renderStore = useRenderStore()
 
 /* ThemeSetting */
 function renderThemeLabel(option: SettingItem<Theme>): VNode {
-  const currentTheme = themeList.find(item => item.enName === option.enName)!
+  const currentTheme = theme.children.find(item => item.enName === option.enName)!
   const bgColor = currentTheme!.value.bgC
   return h('div', { class: 'flex items-center gap-x-8' },
     [
@@ -46,6 +45,7 @@ function exportData() {
   URL.revokeObjectURL(url)
   window.$notification.success({ content: '已导出~', duration: 3000 })
 }
+
 function importData() {
   const inputElement = document.createElement('input')
   inputElement.type = 'file'
@@ -68,6 +68,7 @@ function importData() {
   })
   inputElement.click()
 }
+
 function resetData() {
   window.$dialog.warning({
     title: '提示',
@@ -82,6 +83,7 @@ function resetData() {
     },
   })
 }
+
 function loadData(data: any) {
   siteStore.setData(data.data)
   settingStore.setSettings(data.settings)
@@ -97,8 +99,8 @@ function loadData(data: any) {
     <div flex flex-wrap sm="grid grid-cols-2" justify-between gap-12>
       <SettingSelection
         v-model="settingStore.settings.theme"
-        title="主题"
-        :options="themeList"
+        :title="theme.name"
+        :options="theme.children"
         :render-label="renderThemeLabel"
         label-field="name"
         value-field="enName"
@@ -106,19 +108,27 @@ function loadData(data: any) {
       />
       <SettingSelection
         v-model="settingStore.settings.search"
-        title="搜索引擎"
-        :options="searchList"
+        :title="search.name"
+        :options="search.children"
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
       />
       <SettingSelection
         v-model="settingStore.settings.iconStyle"
-        title="图标风格"
-        :options="iconStyleList"
+        :title="iconStyle.name"
+        :options="iconStyle.children"
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.showLunar"
+        :title="showLunar.name"
+        :options="showLunar.children"
+        label-field="name"
+        value-field="value"
+        :on-update-value="(value: boolean) => settingStore.setSettings({ showLunar: value })"
       />
     </div>
     <div mt-24 flex sm="justify-center" justify-between gap-x-12>

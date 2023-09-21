@@ -7,11 +7,11 @@ const modalStore = useModalStore()
 const siteStore = useSiteStore()
 const route = useRoute()
 
-function handleSiteClick(url: string, groupIndex: number, siteIndex: number) {
-  if (route.name === 'setting')
+function handleSiteClick(groupIndex: number, siteIndex: number, e: Event) {
+  if (route.name === 'setting') {
+    e.preventDefault()
     modalStore.showModal('update', 'site', groupIndex, siteIndex)
-  else
-    window.open(url, '_blank')
+  }
 }
 function handleGroupClick(groupIndex: number) {
   if (route.name === 'setting')
@@ -90,16 +90,16 @@ const renderStore = useRenderStore()
               <template #item="{ element: site, index }: { element: Site, index: number }">
                 <div>
                   <!-- Site item -->
-                  <div
+                  <a
                     class="site__handle"
                     :class="{ 'site--setting': settingStore.isSetting, 'hover:bg-$site-hover-c': !settingStore.isDragging }"
                     :href="site.url" target="_blank"
                     inline-flex cursor-pointer items-center gap-x-8 px-12 h-40 max-w-100p
-                    @click="handleSiteClick(site.url, i, index)"
+                    @click="(e) => handleSiteClick(i, index, e)"
                   >
                     <Favicon class="shrink-0" :site="site" :site-index="index" :group-index="i" />
                     <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
-                  </div>
+                  </a>
                 </div>
               </template>
             </draggable>

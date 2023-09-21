@@ -1,14 +1,4 @@
-export interface Settings {
-  theme: string
-  search: string
-  iconStyle: string
-}
-export interface SettingItem<T> {
-  name: string
-  enName: string
-  value: T
-}
-export type SettingKey = keyof Settings
+import type * as settingData from '@/utils/settings'
 
 export type SettingItems<T> = SettingItem<T>[]
 
@@ -40,3 +30,34 @@ export interface IconStyle {
   enName: string
   style: Partial<CSSStyleDeclaration>
 }
+
+export class SettingItem<T> {
+  name: string
+  enName: string
+  children: SettingItemChildren<T>
+  defaultKey: string
+  value: T
+
+  constructor(options: {
+    name: string
+    enName: string
+    children: SettingItemChildren<T>
+    defaultKey?: string
+  }) {
+    this.name = options.name
+    this.enName = options.enName
+    this.children = options.children
+    this.defaultKey = options.defaultKey || options.children[0].enName
+    this.value = options.defaultKey ? options.children.find(item => item.enName === options.defaultKey)!.value : options.children[0].value
+  }
+}
+
+export interface SettingItemsChild<T> {
+  name: string
+  enName: string
+  value: T
+}
+
+export type SettingItemChildren<T> = SettingItemsChild<T>[]
+
+export type Settings = Record<keyof typeof settingData, any>

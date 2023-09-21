@@ -2,6 +2,8 @@
 import dayjs from 'dayjs'
 import solarLunar from 'solarlunar-es'
 
+const settingStore = useSettingStore()
+
 const date = ref('')
 const time = ref('')
 const lunarDate = ref('')
@@ -62,7 +64,7 @@ onBeforeUnmount(() => {
         <span>{{ date }}</span>
         <span ml-12>{{ week }}</span>
       </p>
-      <p>
+      <p v-if="settingStore.settings.showLunar">
         {{ lunarDate }}
       </p>
     </div>

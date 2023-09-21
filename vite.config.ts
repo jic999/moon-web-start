@@ -1,7 +1,6 @@
 import path from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import VueJsx from '@vitejs/plugin-vue-jsx'
 import Pages from 'vite-plugin-pages'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -13,7 +12,6 @@ import { visualizer } from 'rollup-plugin-visualizer'
 export default defineConfig({
   plugins: [
     Vue(),
-    VueJsx(),
     Unocss(),
     Pages(),
     VueMacros(),

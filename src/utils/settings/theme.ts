@@ -1,6 +1,7 @@
-import type { SettingItems, Theme } from '@/types'
+import type { SettingItemChildren, Theme } from '@/types'
+import { SettingItem } from '@/types'
 
-export const themeList: SettingItems<Theme> = [
+const themeChildren: SettingItemChildren<Theme> = [
   {
     name: '初春',
     enName: 'EarlySpring',
@@ -8,9 +9,9 @@ export const themeList: SettingItems<Theme> = [
       primaryC: '#0d9488',
       primaryLightC: '#37a399',
       primaryDarkC: '#096b62',
-      siteHoverC: '#37a39922', // primaryLightC + 22
-      settingBorderC: '#096b62aa', // primaryDarkC + aa
-      settingGroupBgC: '#87a8a422', // bgC + 22
+      siteHoverC: '#37a39922',
+      settingBorderC: '#096b62aa',
+      settingGroupBgC: '#87a8a422',
       bgC: '#87a8a4',
       mainBgC: '#f3f4f6',
     },
@@ -58,3 +59,10 @@ export const themeList: SettingItems<Theme> = [
     },
   },
 ]
+
+export const theme = new SettingItem({
+  name: '主题',
+  enName: 'Theme',
+  children: themeChildren,
+  defaultKey: 'MoonWhite',
+})

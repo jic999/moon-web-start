@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { vOnClickOutside } from '@vueuse/components'
 import type { Search } from '@/types'
-import { debounce, getFaviconUrl, searchList } from '@/utils'
+import { debounce, getFaviconUrl, search as searchSetting } from '@/utils'
 import searchEngine from '@/utils/search-engine'
 
 const settingStore = useSettingStore()
+
+const searchList = searchSetting.children
 
 const keyword = ref('')
 

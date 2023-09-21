@@ -1,6 +1,7 @@
-import type { IconStyle, SettingItems } from '@/types'
+import type { IconStyle, SettingItemChildren } from '@/types'
+import { SettingItem } from '@/types'
 
-export const iconStyleList: SettingItems<IconStyle> = [
+const iconStyleList: SettingItemChildren<IconStyle> = [
   {
     name: '鲜艳',
     enName: 'Vivid',
@@ -17,3 +18,10 @@ export const iconStyleList: SettingItems<IconStyle> = [
     value: { name: '灰白', enName: 'Gray', style: { opacity: '0.7', filter: 'grayscale(72%)' } },
   },
 ]
+
+export const iconStyle = new SettingItem({
+  name: '图标风格',
+  enName: 'IconStyle',
+  children: iconStyleList,
+  defaultKey: 'Plain',
+})

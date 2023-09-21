@@ -1,6 +1,7 @@
-import type { Search, SettingItems } from '@/types'
+import type { Search, SettingItemChildren } from '@/types'
+import { SettingItem } from '@/types'
 
-export const searchList: SettingItems<Search> = [
+const searchList: SettingItemChildren<Search> = [
   {
     name: '必应',
     enName: 'Bing',
@@ -27,3 +28,10 @@ export const searchList: SettingItems<Search> = [
     value: { name: '维基百科', enName: 'Wikipedia', url: 'https://zh.wikipedia.org/w/index.php', key: 'search', favicon: '/svg/wikipedia.svg', s: 'vk' },
   },
 ]
+
+export const search = new SettingItem({
+  name: '搜索引擎',
+  enName: 'Search',
+  children: searchList,
+  defaultKey: 'Bing',
+})
