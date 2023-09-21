@@ -78,6 +78,8 @@ function resetData() {
     onPositiveClick() {
       loadData(deepClone(presetData))
       window.$notification.success({ content: '已重置~', duration: 3000 })
+      // 重置分类索引
+      siteStore.cateIndex = 0
       // 重新渲染 site group list，否则自定义图标的背景色会丢失
       renderStore.refreshSiteGroupList()
     },
