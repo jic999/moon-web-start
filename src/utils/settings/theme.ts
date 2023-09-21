@@ -1,6 +1,6 @@
-import type { SettingData, Theme } from '@/types'
+import type { SettingItems, Theme } from '@/types'
 
-export const themeList: SettingData<Theme> = [
+export const themeList: SettingItems<Theme> = [
   {
     name: '初春',
     enName: 'EarlySpring',

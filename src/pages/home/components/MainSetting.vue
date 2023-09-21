@@ -90,7 +90,7 @@ function loadData(data: any) {
 </script>
 
 <template>
-  <section v-if="settingStore.isSetting" py-24 px="md:32 lg:64">
+  <section v-if="settingStore.isSetting" px="md:32 lg:64">
     <div my-16 text="16 $text-c-1" italic>
       设置
     </div>

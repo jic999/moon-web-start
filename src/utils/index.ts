@@ -1,5 +1,3 @@
 export * from './favicon'
-export * from './theme'
-export * from './search'
-export * from './icon_style'
 export * from './common'
+export * from './settings'

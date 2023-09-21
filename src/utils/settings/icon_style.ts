@@ -1,6 +1,6 @@
-import type { IconStyle, SettingData } from '@/types'
+import type { IconStyle, SettingItems } from '@/types'
 
-export const iconStyleList: SettingData<IconStyle> = [
+export const iconStyleList: SettingItems<IconStyle> = [
   {
     name: '鲜艳',
     enName: 'Vivid',

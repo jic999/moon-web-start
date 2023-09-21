@@ -10,7 +10,7 @@ export interface SettingItem<T> {
 }
 export type SettingKey = keyof Settings
 
-export type SettingData<T> = SettingItem<T>[]
+export type SettingItems<T> = SettingItem<T>[]
 
 /* Theme */
 export interface Theme {
@@ -35,7 +35,6 @@ export interface Search {
 }
 
 /* IconStyle */
-
 export interface IconStyle {
   name: string
   enName: string

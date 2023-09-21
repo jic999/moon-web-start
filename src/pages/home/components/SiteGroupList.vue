@@ -42,10 +42,10 @@ const renderStore = useRenderStore()
       @end="handleEnd"
     >
       <template #item="{ element: group, index: i }: { element: Group, index: number }">
-        <div :class="{ 'group--setting': settingStore.isSetting, 'flex gap-x-8 items-start': !isXsScreen }">
+        <div :class="{ 'mb-6': settingStore.isSetting, 'flex gap-x-8 items-start': !isXsScreen }" relative>
           <!-- Group header -->
           <div
-            :class="{ 'cursor-pointer ': settingStore.isSetting, 'mb-12 w-full': isXsScreen }"
+            :class="{ 'cursor-pointer bg-$site-hover-c': settingStore.isSetting, 'mb-12 w-full': isXsScreen }"
             shrink-0 w-72
             @click="handleGroupClick(i)"
           >
@@ -53,9 +53,9 @@ const renderStore = useRenderStore()
               class="group__handle"
               :class="{
                 'group__header--setting': settingStore.isSetting,
-                'hover:bg-$site-hover-c': settingStore.isSetting && !settingStore.isDragging,
+                'hover:bg-$site-hover-c': settingStore.isSetting,
               }"
-              flex items-center px-6 h-40
+              flex items-center justify-between px-6 h-40
             >
               <div
                 :class="{ 'group__name pl-16 py-4': isXsScreen }"
@@ -63,6 +63,11 @@ const renderStore = useRenderStore()
               >
                 {{ group.name }}
               </div>
+              <n-button v-if="settingStore.isSetting && isXsScreen" class="btn--add-site" type="primary" circle :focusable="false" @click.stop="modalStore.showModal('add', 'site', i)">
+                <template #icon>
+                  <div i-carbon:add />
+                </template>
+              </n-button>
             </div>
           </div>
           <!-- Group content -->
@@ -89,24 +94,22 @@ const renderStore = useRenderStore()
                     class="site__handle"
                     :class="{ 'site--setting': settingStore.isSetting, 'hover:bg-$site-hover-c': !settingStore.isDragging }"
                     :href="site.url" target="_blank"
-                    inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
+                    inline-flex cursor-pointer items-center gap-x-8 px-12 h-40 max-w-100p
                     @click="handleSiteClick(site.url, i, index)"
                   >
-                    <Favicon :site="site" :site-index="index" :group-index="i" />
+                    <Favicon class="shrink-0" :site="site" :site-index="index" :group-index="i" />
                     <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
                   </div>
                 </div>
               </template>
-              <template #footer>
-                <div v-if="settingStore.isSetting" min-h-38>
-                  <n-button class="h-full" type="primary" secondary :focusable="false" @click="modalStore.showModal('add', 'site', i)">
-                    <template #icon>
-                      <div i-carbon:add />
-                    </template>
-                  </n-button>
-                </div>
-              </template>
             </draggable>
+          </div>
+          <div v-if="settingStore.isSetting && !isXsScreen" absolute z-9 flex-center h-40 r-0>
+            <n-button class="btn--add-site" type="primary" circle :focusable="false" @click.stop="modalStore.showModal('add', 'site', i)">
+              <template #icon>
+                <div i-carbon:add />
+              </template>
+            </n-button>
           </div>
         </div>
       </template>
@@ -140,11 +143,11 @@ const renderStore = useRenderStore()
     border-radius: 2px;
   }
 }
-.group--setting {
-  padding: 12px 6px;
-  background: var(--setting-group-bg-c);
-}
 .group__header--setting {
   border: 1px dashed var(--setting-border-c);
+}
+
+.btn--add-site {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 </style>

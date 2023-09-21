@@ -42,7 +42,7 @@ function handleDragEnd(e: any) {
 <template>
   <section flex-center text-14>
     <draggable
-      class="nav w-auto flex-center gap-x-12 w-90p sm:max-w-480"
+      class="nav w-auto flex gap-x-6 w-90p sm:gap-x-12 sm:max-w-480"
       :list="siteStore.data"
       item-key="id"
       :component-data="{

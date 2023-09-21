@@ -1,6 +1,6 @@
-import type { Search, SettingData } from '@/types'
+import type { Search, SettingItems } from '@/types'
 
-export const searchList: SettingData<Search> = [
+export const searchList: SettingItems<Search> = [
   {
     name: '必应',
     enName: 'Bing',
