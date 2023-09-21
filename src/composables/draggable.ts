@@ -6,7 +6,7 @@ export function useDrag() {
     disabled: !settingStore.isSetting,
     ghostClass: 'ghost',
     forceFallback: true,
-    delay: 1,
+    delay: isSmScreen.value ? 0 : 100,
     fallbackTolerance: 3,
   }))
 
