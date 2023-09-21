@@ -67,6 +67,9 @@ function handleKeydown(e: KeyboardEvent) {
     keyword.value = ''
     selectionVisible.value = false
   }
+  // 关闭搜索引擎选择
+  if (keyword.value === '#' && e.key === 'Backspace')
+    selectionVisible.value = false
 }
 
 const { iconStyle } = useIconStyle()
@@ -170,7 +173,7 @@ function setInactive(_: number) {
       <!-- keys recommend -->
       <div bg="$main-bg-c" border="2 t-0" z-9 py-6 l-0 t-100p>
         <div
-          v-for="(item, i) in noticeKeyList" :key="i + 1" text-15 p-5
+          v-for="(item, i) in noticeKeyList.slice(1)" :key="i + 1" text-15 p-5
           class="cursor-pointer"
           :class="{ 'bg-$site-hover-c': i + 1 === selectedIndex }"
           @mouseover="handleHover(i + 1)"
