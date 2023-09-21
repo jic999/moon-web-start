@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
-import type { Category, SettingItem, Settings, Theme } from '@/_types'
+import type { Category, SettingItem, Settings, Theme } from '@/types'
 import { deepClone, iconStyleList, searchList, themeList } from '@/utils'
 import presetData from '@/preset.json'
 
 // TODO 设置项完善
 
 const settingStore = useSettingStore()
+const renderStore = useRenderStore()
+
 /* ThemeSetting */
 function renderThemeLabel(option: SettingItem<Theme>): VNode {
   const currentTheme = themeList.find(item => item.enName === option.enName)!
@@ -68,13 +70,15 @@ function importData() {
 }
 function resetData() {
   window.$dialog.warning({
-    title: '警告',
-    content: '你确认要重置数据吗？',
+    title: '提示',
+    content: '数据重置后无法恢复，你确认要重置数据吗？',
     positiveText: '确认',
     negativeText: '取消',
     onPositiveClick() {
       loadData(deepClone(presetData))
       window.$notification.success({ content: '已重置~', duration: 3000 })
+      // 重新渲染 site group list，否则自定义图标的背景色会丢失
+      renderStore.refreshSiteGroupList()
     },
   })
 }
@@ -86,11 +90,11 @@ function loadData(data: any) {
 </script>
 
 <template>
-  <section v-if="settingStore.isSetting" p-24>
-    <div my-16 text="16 $primary-dark-c" italic>
+  <section v-if="settingStore.isSetting" px="md:32 lg:64">
+    <div my-16 text="16 $text-c-1" italic>
       设置
     </div>
-    <div flex flex-wrap justify-between gap-12>
+    <div flex flex-wrap sm="grid grid-cols-2" justify-between gap-12>
       <SettingSelection
         v-model="settingStore.settings.theme"
         title="主题"
@@ -117,7 +121,7 @@ function loadData(data: any) {
         :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
       />
     </div>
-    <div mt-24 flex justify-end gap-x-12>
+    <div mt-24 flex sm="justify-center" justify-between gap-x-12>
       <n-button type="primary" secondary @click="resetData">
         重置数据
       </n-button>
@@ -135,4 +139,3 @@ function loadData(data: any) {
     </div>
   </section>
 </template>
-@/types

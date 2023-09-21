@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div lg="w-1240" mx-auto w-92p>
+  <div w="full  xl:1280!" mx-auto>
     <slot />
   </div>
 </template>

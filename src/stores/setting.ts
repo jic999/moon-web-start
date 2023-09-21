@@ -15,7 +15,14 @@ export const settingData = {
 
 export const useSettingStore = defineStore('theme', () => {
   const route = useRoute()
-  const isSetting = computed(() => route.name === 'setting')
+  const isSetting = ref(false)
+
+  watch(route, () => {
+    if (route.name === 'setting')
+      isSetting.value = true
+    else
+      isSetting.value = false
+  }, { immediate: true })
 
   const settingCache = loadSettings()
   const presetSetting = preset.settings

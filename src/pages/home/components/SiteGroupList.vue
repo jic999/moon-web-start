@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
 import Favicon from './Favicon.vue'
-import type { Group, Site } from '@/_types'
+import type { Group, Site } from '@/types'
 
 const modalStore = useModalStore()
 const siteStore = useSiteStore()
@@ -22,11 +22,13 @@ const addGroupVisible = computed(() => route.name === 'setting' && siteStore.dat
 const { draggableOptions, handleStart, handleEnd } = useDrag()
 
 const settingStore = useSettingStore()
+const renderStore = useRenderStore()
 </script>
 
 <template>
-  <section py-24 text-14>
+  <section :key="renderStore.siteGroupListKey" text-14>
     <draggable
+      class="flex flex-col gap-y-12"
       :list="siteStore.data[siteStore.cateIndex].groupList"
       item-key="id"
       handle=".group__handle"
@@ -40,29 +42,36 @@ const settingStore = useSettingStore()
       @end="handleEnd"
     >
       <template #item="{ element: group, index: i }: { element: Group, index: number }">
-        <div :class="{ 'group--setting': settingStore.isSetting }">
+        <div :class="{ 'mb-6': settingStore.isSetting, 'flex gap-x-8 items-start': !isXsScreen }" relative>
           <!-- Group header -->
           <div
-            :class="{ 'cursor-pointer ': settingStore.isSetting }"
-            my-8
+            :class="{ 'cursor-pointer bg-$site-hover-c': settingStore.isSetting, 'mb-12 w-full': isXsScreen }"
+            shrink-0 w-72
             @click="handleGroupClick(i)"
           >
             <div
               class="group__handle"
               :class="{
-                'group__header--setting mb-12': settingStore.isSetting,
-                'hover:bg-$site-hover-c': settingStore.isSetting && !settingStore.isDragging,
+                'group__header--setting': settingStore.isSetting,
+                'hover:bg-$site-hover-c': settingStore.isSetting,
               }"
-              flex items-center justify-between px-12 py-4
+              flex items-center justify-between px-6 h-40
             >
-              <span class="group__name" :class="{ 'cursor-pointer': settingStore.isSetting }" px-12 py-4>
+              <div
+                :class="{ 'group__name pl-16 py-4': isXsScreen }"
+                whitespace-nowrap text-15 op-80 overflow-hidden
+              >
                 {{ group.name }}
-              </span>
-              <div />
+              </div>
+              <n-button v-if="settingStore.isSetting && isXsScreen" class="btn--add-site" type="primary" circle :focusable="false" @click.stop="modalStore.showModal('add', 'site', i)">
+                <template #icon>
+                  <div i-carbon:add />
+                </template>
+              </n-button>
             </div>
           </div>
           <!-- Group content -->
-          <div>
+          <div w-full>
             <draggable
               :list="siteStore.data[siteStore.cateIndex].groupList[i].siteList"
               item-key="id"
@@ -72,7 +81,7 @@ const settingStore = useSettingStore()
               :component-data="{
                 tag: 'div',
                 type: 'transition-group',
-                class: 'grid grid-cols-2 gap-8 lg:grid-cols-6 md:grid-cols-3',
+                class: 'grid grid-cols-3 gap-x-8 gap-y-12 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
               }"
               v-bind="draggableOptions"
               @start="handleStart"
@@ -85,24 +94,22 @@ const settingStore = useSettingStore()
                     class="site__handle"
                     :class="{ 'site--setting': settingStore.isSetting, 'hover:bg-$site-hover-c': !settingStore.isDragging }"
                     :href="site.url" target="_blank"
-                    inline-flex cursor-pointer items-center gap-x-8 px-12 py-8 max-w-100p
+                    inline-flex cursor-pointer items-center gap-x-8 px-12 h-40 max-w-100p
                     @click="handleSiteClick(site.url, i, index)"
                   >
-                    <Favicon :site="site" :site-index="index" :group-index="i" />
+                    <Favicon class="shrink-0" :site="site" :site-index="index" :group-index="i" />
                     <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
                   </div>
                 </div>
               </template>
-              <template #footer>
-                <div v-if="settingStore.isSetting" min-h-38>
-                  <n-button class="h-full" type="primary" secondary :focusable="false" @click="modalStore.showModal('add', 'site', i)">
-                    <template #icon>
-                      <div i-carbon:add />
-                    </template>
-                  </n-button>
-                </div>
-              </template>
             </draggable>
+          </div>
+          <div v-if="settingStore.isSetting && !isXsScreen" absolute z-9 flex-center h-40 r-0>
+            <n-button class="btn--add-site" type="primary" circle :focusable="false" @click.stop="modalStore.showModal('add', 'site', i)">
+              <template #icon>
+                <div i-carbon:add />
+              </template>
+            </n-button>
           </div>
         </div>
       </template>
@@ -136,13 +143,11 @@ const settingStore = useSettingStore()
     border-radius: 2px;
   }
 }
-.group--setting {
-  margin-bottom: 12px;
-  padding: 12px 6px;
-  background: var(--setting-group-bg-c);
-}
 .group__header--setting {
   border: 1px dashed var(--setting-border-c);
 }
+
+.btn--add-site {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
 </style>
-@/types

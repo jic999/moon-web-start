@@ -47,12 +47,17 @@ declare global {
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
-  const isDark: typeof import('./composables/dark')['isDark']
+  const isDark: typeof import('./composables/app')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
+  const isLgScreen: typeof import('./composables/app')['isLgScreen']
+  const isMdScreen: typeof import('./composables/app')['isMdScreen']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const isSmScreen: typeof import('./composables/app')['isSmScreen']
+  const isXlScreen: typeof import('./composables/app')['isXlScreen']
+  const isXsScreen: typeof import('./composables/app')['isXsScreen']
   const loadSettings: typeof import('./stores/setting')['loadSettings']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapActions: typeof import('pinia')['mapActions']
@@ -117,7 +122,7 @@ declare global {
   const toRef: typeof import('@vueuse/core')['toRef']
   const toRefs: typeof import('vue')['toRefs']
   const toValue: typeof import('@vueuse/core')['toValue']
-  const toggleDark: typeof import('./composables/dark')['toggleDark']
+  const toggleDark: typeof import('./composables/app')['toggleDark']
   const toggleTheme: typeof import('./composables/theme')['toggleTheme']
   const triggerRef: typeof import('vue')['triggerRef']
   const tryOnBeforeMount: typeof import('@vueuse/core')['tryOnBeforeMount']
@@ -240,6 +245,7 @@ declare global {
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
+  const useRenderStore: typeof import('./stores/render')['useRenderStore']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
@@ -362,12 +368,17 @@ declare module 'vue' {
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
-    readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
+    readonly isDark: UnwrapRef<typeof import('./composables/app')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isLgScreen: UnwrapRef<typeof import('./composables/app')['isLgScreen']>
+    readonly isMdScreen: UnwrapRef<typeof import('./composables/app')['isMdScreen']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isSmScreen: UnwrapRef<typeof import('./composables/app')['isSmScreen']>
+    readonly isXlScreen: UnwrapRef<typeof import('./composables/app')['isXlScreen']>
+    readonly isXsScreen: UnwrapRef<typeof import('./composables/app')['isXsScreen']>
     readonly loadSettings: UnwrapRef<typeof import('./stores/setting')['loadSettings']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
@@ -432,7 +443,7 @@ declare module 'vue' {
     readonly toRef: UnwrapRef<typeof import('@vueuse/core')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('@vueuse/core')['toValue']>
-    readonly toggleDark: UnwrapRef<typeof import('./composables/dark')['toggleDark']>
+    readonly toggleDark: UnwrapRef<typeof import('./composables/app')['toggleDark']>
     readonly toggleTheme: UnwrapRef<typeof import('./composables/theme')['toggleTheme']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
@@ -555,6 +566,7 @@ declare module 'vue' {
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
+    readonly useRenderStore: UnwrapRef<typeof import('./stores/render')['useRenderStore']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>

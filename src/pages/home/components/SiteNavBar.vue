@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
-import type { Category } from '@/_types'
+import type { Category } from '@/types'
 
 const modalStore = useModalStore()
 const siteStore = useSiteStore()
@@ -29,7 +29,8 @@ function handleDragEnd(e: any) {
     if (
       (oldIndex < cateIndex && newIndex < cateIndex)
       || (oldIndex > cateIndex && newIndex > cateIndex)
-    ) return
+    )
+      return
     if (oldIndex < cateIndex)
       siteStore.setCateIndex(cateIndex - 1)
     else if (oldIndex > cateIndex)
@@ -41,7 +42,7 @@ function handleDragEnd(e: any) {
 <template>
   <section flex-center text-14>
     <draggable
-      class="flex gap-x-12"
+      class="nav w-auto flex gap-x-6 w-90p sm:gap-x-12 sm:max-w-480"
       :list="siteStore.data"
       item-key="id"
       :component-data="{
@@ -54,12 +55,12 @@ function handleDragEnd(e: any) {
     >
       <template #item="{ element: cate, index: i }: { element: Category, index: number }">
         <div
-          class="dragging nav__item"
+          class="dragging nav__item shrink-0"
           :class="{
             'hover:text-$primary-c': !settingStore.isSetting,
             'nav__item--active': siteStore.cateIndex === i,
           }"
-          cursor-pointer transition-color duration-300 p-8
+          cursor-pointer px-8 py-10 transition-color duration-300
           @click="handleCateClick(i)"
         >
           {{ cate.name }}
@@ -83,12 +84,20 @@ function handleDragEnd(e: any) {
 </template>
 
 <style lang="scss" scoped>
+.nav {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 .nav__item {
   position: relative;
   &::after {
     content: '';
     position: absolute;
-    top: 100%;
+    bottom: 0;
     width: 0;
     height: 2px;
     border-radius: 2px;
@@ -105,4 +114,3 @@ function handleDragEnd(e: any) {
   }
 }
 </style>
-@/types

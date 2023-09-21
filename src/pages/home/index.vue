@@ -8,14 +8,16 @@ import MainSetting from './components/MainSetting.vue'
 defineOptions({
   name: 'HomePage',
 })
+
+const settingStore = useSettingStore()
 </script>
 
 <template>
   <TheDoc>
-    <div my-6vh p-24 bg="$main-bg-c">
+    <div my="0 sm:6vh" p="12 sm:24" bg="$main-bg-c" w="full sm:auto" :class="{ no_select: settingStore.isSetting }">
       <MainHeader />
-      <MainClock />
-      <MainSearch />
+      <MainClock v-if="!settingStore.isSetting" />
+      <MainSearch v-if="!settingStore.isSetting" my-24 />
       <SiteContainer />
       <MainSetting />
       <TheFooter />
@@ -25,6 +27,13 @@ defineOptions({
 
 <route lang="json">
 {
-  "path": "/"
+  "path": "/",
+  "children": [
+    {
+      "name": "setting",
+      "path": "setting",
+      "component": "@/components/Blank.vue"
+    }
+  ]
 }
 </route>

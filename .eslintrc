@@ -2,8 +2,8 @@
   "root": true,
   "extends": ["@antfu", "@unocss"],
   "rules": {
-    "no-console": "off",
-    "dot-notation": "off",
-    "eslint-comments/no-unlimited-disable": "off"
+    "eslint-comments/no-unlimited-disable": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/use-v-on-exact": "off"
   }
 }

@@ -1,7 +1,9 @@
 
-一个简约风格的网址导航页，借鉴了[0x3](https://0x3.com/)。
+# Moon Web Start
 
-![Snipaste_2023-05-08_09-15-08](https://static.bchend.cn/blog/Snipaste_2023-05-08_09-15-08.png)
+一个简约风格的网址导航页，样式参考了[0x3](https://0x3.com/)。
+
+![Snipaste_2023-05-08_09-15-08](https://cdn.jsdelivr.net/gh/jic999/images/blog/Snip_2023-09-20_21-25-04.png)
 
 <p align='center'>
 <a href="https://moon-start.netlify.app/">在线演示</a>
@@ -27,11 +29,11 @@
 
 ## TODO
 
-- 搜索词联想
+- ~~搜索词联想~~
+
+- ~~移动端适配~~
 
 - 设置项完善
-
-- 移动端适配
 
 - 后端服务
 
