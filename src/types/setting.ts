@@ -1,36 +1,5 @@
 import type * as settingData from '@/utils/settings'
 
-export type SettingItems<T> = SettingItem<T>[]
-
-/* Theme */
-export interface Theme {
-  primaryC: string
-  primaryLightC: string
-  primaryDarkC: string
-  siteHoverC: string
-  settingBorderC: string
-  settingGroupBgC: string
-  bgC: string
-  mainBgC: string
-}
-
-/* Search */
-export interface Search {
-  name: string
-  enName: string
-  url: string
-  key: string
-  favicon: string
-  s: string
-}
-
-/* IconStyle */
-export interface IconStyle {
-  name: string
-  enName: string
-  style: Partial<CSSStyleDeclaration>
-}
-
 export class SettingItem<T> {
   name: string
   enName: string
@@ -60,4 +29,33 @@ export interface SettingItemsChild<T> {
 
 export type SettingItemChildren<T> = SettingItemsChild<T>[]
 
-export type Settings = Record<keyof typeof settingData, any>
+export type Settings = Record<keyof typeof settingData, string>
+
+/* Theme */
+export interface Theme {
+  primaryC: string
+  primaryLightC: string
+  primaryDarkC: string
+  siteHoverC: string
+  settingBorderC: string
+  settingGroupBgC: string
+  bgC: string
+  mainBgC: string
+}
+
+/* Search */
+export interface Search {
+  name: string
+  enName: string
+  url: string
+  key: string
+  favicon: string
+  s: string
+}
+
+/* IconStyle */
+export interface IconStyle {
+  name: string
+  enName: string
+  style: Partial<CSSStyleDeclaration>
+}

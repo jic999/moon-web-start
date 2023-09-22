@@ -28,19 +28,24 @@ export const useSettingStore = defineStore('setting', () => {
   const presetSetting = preset.settings
 
   const settings = reactive<Settings>((() => {
-    if (settingCache) {
-      // 判断设置项是否变更
-      for (const key in presetSetting) {
-        if (!settingCache[key as SettingKey])
-          return Object.assign(presetSetting, { ...defaultSetting, ...settingCache })
-      }
-      return Object.assign(defaultSetting, settingCache)
-    }
-    return Object.assign(defaultSetting, presetSetting)
+    let settings: Settings
+    if (settingCache)
+      settings = Object.assign(presetSetting, { ...defaultSetting, ...settingCache })
+    else
+      settings = Object.assign(defaultSetting, presetSetting)
+    // 排除非法值
+    Object.keys(settings).forEach((key) => {
+      if (!settingData[key as SettingKey].children.find(item => item.enName === settings[key as SettingKey]))
+        settings[key as SettingKey] = settingData[key as SettingKey].defaultKey
+    })
+    return settings
   })())
 
   function getSettingItem(key: keyof typeof settingData) {
     return settingData[key].children.find(item => item.enName === settings[key])!
+  }
+  function getSettingValue(key: keyof typeof settingData) {
+    return getSettingItem(key).value
   }
 
   function setSettings(newSettings: Partial<Settings>) {
@@ -64,5 +69,6 @@ export const useSettingStore = defineStore('setting', () => {
     setSettings,
     setIsDragging,
     getSettingItem,
+    getSettingValue,
   }
 })

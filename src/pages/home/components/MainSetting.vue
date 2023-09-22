@@ -79,7 +79,7 @@ function resetData() {
       loadData(deepClone(presetData))
       window.$notification.success({ content: '已重置~', duration: 3000 })
       // 重置分类索引
-      siteStore.cateIndex = 0
+      siteStore.setCateIndex(0)
       // 重新渲染 site group list，否则自定义图标的背景色会丢失
       renderStore.refreshSiteGroupList()
     },
@@ -129,8 +129,8 @@ function loadData(data: any) {
         :title="showLunar.name"
         :options="showLunar.children"
         label-field="name"
-        value-field="value"
-        :on-update-value="(value: boolean) => settingStore.setSettings({ showLunar: value })"
+        value-field="enName"
+        :on-update-value="(enName: string) => settingStore.setSettings({ showLunar: enName })"
       />
     </div>
     <div mt-24 flex sm="justify-center" justify-between gap-x-12>
