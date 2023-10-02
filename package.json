@@ -1,5 +1,6 @@
 {
   "name": "moon-web-start",
+  "type": "module",
   "version": "0.0.0",
   "private": true,
   "author": "jic999",
@@ -26,13 +27,14 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "0.38.4",
+    "@antfu/eslint-config": "1.0.0-beta.18",
     "@iconify-json/carbon": "^1.1.16",
     "@iconify/utils": "^2.1.5",
     "@types/node": "^18.15.11",
     "@unocss/eslint-config": "^0.51.8",
+    "@unocss/eslint-plugin": "^0.56.4",
     "@vitejs/plugin-vue": "^4.1.0",
-    "eslint": "^8.37.0",
+    "eslint": "^8.50.0",
     "eslint-plugin-vue": "^9.10.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.2",
@@ -40,7 +42,7 @@
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.60.0",
     "typescript": "^5.0.4",
-    "unocss": "^0.50.6",
+    "unocss": "^0.56.4",
     "unocss-preset-scalpel": "^1.2.6",
     "unplugin-auto-import": "^0.15.2",
     "unplugin-vue-components": "^0.24.1",

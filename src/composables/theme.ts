@@ -16,7 +16,8 @@ const currentTheme = theme.children.find(item => item.enName === defaultTheme)!.
 
 // 根据主题设置 CSS 变量
 export const themeVars: ThemeVars = Object.keys(
-  currentTheme).reduce(
+  currentTheme,
+).reduce(
   (obj, key) => {
     const cssVar = camelToCssVar(key)
     document.documentElement.style.setProperty(cssVar, currentTheme[key as ThemeVar])

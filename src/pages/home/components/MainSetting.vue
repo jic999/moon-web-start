@@ -12,12 +12,10 @@ const renderStore = useRenderStore()
 function renderThemeLabel(option: SettingItem<Theme>): VNode {
   const currentTheme = theme.children.find(item => item.enName === option.enName)!
   const bgColor = currentTheme!.value.bgC
-  return h('div', { class: 'flex items-center gap-x-8' },
-    [
-      h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
-      h('div', option.name),
-    ],
-  )
+  return h('div', { class: 'flex items-center gap-x-8' }, [
+    h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
+    h('div', option.name),
+  ])
 }
 /* Icon Style */
 

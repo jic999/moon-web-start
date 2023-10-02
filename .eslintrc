@@ -1,9 +1,0 @@
-{
-  "root": true,
-  "extends": ["@antfu", "@unocss"],
-  "rules": {
-    "eslint-comments/no-unlimited-disable": "off",
-    "vue/singleline-html-element-content-newline": "off",
-    "vue/use-v-on-exact": "off"
-  }
-}

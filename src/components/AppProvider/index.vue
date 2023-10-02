@@ -7,15 +7,15 @@ import {
   zhCN,
 } from 'naive-ui'
 
+defineOptions({
+  name: 'AppProvider',
+})
+
 const {
   primaryC,
   primaryLightC,
   primaryDarkC,
 } = themeVars
-
-defineOptions({
-  name: 'AppProvider',
-})
 
 const themeOverrides = computed(() => {
   return {

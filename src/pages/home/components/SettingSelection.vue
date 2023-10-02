@@ -1,4 +1,7 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
 const props = defineProps({
   title: {
     type: String,
@@ -14,9 +17,6 @@ const props = defineProps({
   },
 })
 const emits = defineEmits(['update:modelValue'])
-defineOptions({
-  inheritAttrs: false,
-})
 const modelValue = computed({
   get: () => props.modelValue,
   set: val => emits('update:modelValue', val),
