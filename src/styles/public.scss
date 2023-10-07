@@ -43,9 +43,9 @@ html {
 }
 
 .no_select {
-  -moz-user-select: none; /* 火狐 */
-  -webkit-user-select: none; /* 谷歌、Safari */
-  -ms-user-select: none; /* IE10+ */
   user-select: none;
-  user-drag: none;
+}
+
+.n-base-select-menu .n-base-select-option.n-base-select-option--selected {
+  color: var(--primary-light-c) !important;
 }

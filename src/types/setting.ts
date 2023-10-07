@@ -38,9 +38,9 @@ export interface Theme {
   primaryDarkC: string
   siteHoverC: string
   settingBorderC: string
-  settingGroupBgC: string
   bgC: string
   mainBgC: string
+  searchBtnC: string
 }
 
 /* Search */
