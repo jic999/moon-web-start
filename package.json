@@ -44,9 +44,9 @@
     "typescript": "^5.0.4",
     "unocss": "^0.56.4",
     "unocss-preset-scalpel": "^1.2.6",
-    "unplugin-auto-import": "^0.15.2",
-    "unplugin-vue-components": "^0.24.1",
-    "unplugin-vue-macros": "^2.5.1",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.2",
+    "unplugin-vue-macros": "^2.6.1",
     "vite": "^4.3.5",
     "vite-plugin-pages": "^0.29.0"
   },
