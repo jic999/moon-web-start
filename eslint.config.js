@@ -11,6 +11,7 @@ export default antfu(
       'eslint-comments/no-unlimited-disable': 'off',
       'vue/singleline-html-element-content-newline': 'off',
       'vue/use-v-on-exact': 'off',
+      'node/prefer-global/process': 'off',
     },
   },
 )
