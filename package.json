@@ -33,7 +33,7 @@
     "@types/node": "^18.15.11",
     "@unocss/eslint-config": "^0.51.8",
     "@unocss/eslint-plugin": "^0.56.4",
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue": "^4.4.0",
     "eslint": "^8.50.0",
     "eslint-plugin-vue": "^9.10.0",
     "husky": "^8.0.0",
@@ -47,7 +47,7 @@
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
     "unplugin-vue-macros": "^2.6.1",
-    "vite": "^4.3.5",
+    "vite": "^4.4.11",
     "vite-plugin-pages": "^0.29.0"
   },
   "lint-staged": {

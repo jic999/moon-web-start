@@ -10,7 +10,7 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
-  base: import.meta.env?.BASE_URL || '.',
+  base: import.meta.env ? import.meta.env.BASE_URL : '.',
   plugins: [
     Vue(),
     Unocss(),
