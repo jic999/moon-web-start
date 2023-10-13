@@ -1,10 +1,7 @@
 {
   "name": "moon-web-start",
   "type": "module",
-  "version": "0.0.0",
-  "private": true,
-  "author": "jic999",
-  "license": "MIT",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
