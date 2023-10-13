@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://github.com/jic999/sprout-admin-api">
-    <img alt="Sprout Admin" width="200" src="./public/favicon-dark.svg">
+    <img alt="Sprout Admin" width="200" src="./public/favicon_neutral.svg">
   </a>
 </p>
 <p align="center">
@@ -16,7 +16,7 @@
 
 ## 介绍
 
-一个简约风格的网址导航页，基于 MIT 协议开源，部分参考了[0x3](https://0x3.com/)。你可以直接使用它，也可以在此基础上客制化自己的网址导航😊。
+一个简约风格的网址导航页，基于 [MIT](./LICENSE) 协议开源。你可以直接使用它，也可以在此基础上客制化自己的网址导航😊。
 
 ![Snipaste_2023-05-08_09-15-08](https://cdn.jsdelivr.net/gh/jic999/images/blog/Snip_2023-09-20_21-25-04.png)
 
