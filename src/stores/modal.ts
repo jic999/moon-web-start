@@ -1,3 +1,4 @@
+import type { WebsitePreference } from '@/types'
 import { getCommonProps } from '@/utils'
 
 export type ActionType = 'add' | 'update'
@@ -17,6 +18,8 @@ export const useModalStore = defineStore('modal', () => {
   const action = ref<ActionType>('add')
   const target = ref<ActionTarget>('site')
   const title = computed(() => ACTION_NAME[action.value] + TARGET_NAME[target.value])
+
+  const settingStore = useSettingStore()
 
   const siteStore = useSiteStore()
   const inputValues = reactive({
@@ -67,22 +70,47 @@ export const useModalStore = defineStore('modal', () => {
     modalVisible.value = false
   }
   let isCommit = false
+
   function handleCommit() {
     if (isCommit)
       return
+    if (!handleCustomize())
+      return
+
     isCommit = true
-    now = Date.now()
-    commitHandler[action.value][target.value]()
-    modalVisible.value = false
-    setTimeout(() => isCommit = false, 1000)
+    nextTick(() => {
+      now = Date.now()
+      commitHandler[action.value][target.value]()
+      modalVisible.value = false
+      setTimeout(() => isCommit = false, 1000)
+    })
   }
   function handleDelete() {
-    deleteHandler[target.value]()
-    modalVisible.value = false
-    // If delete a cate, cateIndex--
-    if (target.value === 'cate' && siteStore.cateIndex > 0)
-      siteStore.setCateIndex(siteStore.cateIndex - 1)
+    if (!handleCustomize())
+      return
+    nextTick(() => {
+      deleteHandler[target.value]()
+      modalVisible.value = false
+      // If delete a cate, cateIndex--
+      if (target.value === 'cate' && siteStore.cateIndex > 0)
+        siteStore.setCateIndex(siteStore.cateIndex - 1)
+    })
   }
+  /**
+   * @returns {boolean} 是否继续执行
+   */
+  function handleCustomize(): boolean {
+    const isEmptyData = siteStore.customData.length === 0
+    const isCustomize = settingStore.settings.websitePreference as WebsitePreference === 'Customize'
+    if (!isEmptyData && !isCustomize) {
+      window.$message.warning('请先将网站偏好设置为“自定义”')
+      return false
+    }
+    if (!isCustomize)
+      settingStore.setSettings({ websitePreference: 'Customize' })
+    return true
+  }
+
   function clearInput() {
     let key: keyof typeof inputValues
     for (key in inputValues) inputValues[key] = ''

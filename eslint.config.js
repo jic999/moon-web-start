@@ -12,6 +12,7 @@ export default antfu(
       'vue/singleline-html-element-content-newline': 'off',
       'vue/use-v-on-exact': 'off',
       'node/prefer-global/process': 'off',
+      'prefer-promise-reject-errors': 'off',
     },
   },
 )

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import type { Site } from '@/types'
-import { getFaviconUrl, getRandomDarkColor } from '@/utils'
+import { getFaviconUrl } from '@/utils'
 
-const props = defineProps({
+defineProps({
   site: {
     type: Object as PropType<Site>,
     required: true,
@@ -18,23 +18,13 @@ const props = defineProps({
   },
 })
 
-const siteStore = useSiteStore()
-
 const { iconStyle } = useIconStyle()
 
 const isGen = ref(false)
 const isLoading = ref(true)
 
-function handleFaviconError(site: Site) {
+function handleFaviconError() {
   isGen.value = true
-  siteStore.setGroupIndex(props.groupIndex)
-  siteStore.setSiteIndex(props.siteIndex)
-  if (site.bgColor)
-    return
-  siteStore.updateSite({
-    ...site,
-    bgColor: getRandomDarkColor(),
-  })
 }
 </script>
 
@@ -44,10 +34,10 @@ function handleFaviconError(site: Site) {
       v-if="!isGen"
       :src="site.favicon || getFaviconUrl(site.url)"
       h-full w-full
-      @error="handleFaviconError(site)"
+      @error="handleFaviconError"
       @onload="isLoading = false"
     >
-    <div v-else :style="{ backgroundColor: site.bgColor }" h-full w-full flex-center scale-112 rounded-full text="white sm">
+    <div v-else :style="{ backgroundColor: 'var(--primary-c)' }" h-full w-full flex-center scale-112 rounded-full text="white 12">
       {{ site.name.toLocaleUpperCase().charAt(0) }}
     </div>
   </div>

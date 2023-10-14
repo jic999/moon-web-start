@@ -3,7 +3,7 @@ import {
   darkTheme,
   dateZhCN,
   useDialog,
-  useNotification,
+  useMessage,
   zhCN,
 } from 'naive-ui'
 
@@ -29,7 +29,7 @@ const themeOverrides = computed(() => {
 
 function setupNaiveTools() {
   window.$dialog = useDialog()
-  window.$notification = useNotification()
+  window.$message = useMessage()
 }
 
 const NaiveProviderContent = defineComponent({
@@ -52,10 +52,10 @@ const NaiveProviderContent = defineComponent({
     style="position: relative;"
   >
     <n-dialog-provider>
-      <n-notification-provider>
+      <n-message-provider>
         <slot />
         <NaiveProviderContent />
-      </n-notification-provider>
+      </n-message-provider>
     </n-dialog-provider>
   </n-config-provider>
 </template>

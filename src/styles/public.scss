@@ -6,6 +6,9 @@ html {
   background-color: var(--bg-c);
   transition: background 0.8s;
 }
+body {
+  font-size: 14px;
+}
 
 ::-webkit-scrollbar {
   width: 9px;

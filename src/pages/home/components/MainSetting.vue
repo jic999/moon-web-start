@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
-import type { Category, SettingItem, Settings, Theme } from '@/types'
-import { deepClone, iconStyle, search, showLunar, theme } from '@/utils'
-import presetData from '@/preset.json'
+import type { Category, SettingItem, Settings, Theme, WebsitePreference } from '@/types'
+import { iconStyle, search, showLunar, theme, websitePreference } from '@/utils'
 
-// TODO 设置项完善
 const settingStore = useSettingStore()
-const renderStore = useRenderStore()
 
 /* ThemeSetting */
 function renderThemeLabel(option: SettingItem<Theme>): VNode {
@@ -17,10 +14,9 @@ function renderThemeLabel(option: SettingItem<Theme>): VNode {
     h('div', option.name),
   ])
 }
-/* Icon Style */
 
 /* 导入导出 */
-interface CacheData {
+export interface CacheData {
   data: Category[]
   settings: Settings
 }
@@ -41,7 +37,7 @@ function exportData() {
   document.body.appendChild(a)
   a.click()
   URL.revokeObjectURL(url)
-  window.$notification.success({ content: '已导出~', duration: 3000 })
+  window.$message.success('已导出~')
 }
 
 function importData() {
@@ -57,29 +53,30 @@ function importData() {
         if (!data.data || !data.settings)
           throw new Error('请导入合法的数据文件')
         loadData(data)
-        window.$notification.success({ content: '导入成功~', duration: 3000 })
+        window.$message.success('导入成功~')
       }
       catch (err: any) {
-        window.$notification.error({ content: err.message, duration: 3000 })
+        window.$message.error(err.message)
       }
     }
   })
   inputElement.click()
 }
 
+/* 重置预设 */
 function resetData() {
   window.$dialog.warning({
     title: '提示',
-    content: '数据重置后无法恢复，你确认要重置数据吗？',
+    content: '数据重置后无法恢复，确认要重置数据吗？',
     positiveText: '确认',
     negativeText: '取消',
     onPositiveClick() {
-      loadData(deepClone(presetData))
-      window.$notification.success({ content: '已重置~', duration: 3000 })
+      siteStore.restoreData()
+      settingStore.restoreSettings()
+      toggleTheme(settingStore.settings.theme)
+      window.$message.success('已重置~')
       // 重置分类索引
       siteStore.setCateIndex(0)
-      // 重新渲染 site group list，否则自定义图标的背景色会丢失
-      renderStore.refreshSiteGroupList()
     },
   })
 }
@@ -96,7 +93,7 @@ function loadData(data: any) {
     <div my-16 text="16 $text-c-1" italic>
       设置
     </div>
-    <div flex flex-wrap sm="grid grid-cols-2" justify-between gap-12>
+    <div flex flex-wrap sm="grid grid-cols-2" md="grid grid-cols-3" justify-between gap-12>
       <SettingSelection
         v-model="settingStore.settings.theme"
         :title="theme.name"
@@ -129,6 +126,14 @@ function loadData(data: any) {
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ showLunar: enName })"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.websitePreference"
+        :title="websitePreference.name"
+        :options="websitePreference.children"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(enName: WebsitePreference) => settingStore.setSettings({ websitePreference: enName })"
       />
     </div>
     <div mt-24 flex sm="justify-center" justify-between gap-x-12>

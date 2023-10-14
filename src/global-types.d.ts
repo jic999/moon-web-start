@@ -1,4 +1,4 @@
-import type { DialogProviderInst, NotificationProviderInst } from 'naive-ui'
+import type { DialogProviderInst, MessageProviderInst, NotificationProviderInst } from 'naive-ui'
 
 export {}
 
@@ -11,6 +11,6 @@ declare module 'vue' {
 declare global {
   interface Window {
     $dialog: DialogProviderInst
-    $notification: NotificationProviderInst
+    $message: MessageProviderInst
   }
 }

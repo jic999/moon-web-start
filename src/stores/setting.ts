@@ -1,6 +1,6 @@
 import * as settingData from '@/utils/settings'
-import preset from '@/preset.json'
 import type { Settings } from '@/types'
+import { deepClone } from '@/utils'
 
 export type SettingKey = keyof Settings
 
@@ -25,14 +25,14 @@ export const useSettingStore = defineStore('setting', () => {
   }, { immediate: true })
 
   const settingCache = loadSettings()
-  const presetSetting = preset.settings
 
   const settings = reactive<Settings>((() => {
+    const _defaultSetting = deepClone(defaultSetting)
     let settings: Settings
     if (settingCache)
-      settings = Object.assign(presetSetting, { ...defaultSetting, ...settingCache })
+      settings = Object.assign(_defaultSetting, settingCache)
     else
-      settings = Object.assign(defaultSetting, presetSetting)
+      settings = _defaultSetting
     // 排除非法值
     Object.keys(settings).forEach((key) => {
       if (!settingData[key as SettingKey].children.find(item => item.enName === settings[key as SettingKey]))
@@ -40,6 +40,9 @@ export const useSettingStore = defineStore('setting', () => {
     })
     return settings
   })())
+  watch(settings, () => {
+    localStorage.setItem('settings', JSON.stringify(toRaw(settings)))
+  }, { deep: true })
 
   function getSettingItem(key: keyof typeof settingData) {
     return settingData[key].children.find(item => item.enName === settings[key])!
@@ -51,9 +54,9 @@ export const useSettingStore = defineStore('setting', () => {
   function setSettings(newSettings: Partial<Settings>) {
     Object.assign(settings, newSettings)
   }
-  watch(settings, () => {
-    localStorage.setItem('settings', JSON.stringify(toRaw(settings)))
-  }, { deep: true })
+  function restoreSettings() {
+    Object.assign(settings, defaultSetting)
+  }
 
   // ----------------- 拖拽 -----------------
   const isDragging = ref(false)
@@ -70,5 +73,6 @@ export const useSettingStore = defineStore('setting', () => {
     setIsDragging,
     getSettingItem,
     getSettingValue,
+    restoreSettings,
   }
 })
