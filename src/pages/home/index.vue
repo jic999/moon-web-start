@@ -20,7 +20,7 @@ const settingStore = useSettingStore()
       <MainSearch v-if="!settingStore.isSetting" my-24 />
       <SiteContainer />
       <MainSetting />
-      <TheFooter />
+      <TheFooter v-if="settingStore.getSettingValue('showFooter')" />
     </div>
   </TheDoc>
 </template>

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
 import type { Category, SettingItem, Settings, Theme, WebsitePreference } from '@/types'
-import { iconStyle, search, showLunar, theme, websitePreference } from '@/utils'
+import * as S from '@/utils/settings'
 
 const settingStore = useSettingStore()
 
 /* ThemeSetting */
 function renderThemeLabel(option: SettingItem<Theme>): VNode {
-  const currentTheme = theme.children.find(item => item.enName === option.enName)!
+  const currentTheme = S.theme.children.find(item => item.enName === option.enName)!
   const bgColor = currentTheme!.value.bgC
   return h('div', { class: 'flex items-center gap-x-8' }, [
     h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
@@ -97,8 +97,8 @@ function loadData(data: any) {
     <div flex flex-wrap sm="grid grid-cols-2" md="grid grid-cols-3" justify-between gap-12>
       <SettingSelection
         v-model="settingStore.settings.theme"
-        :title="theme.name"
-        :options="theme.children"
+        :title="S.theme.name"
+        :options="S.theme.children"
         :render-label="renderThemeLabel"
         label-field="name"
         value-field="enName"
@@ -106,35 +106,43 @@ function loadData(data: any) {
       />
       <SettingSelection
         v-model="settingStore.settings.search"
-        :title="search.name"
-        :options="search.children"
+        :title="S.search.name"
+        :options="S.search.children"
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
       />
       <SettingSelection
+        v-model="settingStore.settings.websitePreference"
+        :title="S.websitePreference.name"
+        :options="S.websitePreference.children"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(enName: WebsitePreference) => settingStore.setSettings({ websitePreference: enName })"
+      />
+      <SettingSelection
         v-model="settingStore.settings.iconStyle"
-        :title="iconStyle.name"
-        :options="iconStyle.children"
+        :title="S.iconStyle.name"
+        :options="S.iconStyle.children"
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
       />
       <SettingSelection
         v-model="settingStore.settings.showLunar"
-        :title="showLunar.name"
-        :options="showLunar.children"
+        :title="S.showLunar.name"
+        :options="S.showLunar.children"
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ showLunar: enName })"
       />
       <SettingSelection
-        v-model="settingStore.settings.websitePreference"
-        :title="websitePreference.name"
-        :options="websitePreference.children"
+        v-model="settingStore.settings.showFooter"
+        :title="S.showFooter.name"
+        :options="S.showFooter.children"
         label-field="name"
         value-field="enName"
-        :on-update-value="(enName: WebsitePreference) => settingStore.setSettings({ websitePreference: enName })"
+        :on-update-value="(enName: string) => settingStore.setSettings({ showFooter: enName })"
       />
     </div>
     <div mt-24 flex sm="justify-center" justify-between gap-x-12>
