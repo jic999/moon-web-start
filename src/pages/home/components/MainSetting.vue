@@ -94,7 +94,7 @@ function loadData(data: any) {
     <div my-16 text="16 $text-c-1" italic>
       设置
     </div>
-    <div flex flex-wrap sm="grid grid-cols-2" md="grid grid-cols-3" justify-between gap-12>
+    <div flex flex-wrap md="grid grid-cols-2" lg="grid grid-cols-3" justify-between gap-12>
       <SettingSelection
         v-model="settingStore.settings.theme"
         :title="S.theme.name"
@@ -127,6 +127,14 @@ function loadData(data: any) {
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.showTime"
+        :title="S.showTime.name"
+        :options="S.showTime.children"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(enName: string) => settingStore.setSettings({ showTime: enName })"
       />
       <SettingSelection
         v-model="settingStore.settings.showLunar"
