@@ -53,6 +53,7 @@ function importData() {
         if (!data.data || !data.settings)
           throw new Error('请导入合法的数据文件')
         loadData(data)
+        settingStore.setSettings({ websitePreference: 'Customize' })
         window.$message.success('导入成功~')
       }
       catch (err: any) {
