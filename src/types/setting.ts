@@ -59,3 +59,6 @@ export interface IconStyle {
   enName: string
   style: Partial<CSSStyleDeclaration>
 }
+
+/* WebsitePreference */
+export type WebsitePreference = 'Chinese Mainland' | 'Global' | 'Auto' | 'Customize'
