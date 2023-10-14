@@ -20,6 +20,7 @@
     "pinia": "^2.0.32",
     "solarlunar-es": "^1.0.9",
     "vue": "^3.2.47",
+    "vue-i18n": "^9.5.0",
     "vue-router": "^4.1.6",
     "vuedraggable": "^4.1.0"
   },
@@ -27,6 +28,7 @@
     "@antfu/eslint-config": "1.0.0-beta.18",
     "@iconify-json/carbon": "^1.1.16",
     "@iconify/utils": "^2.1.5",
+    "@intlify/unplugin-vue-i18n": "^1.4.0",
     "@types/node": "^18.15.11",
     "@unocss/eslint-config": "^0.51.8",
     "@unocss/eslint-plugin": "^0.56.4",

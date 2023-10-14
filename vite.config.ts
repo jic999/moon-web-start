@@ -8,6 +8,7 @@ import VueMacros from 'unplugin-vue-macros/vite'
 import Unocss from 'unocss/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { visualizer } from 'rollup-plugin-visualizer'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig({
   base: process.env.REPOSITORY ? `/${process.env.REPOSITORY.split('/').pop()}/` : '',
@@ -33,11 +34,17 @@ export default defineConfig({
       gzipSize: true,
       brotliSize: true,
     }),
+    VueI18n({
+      runtimeOnly: true,
+      compositionOnly: true,
+      fullInstall: true,
+      include: [path.resolve(__dirname, 'src/locales/**')],
+    }),
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@@': path.resolve(__dirname, './'),
+      '~': path.resolve(__dirname, './'),
     },
   },
   server: {
