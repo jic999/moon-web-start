@@ -16,7 +16,7 @@ const settingStore = useSettingStore()
   <TheDoc>
     <div my="0 sm:6vh" p="12 sm:24" bg="$main-bg-c" w="full sm:auto" :class="{ no_select: settingStore.isSetting }">
       <MainHeader />
-      <MainClock v-if="!settingStore.isSetting && settingStore.getSettingValue('showTime')" />
+      <MainClock v-if="!settingStore.isSetting" />
       <MainSearch v-if="!settingStore.isSetting" my-24 />
       <SiteContainer />
       <MainSetting />

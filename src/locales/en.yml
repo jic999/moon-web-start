@@ -34,6 +34,8 @@ settings:
     gray: Gray
   showTime:
     title: Show Time
+  showDate:
+    title: Show Date
   showLunar:
     title: Show Lunar
   showFooter:

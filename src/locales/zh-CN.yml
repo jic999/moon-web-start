@@ -34,6 +34,8 @@ settings:
     gray: 灰白
   showTime:
     title: 显示时间
+  showDate:
+    title: 显示日期
   showLunar:
     title: 显示农历
   showFooter:

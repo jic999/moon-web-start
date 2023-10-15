@@ -61,17 +61,12 @@ onBeforeUnmount(() => {
 
 <template>
   <div text-center>
-    <div text-48>
+    <div v-if="settingStore.getSettingValue('showTime')" text-45>
       {{ time }}
     </div>
-    <div text="14 $text-c-1" lh-100p>
-      <p>
-        <span>{{ date }}</span>
-        <span ml-12>{{ week }}</span>
-      </p>
-      <p v-if="settingStore.getSettingValue('showLunar')">
-        {{ lunarDate }}
-      </p>
-    </div>
+    <p text="14 $text-c-1">
+      <span v-if="settingStore.getSettingValue('showDate')">{{ date }}<span ml-8>{{ week }}</span></span>
+      <span v-if="settingStore.getSettingValue('showLunar')" ml-8>{{ lunarDate }}</span>
+    </p>
   </div>
 </template>
