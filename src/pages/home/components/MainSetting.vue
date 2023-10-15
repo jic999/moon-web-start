@@ -99,7 +99,7 @@ function loadData(data: any) {
 <template>
   <section v-if="settingStore.isSetting" px="md:32 lg:64">
     <div my-16 text="16 $text-c-1" italic>
-      设置
+      {{ $t('settings.title') }}
     </div>
     <div flex flex-wrap md="grid grid-cols-2" lg="grid grid-cols-3" justify-between gap-12>
       <SettingSelection

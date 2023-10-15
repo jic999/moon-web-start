@@ -25,6 +25,8 @@ function setI18nLanguage(lang: Locale) {
 }
 
 export async function loadLanguageAsync(lang: string): Promise<Locale> {
+  if (lang.toLocaleUpperCase() === 'SYSTEM')
+    lang = localesMap[navigator.language] ? navigator.language : 'en'
   // If the same language
   if (i18n.global.locale.value === lang)
     return setI18nLanguage(lang)
@@ -42,6 +44,9 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 
 export function setupI18n(app: App) {
   app.use(i18n)
-  const lang = localesMap[navigator.language] ? navigator.language : 'en'
-  loadLanguageAsync(lang)
+  let lang = navigator.language
+  const settings = loadSettings()
+  if (settings)
+    lang = settings.language
+  loadLanguageAsync(localesMap[lang] ? lang : 'en')
 }
