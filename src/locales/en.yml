@@ -1,2 +1,38 @@
-button:
-  search: Search
+settings:
+  title: Settings
+  theme:
+    title: Theme
+    earlySpring: Early Spring
+    vastOcean: Vast Ocean
+    endlessDesert: Endless Desert
+    moonWhite: Moon White
+  language:
+    title: Website Language
+    system: System
+  sitePreference:
+    title: Site Preference
+    auto: Auto
+    chineseMainland: Chinese Mainland
+    global: Global
+    customize: Customize
+  searchEngine:
+    title: Search Engine
+    bing: Bing
+    baidu: Baidu
+    google: Google
+    sogou: Sogou
+    wikipedia: Wikipedia
+  iconStyle:
+    title: Icon Style
+    vivid: Vivid
+    plain: Plain
+    gray: Gray
+  showTime:
+    title: Show Time
+  showLunar:
+    title: Show Lunar
+  showFooter:
+    title: Show Footer
+  common:
+    show: Show
+    hide: Hide

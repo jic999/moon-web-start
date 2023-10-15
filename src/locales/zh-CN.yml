@@ -1,2 +1,38 @@
-button:
-  search: 搜索
+settings:
+  title: 设置
+  theme:
+    title: 主题
+    earlySpring: 初春
+    vastOcean: 瀚海
+    endlessDesert: 大漠
+    moonWhite: 月白
+  language:
+    title: 网站语言
+    system: 跟随系统
+  sitePreference:
+    title: 网站偏好
+    auto: 自动
+    chineseMainland: 中国大陆
+    global: 全球
+    customize: 自定义
+  searchEngine:
+    title: 搜索引擎
+    bing: 必应
+    baidu: 百度
+    google: 谷歌
+    sogou: 搜狗
+    wikipedia: 维基百科
+  iconStyle:
+    title: 图标风格
+    vivid: 鲜艳
+    plain: 朴素
+    gray: 灰白
+  showTime:
+    title: 显示时间
+  showLunar:
+    title: 显示农历
+  showFooter:
+    title: 显示页脚
+  common:
+    show: 显示
+    hide: 隐藏
