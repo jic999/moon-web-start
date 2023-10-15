@@ -17,9 +17,6 @@ dependencies:
   axios-jsonp:
     specifier: ^1.0.4
     version: registry.npmmirror.com/axios-jsonp@1.0.4
-  dayjs:
-    specifier: ^1.11.7
-    version: 1.11.7
   default-passive-events:
     specifier: ^2.0.0
     version: registry.npmmirror.com/default-passive-events@2.0.0
@@ -1540,10 +1537,6 @@ packages:
     resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
     engines: {node: '>=0.11'}
     dev: true
-
-  /dayjs@1.11.7:
-    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
-    dev: false
 
   /debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}

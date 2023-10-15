@@ -15,7 +15,6 @@
     "@vueuse/core": "^10.0.2",
     "axios": "^1.4.0",
     "axios-jsonp": "^1.0.4",
-    "dayjs": "^1.11.7",
     "default-passive-events": "^2.0.0",
     "pinia": "^2.0.32",
     "solarlunar-es": "^1.0.9",

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
 import solarLunar from 'solarlunar-es'
 
 const settingStore = useSettingStore()
@@ -12,26 +11,26 @@ const week = ref('')
 let timeInterval: NodeJS.Timer
 
 function refreshTime() {
-  const now = dayjs().format('YYYY年MM月DD日 HH:mm')
-  const timeArr = now.split(' ')
-  date.value = timeArr[0]
-  time.value = timeArr[1]
+  const now = new Date()
+  const lang = settingStore.settings.language === 'System' ? navigator.language : settingStore.settings.language
+  date.value = now.toLocaleString(lang, { month: 'long', day: 'numeric' })
+  week.value = now.toLocaleString(lang, { weekday: 'long' })
+  time.value = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`
   // 若为0点 或阴历为空 刷新日期
   // en: If 00:00 or the lunar is empty, refresh date
-
   if (!lunarDate.value || time.value === '00:00')
     getDate()
   return refreshTime
 }
+
 function getDate() {
-  const now = dayjs().format('YYYY-MM-DD')
+  const now = new Date().toISOString().split('T')[0]
   const dateArr = now.split('-').map(val => Number(val))
   const lunar = solarLunar.solar2lunar(dateArr[0], dateArr[1], dateArr[2])
-  if (typeof lunar !== 'number') {
+  if (typeof lunar !== 'number')
     lunarDate.value = `${lunar.gzYear}${lunar.animal}年${lunar.monthCn}${lunar.dayCn}`
-    week.value = lunar.ncWeek
-  }
 }
+
 function timing() {
   // 获取并记录初始时间
   // en: Get and record the initial time
