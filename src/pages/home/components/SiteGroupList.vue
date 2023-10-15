@@ -81,7 +81,7 @@ const renderStore = useRenderStore()
               :component-data="{
                 tag: 'div',
                 type: 'transition-group',
-                class: 'grid grid-cols-3 gap-x-8 gap-y-12 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
+                class: 'grid grid-cols-3 gap-x-8 gap-y-12 md:grid-cols-4 lg:grid-cols-6',
               }"
               v-bind="draggableOptions"
               @start="handleStart"
