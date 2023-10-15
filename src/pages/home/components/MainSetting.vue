@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { VNode } from 'vue'
 import SettingSelection from './SettingSelection.vue'
 import type { Category, SettingItem, Settings, Theme, WebsitePreference } from '@/types'
-import { loadLanguageAsync } from '@/utils'
+import { getText, loadLanguageAsync } from '@/utils'
 import * as S from '@/utils/settings'
 
 const settingStore = useSettingStore()
@@ -12,7 +13,7 @@ function renderThemeLabel(option: SettingItem<Theme>): VNode {
   const bgColor = currentTheme!.value.bgC
   return h('div', { class: 'flex items-center gap-x-8' }, [
     h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
-    h('div', option.name),
+    h('div', getText(option.name)),
   ])
 }
 
@@ -101,7 +102,7 @@ function loadData(data: any) {
     <div my-16 text="16 $text-c-1" italic>
       {{ $t('settings.title') }}
     </div>
-    <div flex flex-wrap md="grid grid-cols-2" lg="grid grid-cols-3" justify-between gap-12>
+    <div grid grid-cols-2 md="grid-cols-3" lg="grid-cols-4" justify-between gap-12>
       <SettingSelection
         v-model="settingStore.settings.theme"
         :title="S.theme.name"
@@ -170,18 +171,18 @@ function loadData(data: any) {
     </div>
     <div mt-24 flex sm="justify-center" justify-between gap-x-12>
       <n-button type="primary" secondary @click="resetData">
-        重置数据
+        {{ $t('button.resetData') }}
       </n-button>
       <n-button type="success" secondary @click="importData">
-        导入数据
+        {{ $t('button.importData') }}
       </n-button>
       <n-button type="primary" @click="exportData">
-        导出数据
+        {{ $t('button.exportData') }}
       </n-button>
     </div>
     <div my-24 flex-center>
       <n-button size="large" type="primary" @click="$router.back()">
-        完成
+        {{ $t('button.complete') }}
       </n-button>
     </div>
   </section>

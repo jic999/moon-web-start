@@ -21,7 +21,7 @@ export const useSiteStore = defineStore('site', () => {
 
   // Display data
   const data = computed((): Category[] => {
-    if (websitePreference.value === 'Chinese Mainland')
+    if (websitePreference.value === 'ChineseMainland')
       return preset.data
     if (websitePreference.value === 'Global')
       return globalPreset.data

@@ -115,6 +115,7 @@ declare global {
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
+  const t: typeof import('./composables/i18n')['t']
   const templateRef: typeof import('@vueuse/core')['templateRef']
   const themeVars: typeof import('./composables/theme')['themeVars']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
@@ -437,6 +438,7 @@ declare module 'vue' {
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
+    readonly t: UnwrapRef<typeof import('./composables/i18n')['t']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly themeVars: UnwrapRef<typeof import('./composables/theme')['themeVars']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
@@ -753,6 +755,7 @@ declare module '@vue/runtime-core' {
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
+    readonly t: UnwrapRef<typeof import('./composables/i18n')['t']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly themeVars: UnwrapRef<typeof import('./composables/theme')['themeVars']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>

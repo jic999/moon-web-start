@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import type { PropType } from 'vue'
+import type { TextGetter } from '@/types'
+import { getText } from '@/utils'
+
 defineOptions({
   inheritAttrs: false,
 })
 const props = defineProps({
   title: {
-    type: String,
+    type: Function as PropType<TextGetter>,
     required: true,
   },
   options: {
@@ -24,14 +28,8 @@ const modelValue = computed({
 </script>
 
 <template>
-  <div w-full flex items-center justify-between>
-    <div text="14" inline-block overflow-hidden w-20p w-80>
-      {{ title }}
-    </div>
-    <n-select
-      v-model:value="modelValue"
-      :options="options as any"
-      v-bind="$attrs"
-    />
+  <div w-full>
+    <div my8>{{ getText(title) }}</div>
+    <n-select v-model:value="modelValue" :options="options as any" v-bind="$attrs" />
   </div>
 </template>

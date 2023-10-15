@@ -1,4 +1,4 @@
-import type { CommonProperties } from '@/types'
+import type { CommonProperties, TextGetter } from '@/types'
 
 export function deepClone<T>(obj: T): T {
   if (obj === null || typeof obj !== 'object')
@@ -15,18 +15,6 @@ export function deepClone<T>(obj: T): T {
   return clone
 }
 
-export function getRandomDarkColor() {
-  const ranges = [64, 128, 256]
-  const rRange = ranges[Math.floor(Math.random() * ranges.length)]
-  const gRange = ranges[Math.floor(Math.random() * ranges.length)]
-  const bRange = ranges[Math.floor(Math.random() * ranges.length)]
-  const r = Math.floor(Math.random() * rRange).toString(16).padStart(2, '0')
-  const g = Math.floor(Math.random() * (gRange === 256 ? gRange * 0.8 : gRange)).toString(16).padStart(2, '0')
-  const b = Math.floor(Math.random() * bRange).toString(16).padStart(2, '0')
-  return `#${r}${g}${b}`
-}
-
-// ! get common props
 export function getCommonProps<T extends object, U extends object>(obj1: T, obj2: U): CommonProperties<T, U> {
   const commonProps = {} as CommonProperties<T, U>
   Object.keys(obj1).forEach((key) => {
@@ -37,7 +25,6 @@ export function getCommonProps<T extends object, U extends object>(obj1: T, obj2
   return commonProps
 }
 
-// 防抖
 export function debounce<T extends (...args: any[]) => any>(fn: T, delay = 100) {
   let timer: NodeJS.Timeout
   return function (this: any, ...args: any[]) {
@@ -54,4 +41,8 @@ export function getRandomComplexNumber() {
   const randomLength = randomStr.length
   const randomComplexNumber = Number(randomStr) / 10 ** randomLength
   return randomComplexNumber
+}
+
+export function getText(value: string | TextGetter) {
+  return typeof value === 'function' ? value() : value
 }

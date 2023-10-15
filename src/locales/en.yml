@@ -1,3 +1,8 @@
+button:
+  resetData: Reset Data
+  importData: Import Data
+  exportData: Export Data
+  complete: Complete
 settings:
   title: Settings
   theme:

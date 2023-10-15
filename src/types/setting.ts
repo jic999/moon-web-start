@@ -1,14 +1,16 @@
 import type * as settingData from '@/utils/settings'
 
+export type TextGetter = () => string
+
 export class SettingItem<T> {
-  name: string
+  name: TextGetter
   key: string
   children: SettingItemChildren<T>
   defaultKey: string
   value: T
 
   constructor(options: {
-    name: string
+    name: TextGetter
     key: string
     children: SettingItemChildren<T>
     defaultKey?: string
@@ -23,7 +25,7 @@ export class SettingItem<T> {
 }
 
 export interface SettingItemsChild<T> {
-  name: string
+  name: TextGetter
   key: string
   value: T
 }
@@ -46,8 +48,6 @@ export interface Theme {
 
 /* Search */
 export interface Search {
-  name: string
-  key: string
   url: string
   wd: string
   favicon: string
@@ -55,13 +55,9 @@ export interface Search {
 }
 
 /* IconStyle */
-export interface IconStyle {
-  name: string
-  key: string
-  style: Partial<CSSStyleDeclaration>
-}
+export type IconStyle = Partial<CSSStyleDeclaration>
 
 /* WebsitePreference */
-export type WebsitePreference = 'Chinese Mainland' | 'Global' | 'Auto' | 'Customize'
+export type WebsitePreference = 'ChineseMainland' | 'Global' | 'Auto' | 'Customize'
 
 export type Language = 'zh-CN' | 'en' | 'System'

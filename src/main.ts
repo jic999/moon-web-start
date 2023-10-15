@@ -9,8 +9,11 @@ import { setupI18n } from './utils'
 
 const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
-setupI18n(app)
+function setupApp() {
+  setupI18n(app)
+  app.use(createPinia())
+  app.use(router)
+  app.mount('#app')
+}
 
-app.mount('#app')
+setupApp()

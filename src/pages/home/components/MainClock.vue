@@ -17,6 +17,8 @@ function refreshTime() {
   date.value = timeArr[0]
   time.value = timeArr[1]
   // 若为0点 或阴历为空 刷新日期
+  // en: If 00:00 or the lunar is empty, refresh date
+
   if (!lunarDate.value || time.value === '00:00')
     getDate()
   return refreshTime
@@ -32,14 +34,18 @@ function getDate() {
 }
 function timing() {
   // 获取并记录初始时间
+  // en: Get and record the initial time
   refreshTime()
   const nowMinute = time.value
   // 开启定时器
+  // en: Start the timer
   timeInterval = setInterval(() => {
     refreshTime()
     // 若 nowMinute !== newMinute 说明开始了新的分钟
+    // en: nowMinute !== newMinute means a new minute has started
     if (nowMinute !== time.value) {
       // 清除每秒定时器 开启分钟定时器
+      // en: Clear second timer and start minute timer
       clearInterval(timeInterval)
       timeInterval = setInterval(refreshTime, 60000)
     }

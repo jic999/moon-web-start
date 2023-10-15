@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { vOnClickOutside } from '@vueuse/components'
 import type { Search } from '@/types'
-import { debounce, getFaviconUrl, search as searchSetting } from '@/utils'
+import { debounce, getFaviconUrl, getText, search as searchSetting } from '@/utils'
 import searchEngine from '@/utils/search-engine'
 
 const settingStore = useSettingStore()
@@ -204,7 +204,7 @@ function setInactive(_: number) {
         >
           <div flex-center gap-x-8 text="15 $text-c-1">
             <img :src="_getFavicon(item.value)" :style="iconStyle" circle h-20 w-20>
-            <div>{{ item.name }}</div>
+            <div>{{ getText(item.name) }}</div>
             <div ml-4 font-300>{{ `#${item.value.s}` }}</div>
           </div>
           <div v-if="curSearchIndex === i" i-carbon:checkmark text-18 />
