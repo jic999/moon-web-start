@@ -5,19 +5,19 @@ export type ActionType = 'add' | 'update'
 export type ActionTarget = 'cate' | 'group' | 'site'
 
 const ACTION_NAME = {
-  add: '添加',
-  update: '编辑',
+  add: () => t('common.add'),
+  update: () => t('common.edit'),
 }
 const TARGET_NAME = {
-  cate: '分类',
-  group: '分组',
-  site: '网页',
+  cate: () => t('common.cate'),
+  group: () => t('common.group'),
+  site: () => t('common.site'),
 }
 export const useModalStore = defineStore('modal', () => {
   const modalVisible = ref(false)
   const action = ref<ActionType>('add')
   const target = ref<ActionTarget>('site')
-  const title = computed(() => ACTION_NAME[action.value] + TARGET_NAME[target.value])
+  const title = computed(() => ACTION_NAME[action.value]() + TARGET_NAME[target.value]())
 
   const settingStore = useSettingStore()
 
@@ -103,7 +103,7 @@ export const useModalStore = defineStore('modal', () => {
     const isEmptyData = siteStore.customData.length === 0
     const isCustomize = settingStore.settings.websitePreference as WebsitePreference === 'Customize'
     if (!isEmptyData && !isCustomize) {
-      window.$message.warning('请先将网站偏好设置为“自定义”')
+      window.$message.warning(t('messages.warnCustomize'))
       return false
     }
     if (!isCustomize)

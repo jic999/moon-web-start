@@ -1,5 +1,5 @@
-import { useI18n } from 'vue-i18n'
+import { i18n } from '@/utils'
 
 export function t(key: string | number) {
-  return useI18n().t(key)
+  return i18n.global.t(key)
 }

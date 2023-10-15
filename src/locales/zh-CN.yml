@@ -1,8 +1,19 @@
+common:
+  add: 添加
+  edit: 编辑
+  cate: 分类
+  group: 分组
+  site: 网站
+  link: 链接
+  name: 名称
 button:
   resetData: 重置数据
   importData: 导入数据
   exportData: 导出数据
   complete: 完成
+  confirm: 确认
+  cancel: 取消
+  delete: 删除
 settings:
   title: 设置
   theme:
@@ -43,3 +54,12 @@ settings:
   common:
     show: 显示
     hide: 隐藏
+messages:
+  tip: 提示
+  warnCustomize: 请先将网站偏好设置为“自定义”
+  warnInvalidImport: 请导入合法的数据文件
+  warnResetData: 数据重置后无法恢复，确认要重置数据吗？
+  exported: 已导出~
+  imported: 导入成功
+  reseted: 已重置~
+iconLinkPlaceholder: 图标链接（选填）

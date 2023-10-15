@@ -45,7 +45,7 @@ function exportData() {
   document.body.appendChild(a)
   a.click()
   URL.revokeObjectURL(url)
-  window.$message.success('已导出~')
+  window.$message.success(t('messages.exported'))
 }
 
 function importData() {
@@ -59,13 +59,13 @@ function importData() {
         const jsonStr = await file.text()
         const data = JSON.parse(jsonStr) as CacheData
         if (!data.data || !data.settings)
-          throw new Error('请导入合法的数据文件')
+          throw new Error('Invalid data')
         loadData(data)
         settingStore.setSettings({ websitePreference: 'Customize' })
-        window.$message.success('导入成功~')
+        window.$message.success(t('messages.imported'))
       }
       catch (err: any) {
-        window.$message.error(err.message)
+        window.$message.error(t('messages.warnInvalidImport'))
       }
     }
   })
@@ -75,15 +75,15 @@ function importData() {
 /* 重置预设 */
 function resetData() {
   window.$dialog.warning({
-    title: '提示',
-    content: '数据重置后无法恢复，确认要重置数据吗？',
-    positiveText: '确认',
-    negativeText: '取消',
+    title: t('messages.warnResetData'),
+    content: t('messages.warnResetData'),
+    positiveText: t('button.confirm'),
+    negativeText: t('button.cancel'),
     onPositiveClick() {
       siteStore.restoreData()
       settingStore.restoreSettings()
       toggleTheme(settingStore.settings.theme)
-      window.$message.success('已重置~')
+      window.$message.success(t('messages.reseted'))
       // 重置分类索引
       siteStore.setCateIndex(0)
     },

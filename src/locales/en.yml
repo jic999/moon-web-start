@@ -1,8 +1,19 @@
+common:
+  add: Add
+  edit: Edit
+  cate: Category
+  group: Group
+  site: Site
+  link: Link
+  name: Name
 button:
   resetData: Reset Data
   importData: Import Data
   exportData: Export Data
   complete: Complete
+  confirm: Confirm
+  cancel: Cancel
+  delete: Delete
 settings:
   title: Settings
   theme:
@@ -43,3 +54,11 @@ settings:
   common:
     show: Show
     hide: Hide
+messages:
+  tip: Tip
+  warnCustomize: Please set the site preference to "Customize" first
+  warnInvalidImport: Please import a valid data file
+  warnResetData: Data cannot be recovered after reset, are you sure to reset data?
+  exported: Exported~
+  imported: Imported successfully
+iconLinkPlaceholder: Icon Link (optional)
