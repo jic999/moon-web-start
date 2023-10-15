@@ -47,7 +47,7 @@ export async function setupI18n(app: App) {
 
   let lang = navigator.language
   const settings = loadSettings()
-  if (settings)
+  if (settings?.language)
     lang = settings.language
   await loadLanguageAsync(lang)
 }
