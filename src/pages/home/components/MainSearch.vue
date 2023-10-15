@@ -12,12 +12,6 @@ const keyword = ref('')
 
 const curSearchIndex = ref(0)
 
-const showKeyDownSel = ref(false)
-
-const noticeKeyList = ref<string[]>([])
-
-const selectedIndex = ref(0)
-
 const searchInputRef = ref<HTMLInputElement>()
 
 function initcurSearchIndex() {
@@ -31,7 +25,6 @@ watch(() => settingStore.settings.search, () => {
 function search() {
   if (!keyword.value.trim())
     return
-
   const currentSearch = searchList[curSearchIndex.value]
   window.open(`${currentSearch.value.url}?${currentSearch.value.wd}=${keyword.value}`)
   clearNoticeKey()
@@ -42,17 +35,19 @@ function _getFavicon(search: Search) {
   return search.favicon || getFaviconUrl(search.url)
 }
 
+/* Search engine selection */
+const selectionVisible = ref(false)
+
 function changeSearch(i: number) {
   curSearchIndex.value = i
   toggleSelection()
 }
 
-const selectionVisible = ref(false)
-
 function toggleSelection() {
   selectionVisible.value = !selectionVisible.value
 }
 
+/* Handle keydown */
 function handleKeydown(e: KeyboardEvent) {
   // - 快捷切换搜索引擎
   if (e.key === '#' && !keyword.value.length)
@@ -73,7 +68,10 @@ function handleKeydown(e: KeyboardEvent) {
     selectionVisible.value = false
 }
 
-const { iconStyle } = useIconStyle()
+/* Keyword recommend */
+const showKeyDownSel = ref(false)
+const noticeKeyList = ref<string[]>([])
+const selectedIndex = ref(0)
 
 const requestEngApi = debounce(() => {
   const curSearch = searchList[curSearchIndex.value]
@@ -160,6 +158,9 @@ function setActive(i: number) {
 function setInactive(_: number) {
   selectedIndex.value = 0
 }
+
+/* Icon style */
+const { iconStyle } = useIconStyle()
 </script>
 
 <template>
