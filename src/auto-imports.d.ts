@@ -88,6 +88,7 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
+  const preferredLanguages: typeof import('./composables/app')['preferredLanguages']
   const provide: typeof import('vue')['provide']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']
@@ -408,6 +409,7 @@ declare module 'vue' {
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
+    readonly preferredLanguages: UnwrapRef<typeof import('./composables/app')['preferredLanguages']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
@@ -722,6 +724,7 @@ declare module '@vue/runtime-core' {
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
+    readonly preferredLanguages: UnwrapRef<typeof import('./composables/app')['preferredLanguages']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>

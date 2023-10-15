@@ -236,7 +236,7 @@ function setInactive(_: number) {
       />
     </div>
     <!-- Button -->
-    <button flex-center shrink-0 gap-x-4 w-72 btn @click="search">
+    <button flex-center shrink-0 gap-x-4 px-12 btn @click="search">
       <span i-carbon:search inline-block text-14 />
       {{ $t('button.search') }}
     </button>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
 import type { Category, SettingItem, Settings, Theme, WebsitePreference } from '@/types'
+import { loadLanguageAsync } from '@/utils'
 import * as S from '@/utils/settings'
 
 const settingStore = useSettingStore()
@@ -13,6 +14,12 @@ function renderThemeLabel(option: SettingItem<Theme>): VNode {
     h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
     h('div', option.name),
   ])
+}
+
+/* Language */
+function toggleLanguage(language: string) {
+  settingStore.setSettings({ language })
+  loadLanguageAsync(language)
 }
 
 /* 导入导出 */
@@ -105,12 +112,12 @@ function loadData(data: any) {
         :on-update-value="(theme: string) => toggleTheme(theme)"
       />
       <SettingSelection
-        v-model="settingStore.settings.search"
-        :title="S.search.name"
-        :options="S.search.children"
+        v-model="settingStore.settings.language"
+        :title="S.language.name"
+        :options="S.language.children"
         label-field="name"
         value-field="enName"
-        :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
+        :on-update-value="(enName: string) => toggleLanguage(enName)"
       />
       <SettingSelection
         v-model="settingStore.settings.websitePreference"
@@ -119,6 +126,14 @@ function loadData(data: any) {
         label-field="name"
         value-field="enName"
         :on-update-value="(enName: WebsitePreference) => settingStore.setSettings({ websitePreference: enName })"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.search"
+        :title="S.search.name"
+        :options="S.search.children"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
       />
       <SettingSelection
         v-model="settingStore.settings.iconStyle"

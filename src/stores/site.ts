@@ -11,8 +11,7 @@ export const useSiteStore = defineStore('site', () => {
   const settingStore = useSettingStore()
   const websitePreference = computed(() => settingStore.settings.websitePreference as WebsitePreference)
 
-  const languages = usePreferredLanguages()
-  const preferredPresetData = computed(() => languages.value[0] === 'zh-CN' ? preset.data : globalPreset.data)
+  const preferredPresetData = computed(() => preferredLanguages.value[0] === 'zh-CN' ? preset.data : globalPreset.data)
 
   // Custom data
   const customData = ref<Category[]>(loadData() || [])

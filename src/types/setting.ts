@@ -62,3 +62,5 @@ export interface IconStyle {
 
 /* WebsitePreference */
 export type WebsitePreference = 'Chinese Mainland' | 'Global' | 'Auto' | 'Customize'
+
+export type Language = 'zh-CN' | 'en' | 'System'
