@@ -61,7 +61,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div text-center>
-    <div v-if="settingStore.getSettingValue('showTime')" text-45>
+    <div v-if="settingStore.getSettingValue('showTime')" text-48>
       {{ time }}
     </div>
     <p text="14 $text-c-1">
