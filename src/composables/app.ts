@@ -68,3 +68,5 @@ export const isXlScreen = useMediaQuery('(min-width: 1280px)')
 
 /* Language */
 export const preferredLanguages = usePreferredLanguages()
+
+export const firstPreferredLanguage = computed(() => preferredLanguages.value[0])

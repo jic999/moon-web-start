@@ -42,5 +42,6 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 
 export function setupI18n(app: App) {
   app.use(i18n)
-  loadLanguageAsync(preferredLanguages.value[0] === 'zh-CN' ? 'zh-CN' : 'en')
+  const lang = localesMap[navigator.language] ? navigator.language : 'en'
+  loadLanguageAsync(lang)
 }
