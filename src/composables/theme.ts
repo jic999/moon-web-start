@@ -12,7 +12,7 @@ function camelToCssVar(str: string) {
   return `--${str.replace(/[A-Z]|[0-9]+/g, (match: string) => `-${match.toLowerCase()}`)}`
 }
 
-const currentTheme = theme.children.find(item => item.enName === defaultTheme)!.value
+const currentTheme = theme.children.find(item => item.key === defaultTheme)!.value
 
 // 根据主题设置 CSS 变量
 export const themeVars: ThemeVars = Object.keys(
@@ -28,7 +28,7 @@ export const themeVars: ThemeVars = Object.keys(
 ) as ThemeVars
 
 export function toggleTheme(key: string) {
-  const newTheme = theme.children.find(item => item.enName === key)!.value
+  const newTheme = theme.children.find(item => item.key === key)!.value
   for (const key in newTheme)
     themeVars[key as ThemeVar].value = newTheme[key as ThemeVar]
 }

@@ -35,7 +35,7 @@ export const useSettingStore = defineStore('setting', () => {
       settings = _defaultSetting
     // 排除非法值
     Object.keys(settings).forEach((key) => {
-      if (!settingData[key as SettingKey].children.find(item => item.enName === settings[key as SettingKey]))
+      if (!settingData[key as SettingKey].children.find(item => item.key === settings[key as SettingKey]))
         settings[key as SettingKey] = settingData[key as SettingKey].defaultKey
     })
     return settings
@@ -45,7 +45,7 @@ export const useSettingStore = defineStore('setting', () => {
   }, { deep: true })
 
   function getSettingItem(key: keyof typeof settingData) {
-    return settingData[key].children.find(item => item.enName === settings[key])!
+    return settingData[key].children.find(item => item.key === settings[key])!
   }
   function getSettingValue(key: keyof typeof settingData) {
     return getSettingItem(key).value

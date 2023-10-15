@@ -4,7 +4,7 @@ import { SettingItem } from '@/types'
 const themeChildren: SettingItemChildren<Theme> = [
   {
     name: '初春',
-    enName: 'EarlySpring',
+    key: 'EarlySpring',
     value: {
       primaryC: '#87a8a4',
       primaryLightC: '#a0c7c2',
@@ -18,7 +18,7 @@ const themeChildren: SettingItemChildren<Theme> = [
   },
   {
     name: '瀚海',
-    enName: 'VastOcean',
+    key: 'VastOcean',
     value: {
       primaryC: '#146C94',
       primaryLightC: '#1a8dc2',
@@ -32,7 +32,7 @@ const themeChildren: SettingItemChildren<Theme> = [
   },
   {
     name: '大漠',
-    enName: 'EndlessDesert',
+    key: 'EndlessDesert',
     value: {
       primaryC: '#bc6c25',
       primaryLightC: '#d47a2a',
@@ -46,7 +46,7 @@ const themeChildren: SettingItemChildren<Theme> = [
   },
   {
     name: '月白',
-    enName: 'MoonWhite',
+    key: 'MoonWhite',
     value: {
       primaryC: '#555555',
       primaryLightC: '#888888 ',
@@ -62,7 +62,7 @@ const themeChildren: SettingItemChildren<Theme> = [
 
 export const theme = new SettingItem({
   name: '主题',
-  enName: 'Theme',
+  key: 'Theme',
   children: themeChildren,
   defaultKey: 'MoonWhite',
 })

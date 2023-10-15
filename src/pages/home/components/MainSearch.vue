@@ -21,7 +21,7 @@ const selectedIndex = ref(0)
 const searchInputRef = ref<HTMLInputElement>()
 
 function initcurSearchIndex() {
-  curSearchIndex.value = searchList.findIndex(search => search.enName === settingStore.settings.search) || 0
+  curSearchIndex.value = searchList.findIndex(search => search.key === settingStore.settings.search) || 0
 }
 
 watch(() => settingStore.settings.search, () => {
@@ -33,7 +33,7 @@ function search() {
     return
 
   const currentSearch = searchList[curSearchIndex.value]
-  window.open(`${currentSearch.value.url}?${currentSearch.value.key}=${keyword.value}`)
+  window.open(`${currentSearch.value.url}?${currentSearch.value.wd}=${keyword.value}`)
   clearNoticeKey()
   searchInputRef.value?.blur()
 }
@@ -49,7 +49,6 @@ function changeSearch(i: number) {
 
 const selectionVisible = ref(false)
 
-// Don't use 'useClickOutside' because it will still trigger the click event when the selection is closed
 function toggleSelection() {
   selectionVisible.value = !selectionVisible.value
 }
@@ -78,7 +77,7 @@ const { iconStyle } = useIconStyle()
 
 const requestEngApi = debounce(() => {
   const curSearch = searchList[curSearchIndex.value]
-  searchEngine.complete(curSearch.enName, keyword.value, (params: Params) => {
+  searchEngine.complete(curSearch.key, keyword.value, (params: Params) => {
     showKeyDownSel.value = true
     if (keyword.value.trim().length === 0)
       return
