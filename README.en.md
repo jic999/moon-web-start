@@ -93,7 +93,7 @@ The extension has not been released in the Chrome Web Store yet. To use it, plea
 
 4. Select the `moon-chrome-extension` directory that was just unzipped.
 
-## 感谢
+## Thanks
 
 - [Iowen Api](https://api.iowen.cn/)，provides an open api for free get to website favicon.
 
