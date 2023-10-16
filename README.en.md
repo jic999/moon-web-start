@@ -11,11 +11,11 @@
   <a href="https://github.com/antfu/eslint-config"><img alt="MIT License" src="https://antfu.me/badge-code-style.svg"/></a>
 </p>
 <p align="center">
-  <a href="./README.md">简体中文</a> |
-  <span>English</span>
+  <a href="https://moon-start.netlify.app/">Live demo</a>
 </p>
 <p align="center">
-  <a href="https://moon-start.netlify.app/">Live demo</a>
+  <a href="./README.md">简体中文</a> |
+  <span>English</span>
 </p>
 
 ## Introduction
