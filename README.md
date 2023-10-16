@@ -3,12 +3,16 @@
 
 <p align="center">
   <a href="https://github.com/jic999/sprout-admin-api">
-    <img alt="Sprout Admin" width="200" src="./public/favicon_neutral.svg">
+    <img alt="Moon Web Start" width="200" src="./public/favicon_neutral.svg">
   </a>
 </p>
 <p align="center">
   <a href="./LICENSE"><img alt="MIT License" src="https://badgen.net/github/license/jic999/moon-web-start"/></a>
   <a href="https://github.com/antfu/eslint-config"><img alt="MIT License" src="https://antfu.me/badge-code-style.svg"/></a>
+</p>
+<p align="center">
+  <span>简体中文</span> |
+  <a href="./README.en.md">English</a>
 </p>
 <p align="center">
   <a href="https://moon-start.netlify.app/">在线体验</a>
@@ -18,7 +22,7 @@
 
 一个简约风格的网址导航页，基于 [MIT](./LICENSE) 协议开源。你可以直接使用它，也可以在此基础上客制化自己的网址导航😊。
 
-![Snipaste_2023-05-08_09-15-08](https://cdn.jsdelivr.net/gh/jic999/images/blog/Snip_2023-09-20_21-25-04.png)
+![](https://cdn.jsdelivr.net/gh/jic999/images/blog/20231016102939.png)
 
 ## 特性
 
@@ -35,6 +39,8 @@
 - 🎨 主题切换 - 内置多种主题样式，可自由切换
 
 - 🌙 夜间模式 - 爱护你的双眼
+
+- 🌍 I18n - 支持简体中文和英文
 
 - 📤 导入/导出数据 - 在不同设备间同步数据
 
