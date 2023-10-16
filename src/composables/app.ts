@@ -1,3 +1,5 @@
+import type { WebsitePreference } from '@/types'
+
 /* Dark */
 export const isDark = useDark()
 
@@ -70,3 +72,21 @@ export const isXlScreen = useMediaQuery('(min-width: 1280px)')
 export const preferredLanguages = usePreferredLanguages()
 
 export const firstPreferredLanguage = computed(() => preferredLanguages.value[0])
+
+/* Customize */
+/**
+ * @returns {boolean} 是否继续执行
+ */
+export function handleCustomize(): boolean {
+  const siteStore = useSiteStore()
+  const settingStore = useSettingStore()
+  const isEmptyData = siteStore.customData.length === 0
+  const isCustomize = settingStore.settings.websitePreference as WebsitePreference === 'Customize'
+  if (!isEmptyData && !isCustomize) {
+    window.$message.warning(t('messages.warnCustomize'))
+    return false
+  }
+  if (!isCustomize)
+    settingStore.setSettings({ websitePreference: 'Customize' })
+  return true
+}

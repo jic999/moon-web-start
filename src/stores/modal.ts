@@ -1,4 +1,3 @@
-import type { WebsitePreference } from '@/types'
 import { getCommonProps } from '@/utils'
 
 export type ActionType = 'add' | 'update'
@@ -18,8 +17,6 @@ export const useModalStore = defineStore('modal', () => {
   const action = ref<ActionType>('add')
   const target = ref<ActionTarget>('site')
   const title = computed(() => ACTION_NAME[action.value]() + TARGET_NAME[target.value]())
-
-  const settingStore = useSettingStore()
 
   const siteStore = useSiteStore()
   const inputValues = reactive({
@@ -95,20 +92,6 @@ export const useModalStore = defineStore('modal', () => {
       if (target.value === 'cate' && siteStore.cateIndex > 0)
         siteStore.setCateIndex(siteStore.cateIndex - 1)
     })
-  }
-  /**
-   * @returns {boolean} 是否继续执行
-   */
-  function handleCustomize(): boolean {
-    const isEmptyData = siteStore.customData.length === 0
-    const isCustomize = settingStore.settings.websitePreference as WebsitePreference === 'Customize'
-    if (!isEmptyData && !isCustomize) {
-      window.$message.warning(t('messages.warnCustomize'))
-      return false
-    }
-    if (!isCustomize)
-      settingStore.setSettings({ websitePreference: 'Customize' })
-    return true
   }
 
   function clearInput() {
