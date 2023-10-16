@@ -75,7 +75,7 @@ function importData() {
 /* 重置预设 */
 function resetData() {
   window.$dialog.warning({
-    title: t('messages.warnResetData'),
+    title: t('messages.tip'),
     content: t('messages.warnResetData'),
     positiveText: t('button.confirm'),
     negativeText: t('button.cancel'),
@@ -83,6 +83,7 @@ function resetData() {
       siteStore.restoreData()
       settingStore.restoreSettings()
       toggleTheme(settingStore.settings.theme)
+      loadLanguageAsync(settingStore.settings.language)
       window.$message.success(t('messages.reset'))
       // 重置分类索引
       siteStore.setCateIndex(0)
