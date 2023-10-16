@@ -61,6 +61,6 @@ messages:
   warnResetData: 数据重置后无法恢复，确认要重置数据吗？
   exported: 已导出~
   imported: 导入成功
-  reseted: 已重置~
+  reset: 已重置~
   loading: 加载中...
 iconLinkPlaceholder: 图标链接（选填）

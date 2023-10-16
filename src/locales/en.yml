@@ -61,5 +61,6 @@ messages:
   warnResetData: Data cannot be recovered after reset, are you sure to reset data?
   exported: Exported~
   imported: Imported successfully
+  reset: Reset~
   loading: Loading...
 iconLinkPlaceholder: Icon Link (optional)

@@ -83,7 +83,7 @@ function resetData() {
       siteStore.restoreData()
       settingStore.restoreSettings()
       toggleTheme(settingStore.settings.theme)
-      window.$message.success(t('messages.reseted'))
+      window.$message.success(t('messages.reset'))
       // 重置分类索引
       siteStore.setCateIndex(0)
     },
