@@ -40,7 +40,7 @@ A simple and elegant website navigation page, open source under the [MIT](./LICE
 
 - 🌙 Dark mode - love your eyes
 
-- 🌍 I18n - support Simplified Chinese andEnglish
+- 🌍 I18n - support Simplified Chinese, English and Japanese
 
 - 📤 Import/export data - synchronize data between different devices
 
