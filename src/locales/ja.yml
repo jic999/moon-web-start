@@ -1,0 +1,64 @@
+common:
+  add: 追加
+  edit: 編集
+  cate: カテゴリー
+  group: グループ
+  site: サイト
+  link: リンク
+  name: 名前
+button:
+  resetData: データをリセット
+  importData: データをインポート
+  exportData: データをエクスポート
+  complete: 完了
+  confirm: 確認
+  cancel: キャンセル
+  delete: 削除
+settings:
+  title: 設定
+  theme:
+    title: テーマ
+    earlySpring: 早春
+    vastOcean: 広大な海
+    endlessDesert: 果てしない砂漠
+    moonWhite: 月の白
+  language:
+    title: ウェブサイト言語
+    system: システム
+  sitePreference:
+    title: サイト設定
+    auto: 自動
+    chineseMainland: 中国本土
+    global: グローバル
+    customize: カスタマイズ
+  searchEngine:
+    title: 検索エンジン
+    bing: ビング
+    baidu: バイドゥ
+    google: グーグル
+    sogou: 搜狗
+    wikipedia: ウィキペディア
+  iconStyle:
+    title: アイコンスタイル
+    vivid: 鮮やかな
+    plain: シンプル
+    gray: グレー
+  showTime:
+    title: 時刻を表示
+  showDate:
+    title: 日付を表示
+  showLunar:
+    title: 旧暦を表示
+  showFooter:
+    title: フッターを表示
+  common:
+    show: 表示
+    hide: 非表示
+messages:
+  tip: ヒント
+  warnCustomize: サイトの好みを「カスタマイズ」に設定してください
+  warnInvalidImport: 正しいデータファイルをインポートしてください
+  exported: インポート成功
+  reset: リセットされました~
+  loading: ロード中...
+iconLinkPlaceholder: アイコンリンク（任意）
