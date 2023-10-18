@@ -178,7 +178,7 @@ function loadData(data: any) {
         :on-update-value="(key: string) => settingStore.setSettings({ showFooter: key })"
       />
     </div>
-    <div mt-24 flex sm="justify-center" justify-between gap-x-12>
+    <div mt-24 flex flex-wrap justify-center gap-12>
       <n-button type="primary" secondary @click="resetData">
         {{ $t('button.resetData') }}
       </n-button>
