@@ -22,11 +22,10 @@ const addGroupVisible = computed(() => route.name === 'setting' && siteStore.dat
 const { draggableOptions, handleStart, handleEnd } = useDrag()
 
 const settingStore = useSettingStore()
-const renderStore = useRenderStore()
 </script>
 
 <template>
-  <section :key="renderStore.siteGroupListKey" text-14>
+  <section text-14>
     <draggable
       class="flex flex-col gap-y-12"
       :list="siteStore.data[siteStore.cateIndex].groupList"
