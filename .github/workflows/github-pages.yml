@@ -42,6 +42,7 @@ jobs:
       - run: pnpm install
       - name: Build
         env:
+          # 设置环境变量
           REPOSITORY: ${{ github.repository }}
         run: pnpm build
       - name: Setup Pages

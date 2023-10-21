@@ -11,6 +11,11 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig({
+  /**
+   * 若使用 Github Pages 进行部署，打包后的资源在 /moon-web-start 下
+   * 但默认会请求根目录下的资源 故此处根据 环境变量 REPOSITORY 动态设置 base
+   * 相当于： process.env.REPOSITORY ? '/moon-web-start/' : ''
+   */
   base: process.env.REPOSITORY ? `/${process.env.REPOSITORY.split('/').pop()}/` : '',
   plugins: [
     Vue(),
