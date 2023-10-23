@@ -2,10 +2,10 @@ import type { SettingItemChildren, WebsitePreference } from '@/types'
 import { SettingItem } from '@/types'
 
 const websitePreferenceList: SettingItemChildren<WebsitePreference> = [
-  { name: () => t('settings.sitePreference.auto'), key: 'Auto', value: 'Auto' },
-  { name: () => t('settings.sitePreference.chineseMainland'), key: 'ChineseMainland', value: 'Chinese Mainland' },
-  { name: () => t('settings.sitePreference.global'), key: 'Global', value: 'Global' },
-  { name: () => t('settings.sitePreference.customize'), key: 'Customize', value: 'Customize' },
+  { name: () => t('settings.sitePreference.auto'), key: 'Auto' },
+  { name: () => t('settings.sitePreference.chineseMainland'), key: 'ChineseMainland' },
+  { name: () => t('settings.sitePreference.global'), key: 'Global' },
+  { name: () => t('settings.sitePreference.customize'), key: 'Customize' },
 ]
 
 export const websitePreference = new SettingItem({
