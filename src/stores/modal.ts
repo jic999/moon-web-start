@@ -23,7 +23,7 @@ export const useModalStore = defineStore('modal', () => {
     name: '',
     url: '',
     favicon: '',
-    bgColor: '',
+    desc: '',
   })
 
   function showModal(actionType: ActionType, actionTarget: ActionTarget, groupIndex = -1, siteIndex = -1) {

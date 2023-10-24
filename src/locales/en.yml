@@ -51,6 +51,10 @@ settings:
     title: Show Lunar
   showFooter:
     title: Show Footer
+  tagMode:
+    title: Tag Mode
+    concise: Concise
+    full: Full
   common:
     show: Show
     hide: Hide
@@ -64,3 +68,4 @@ messages:
   reset: Reset~
   loading: Loading...
 iconLinkPlaceholder: Icon Link (optional)
+siteDescPlaceholder: Site Description (optional)

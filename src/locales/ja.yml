@@ -51,6 +51,10 @@ settings:
     title: 旧暦を表示
   showFooter:
     title: フッターを表示
+  tagMode:
+    title: タグモード
+    concise: 簡潔
+    full: 完全
   common:
     show: 表示
     hide: 非表示
@@ -62,3 +66,4 @@ messages:
   reset: リセットされました~
   loading: ロード中...
 iconLinkPlaceholder: アイコンリンク（任意）
+siteDescPlaceholder: サイトの説明（任意）
