@@ -35,7 +35,9 @@ export const useSettingStore = defineStore('setting', () => {
       settings = _defaultSetting
     // 排除非法值
     Object.keys(settings).forEach((key) => {
-      if (!settingData[key as SettingKey].children.find(item => item.key === settings[key as SettingKey]))
+      if (!defaultSetting[key as SettingKey])
+        return
+      if (!settingData[key as SettingKey]?.children.find(item => item.key === settings[key as SettingKey]))
         settings[key as SettingKey] = settingData[key as SettingKey].defaultKey
     })
     return settings
