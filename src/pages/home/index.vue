@@ -25,15 +25,10 @@ const settingStore = useSettingStore()
   </TheDoc>
 </template>
 
-<route lang="json">
-{
-  "path": "/",
-  "children": [
-    {
-      "name": "setting",
-      "path": "setting",
-      "component": "@/components/Blank.vue"
-    }
-  ]
-}
+<route lang="yaml">
+path: /
+children:
+  - name: setting
+    path: setting
+    component: /src/components/Blank.vue
 </route>
