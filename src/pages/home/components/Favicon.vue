@@ -34,7 +34,7 @@ function handleFaviconError() {
       v-if="!isGen"
       :class="{ 'rounded-full': round }"
       :src="site.favicon || getFaviconUrl(site.url)"
-      h-full w-full object-cover object-center
+      h-full w-full object-contain object-center
       @error="handleFaviconError"
       @onload="isLoading = false"
     >
