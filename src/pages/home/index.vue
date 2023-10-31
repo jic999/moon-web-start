@@ -22,6 +22,7 @@ const settingStore = useSettingStore()
       <MainSetting />
       <TheFooter v-if="settingStore.getSettingValue('showFooter')" />
     </div>
+    <Blank />
   </TheDoc>
 </template>
 
