@@ -44,6 +44,12 @@ function handleCommit() {
       />
       <n-input
         v-if="modalStore.target === 'site'"
+        v-model:value="modalStore.inputValues.desc"
+        :placeholder="$t('siteDescPlaceholder')"
+        @keydown.enter="modalStore.handleCommit"
+      />
+      <n-input
+        v-if="modalStore.target === 'site'"
         v-model:value="modalStore.inputValues.favicon"
         :placeholder="$t('iconLinkPlaceholder')"
         @keydown.enter="modalStore.handleCommit"

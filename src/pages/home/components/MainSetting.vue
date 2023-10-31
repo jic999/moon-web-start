@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
 import SettingSelection from './SettingSelection.vue'
-import type { Category, SettingItem, Settings, Theme, WebsitePreference } from '@/types'
+import type { Category, SettingItem, Settings, TagMode, Theme, WebsitePreference } from '@/types'
 import { getText, loadLanguageAsync } from '@/utils'
 import * as S from '@/utils/settings'
 
@@ -10,7 +10,7 @@ const settingStore = useSettingStore()
 /* ThemeSetting */
 function renderThemeLabel(option: SettingItem<Theme>): VNode {
   const currentTheme = S.theme.children.find(item => item.key === option.key)!
-  const bgColor = currentTheme!.value.bgC
+  const bgColor = currentTheme.value!.bgC
   return h('div', { class: 'flex items-center gap-x-8' }, [
     h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: bgColor } }),
     h('div', getText(option.name)),
@@ -128,6 +128,14 @@ function loadData(data: any) {
         label-field="name"
         value-field="key"
         :on-update-value="(key: WebsitePreference) => settingStore.setSettings({ websitePreference: key })"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.tagMode"
+        :title="S.tagMode.name"
+        :options="S.tagMode.children"
+        label-field="name"
+        value-field="key"
+        :on-update-value="(key: TagMode) => settingStore.setSettings({ tagMode: key })"
       />
       <SettingSelection
         v-model="settingStore.settings.search"

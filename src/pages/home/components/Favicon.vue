@@ -8,13 +8,13 @@ defineProps({
     type: Object as PropType<Site>,
     required: true,
   },
-  siteIndex: {
+  size: {
     type: Number,
-    required: true,
+    default: 24,
   },
-  groupIndex: {
-    type: Number,
-    required: true,
+  round: {
+    type: Boolean,
+    default: false,
   },
 })
 
@@ -29,15 +29,16 @@ function handleFaviconError() {
 </script>
 
 <template>
-  <div :style="iconStyle" h-24 w-24>
+  <div :style="[iconStyle, { width: `${size}px`, height: `${size}px` }]">
     <img
       v-if="!isGen"
+      :class="{ 'rounded-full': round }"
       :src="site.favicon || getFaviconUrl(site.url)"
-      h-full w-full
+      h-full w-full object-cover object-center
       @error="handleFaviconError"
       @onload="isLoading = false"
     >
-    <div v-else :style="{ backgroundColor: 'var(--primary-c)' }" h-full w-full flex-center scale-112 rounded-full text="white 12">
+    <div v-else :style="{ backgroundColor: 'var(--primary-c)', fontSize: `${size / 2}px` }" h-full w-full flex-center scale-112 rounded-full text-white>
       {{ site.name.toLocaleUpperCase().charAt(0) }}
     </div>
   </div>

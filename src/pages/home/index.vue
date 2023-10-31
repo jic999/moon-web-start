@@ -22,13 +22,14 @@ const settingStore = useSettingStore()
       <MainSetting />
       <TheFooter v-if="settingStore.getSettingValue('showFooter')" />
     </div>
+    <Blank />
   </TheDoc>
 </template>
 
 <route lang="yaml">
-  path: /
-  children:
-    - name: setting
-      path: setting
-      component: /src/components/Blank.vue
-  </route>
+path: /
+children:
+  - name: setting
+    path: setting
+    component: /src/components/Blank.vue
+</route>

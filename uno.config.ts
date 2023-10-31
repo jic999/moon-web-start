@@ -20,6 +20,7 @@ export default defineConfig({
       /^ellipsis-(\d+)$/,
       ([, n]) => ({
         'overflow': 'hidden',
+        'word-break': 'break-all',
         'text-overflow': 'ellipsis',
         'display': ' -webkit-box',
         '-webkit-line-clamp': `${n}`,

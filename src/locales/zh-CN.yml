@@ -51,6 +51,10 @@ settings:
     title: 显示农历
   showFooter:
     title: 显示页脚
+  tagMode:
+    title: 标签模式
+    concise: 精简
+    full: 完全
   common:
     show: 显示
     hide: 隐藏
@@ -64,3 +68,4 @@ messages:
   reset: 已重置~
   loading: 加载中...
 iconLinkPlaceholder: 图标链接（选填）
+siteDescPlaceholder: 网站描述（选填）
