@@ -7,7 +7,7 @@ export class SettingItem<T> {
   key: string
   children: SettingItemChildren<T>
   defaultKey: string
-  value?: T
+  value: T
 
   constructor(options: {
     name: TextGetter
@@ -27,7 +27,7 @@ export class SettingItem<T> {
 export interface SettingItemsChild<T> {
   name: TextGetter
   key: string
-  value?: T
+  value: T
 }
 
 export type SettingItemChildren<T> = SettingItemsChild<T>[]

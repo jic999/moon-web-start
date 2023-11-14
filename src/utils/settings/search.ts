@@ -25,7 +25,7 @@ const searchList: SettingItemChildren<Search> = [
   {
     name: () => t('settings.searchEngine.wikipedia'),
     key: 'Wikipedia',
-    value: { url: 'https://zh.wikipedia.org/w/index.php', wd: 'search', favicon: '/svg/wikipedia.svg', s: 'vk' },
+    value: { url: 'https://zh.wikipedia.org/w/index.php', wd: 'search', favicon: '/svg/wikipedia.svg', s: 'wk' },
   },
 ]
 
