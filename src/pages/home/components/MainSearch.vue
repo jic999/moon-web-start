@@ -75,7 +75,7 @@ const selectedIndex = ref(0)
 
 const requestEngApi = debounce(() => {
   const curSearch = searchList[curSearchIndex.value]
-  searchEngine.complete(curSearch.key, keyword.value, (params: Params) => {
+  searchEngine.complete(curSearch.key as any, keyword.value, (params: Params) => {
     showKeyDownSel.value = true
     if (keyword.value.trim().length === 0)
       return

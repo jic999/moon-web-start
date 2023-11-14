@@ -13,9 +13,8 @@
   "dependencies": {
     "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.0.2",
-    "axios": "^1.4.0",
-    "axios-jsonp": "^1.0.4",
     "default-passive-events": "^2.0.0",
+    "fetch-jsonp": "^1.3.0",
     "pinia": "^2.0.32",
     "solarlunar-es": "^1.0.9",
     "vue": "^3.2.47",

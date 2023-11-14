@@ -12,5 +12,7 @@ declare global {
   interface Window {
     $dialog: DialogProviderInst
     $message: MessageProviderInst
+
+    sug?: Function
   }
 }
