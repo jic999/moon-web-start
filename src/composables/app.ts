@@ -83,7 +83,7 @@ export function handleCustomize(): boolean {
   const isEmptyData = siteStore.customData.length === 0
   const isCustomize = settingStore.settings.websitePreference as WebsitePreference === 'Customize'
   if (!isEmptyData && !isCustomize) {
-    window.$message.warning(t('messages.warnCustomize'))
+    $message.warning(t('messages.warnCustomize'))
     return false
   }
   if (!isCustomize)

@@ -9,6 +9,9 @@ declare module 'vue' {
 }
 
 declare global {
+  const $dialog: DialogProviderInst
+  const $message: MessageProviderInst
+
   interface Window {
     $dialog: DialogProviderInst
     $message: MessageProviderInst

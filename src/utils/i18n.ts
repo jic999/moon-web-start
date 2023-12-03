@@ -38,10 +38,10 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 
   // If the language hasn't been loaded yet
   if (!isFirst)
-    window.$message.loading(t('messages.loading'), { duration: 0 })
+    $message.loading(t('messages.loading'), { duration: 0 })
   const messages = await localesMap[lang]()
   if (!isFirst)
-    window.$message.destroyAll()
+    $message.destroyAll()
   i18n.global.setLocaleMessage(lang, messages.default)
   loadedLanguages.push(lang)
   return setI18nLanguage(lang)

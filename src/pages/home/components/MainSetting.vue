@@ -45,7 +45,7 @@ function exportData() {
   document.body.appendChild(a)
   a.click()
   URL.revokeObjectURL(url)
-  window.$message.success(t('messages.exported'))
+  $message.success(t('messages.exported'))
 }
 
 function importData() {
@@ -62,10 +62,10 @@ function importData() {
           throw new Error('Invalid data')
         loadData(data)
         settingStore.setSettings({ websitePreference: 'Customize' })
-        window.$message.success(t('messages.imported'))
+        $message.success(t('messages.imported'))
       }
       catch (err: any) {
-        window.$message.error(t('messages.warnInvalidImport'))
+        $message.error(t('messages.warnInvalidImport'))
       }
     }
   })
@@ -74,7 +74,7 @@ function importData() {
 
 /* 重置预设 */
 function resetData() {
-  window.$dialog.warning({
+  $dialog.warning({
     title: t('messages.tip'),
     content: t('messages.warnResetData'),
     positiveText: t('button.confirm'),
@@ -84,7 +84,7 @@ function resetData() {
       settingStore.restoreSettings()
       toggleTheme(settingStore.settings.theme)
       loadLanguageAsync(settingStore.settings.language)
-      window.$message.success(t('messages.reset'))
+      $message.success(t('messages.reset'))
       // 重置分类索引
       siteStore.setCateIndex(0)
     },
