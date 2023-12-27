@@ -43,6 +43,10 @@ settings:
     vivid: 鮮やかな
     plain: シンプル
     gray: グレー
+  linkStrategy:
+    title: リンク戦略
+    currentTab: 現在のタブで開く
+    newTab: 新しいタブで開く
   showTime:
     title: 時刻を表示
   showDate:

@@ -43,6 +43,10 @@ settings:
     vivid: 鲜艳
     plain: 朴素
     gray: 灰白
+  linkStrategy:
+    title: 链接策略
+    currentTab: 当前标签页打开
+    newTab: 新标签页打开
   showTime:
     title: 显示时间
   showDate:

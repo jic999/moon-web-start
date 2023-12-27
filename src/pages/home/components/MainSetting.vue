@@ -154,6 +154,14 @@ function loadData(data: any) {
         :on-update-value="(key: string) => settingStore.setSettings({ iconStyle: key })"
       />
       <SettingSelection
+        v-model="settingStore.settings.linkStrategy"
+        :title="S.linkStrategy.name"
+        :options="S.linkStrategy.children"
+        label-field="name"
+        value-field="key"
+        :on-update-value="(key: string) => settingStore.setSettings({ linkStrategy: key })"
+      />
+      <SettingSelection
         v-model="settingStore.settings.showTime"
         :title="S.showTime.name"
         :options="S.showTime.children"

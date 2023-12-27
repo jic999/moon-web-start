@@ -20,6 +20,10 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  target: {
+    type: String,
+    default: '_blank',
+  },
 })
 </script>
 
@@ -28,7 +32,7 @@ defineProps({
     v-if="type === 'Concise'"
     class="site__handle"
     :class="{ 'site--setting': isSetting, 'hover:bg-$site-hover-c': !isDragging }"
-    :href="site.url" target="_blank"
+    :href="site.url" :target="target"
     inline-flex cursor-pointer items-center gap-x-8 px-12 h-40 max-w-100p
   >
     <Favicon class="shrink-0" :site="site" />
@@ -38,7 +42,7 @@ defineProps({
     v-else
     class="site__handle"
     :class="{ 'site--setting': isSetting, 'hover:bg-$site-hover-c': !isDragging }"
-    :href="site.url" target="_blank"
+    :href="site.url" :target="target"
     bg="white dark:dark-800"
     w-full inline-flex cursor-pointer items-center gap-x-8 transition-300 p-10
   >

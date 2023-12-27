@@ -43,6 +43,10 @@ settings:
     vivid: Vivid
     plain: Plain
     gray: Gray
+  linkStrategy:
+    title: Link Strategy
+    currentTab: Current tab open
+    newTab: New tab open
   showTime:
     title: Show Time
   showDate:

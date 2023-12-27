@@ -24,6 +24,8 @@ const { draggableOptions, handleStart, handleEnd } = useDrag()
 const settingStore = useSettingStore()
 
 const isFullTagMode = computed(() => settingStore.settings.tagMode === 'Full')
+
+const linkStrategyValue = computed(() => settingStore.getSettingItem('linkStrategy').value as string)
 </script>
 
 <template>
@@ -99,6 +101,7 @@ const isFullTagMode = computed(() => settingStore.settings.tagMode === 'Full')
                   <SiteItemCard
                     :site="site"
                     :type="settingStore.settings.tagMode as TagMode"
+                    :target="linkStrategyValue"
                     :is-setting="settingStore.isSetting"
                     :is-dragging="settingStore.isDragging"
                     @click="(e) => handleSiteClick(i, index, e)"
