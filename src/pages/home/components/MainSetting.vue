@@ -6,6 +6,7 @@ import { getText, loadLanguageAsync } from '@/utils'
 import * as S from '@/utils/settings'
 
 const settingStore = useSettingStore()
+const siteStore = useSiteStore()
 
 /* ThemeSetting */
 function renderThemeLabel(option: SettingItem<Theme>): VNode {
@@ -23,12 +24,17 @@ function toggleLanguage(language: string) {
   loadLanguageAsync(language)
 }
 
+/* WebsitePreference */
+function handleWebsitePreferenceChange(key: WebsitePreference) {
+  siteStore.setCateIndex(0)
+  settingStore.setSettings({ websitePreference: key })
+}
+
 /* 导入导出 */
 export interface CacheData {
   data: Category[]
   settings: Settings
 }
-const siteStore = useSiteStore()
 
 function exportData() {
   const data = {
@@ -127,7 +133,7 @@ function loadData(data: any) {
         :options="S.websitePreference.children"
         label-field="name"
         value-field="key"
-        :on-update-value="(key: WebsitePreference) => settingStore.setSettings({ websitePreference: key })"
+        :on-update-value="handleWebsitePreferenceChange"
       />
       <SettingSelection
         v-model="settingStore.settings.tagMode"
