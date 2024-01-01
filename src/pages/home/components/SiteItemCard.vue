@@ -33,7 +33,7 @@ defineProps({
     class="site__handle"
     :class="{ 'site--setting': isSetting, 'hover:bg-$site-hover-c': !isDragging }"
     :href="site.url" :target="target"
-    inline-flex cursor-pointer items-center gap-x-8 px-12 h-40 max-w-100p
+    inline-flex cursor-pointer items-center gap-x-8 px-12 transition-300 h-40 max-w-100p
   >
     <Favicon class="shrink-0" :site="site" />
     <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
