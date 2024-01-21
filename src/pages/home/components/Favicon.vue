@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import type { Site } from '@/types'
-import { FAVICON_MAP_SYMBOL, getDomainName, getFaviconUrl } from '@/utils'
+import { FAVICON_MAP_SYMBOL, getFaviconUrl } from '@/utils'
 
 const props = defineProps({
   site: {
@@ -20,46 +20,56 @@ const props = defineProps({
 
 const { iconStyle } = useIconStyle()
 
-const faviconMap = inject<Ref<Map<string, HTMLImageElement>>>(FAVICON_MAP_SYMBOL)!
+const faviconMap = inject<Ref<Map<number, HTMLImageElement | HTMLDivElement>>>(FAVICON_MAP_SYMBOL)!
 
 const $faviconBox = ref<HTMLDivElement>()
 
-const imgErr = ref(false)
-
 onMounted(() => {
-  const domain = getDomainName(props.site.url)
-  const img = domain ? faviconMap.value.get(domain) : null
+  const id = props.site.id
+  const img = faviconMap.value.get(id)
 
-  if (domain && !img) {
+  if (!img) {
     const img = new Image()
     img.src = props.site.favicon || getFaviconUrl(props.site.url)
     img.onload = () => {
       $faviconBox.value?.appendChild(img)
-      faviconMap.value.set(domain, img)
+      faviconMap.value.set(id, img)
     }
     img.onerror = () => {
-      imgErr.value = true
+      const favicon = document.createElement('div')
+      favicon.innerText = props.site.name.toLocaleUpperCase().charAt(0)
+      faviconMap.value.set(id, favicon)
+      $faviconBox.value?.appendChild(favicon)
     }
   }
-  else if (domain && img) {
+  else if (img) {
     $faviconBox.value?.appendChild(img)
   }
 })
 </script>
 
 <template>
-  <div ref="$faviconBox" class="favicon" :style="[iconStyle, { width: `${size}px`, height: `${size}px` }]">
-    <div v-if="imgErr" :style="{ backgroundColor: 'var(--primary-c)', fontSize: `${size / 2}px` }" h-full w-full flex-center scale-112 rounded-full text-white>
-      {{ site.name.toLocaleUpperCase().charAt(0) }}
-    </div>
-  </div>
+  <div ref="$faviconBox" class="favicon" :style="[iconStyle, { width: `${size}px`, height: `${size}px`, fontSize: `${size / 2}px` }]" />
 </template>
 
-<style>
-.favicon img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+<style lang="scss">
+.favicon {
+  img, div {
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    object-fit: contain;
+    object-position: center;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: var(--primary-c);
+    transform: scale(1.12);
+    border-radius: 50%;
+  }
 }
 </style>

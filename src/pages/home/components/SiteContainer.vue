@@ -4,7 +4,8 @@ import SiteModal from './SiteModal.vue'
 import SiteGroupList from './SiteGroupList.vue'
 import { FAVICON_MAP_SYMBOL } from '@/utils'
 
-const faviconMap = ref<Map<string, HTMLImageElement>>(new Map())
+// TODO 重置预设后清除 faviconMap
+const faviconMap = ref(new Map())
 
 provide(FAVICON_MAP_SYMBOL, faviconMap)
 </script>

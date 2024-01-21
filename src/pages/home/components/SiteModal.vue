@@ -1,7 +1,12 @@
 <script setup lang="ts">
+import { FAVICON_MAP_SYMBOL, getFaviconUrl } from '@/utils'
+
 const modalStore = useModalStore()
+const siteStore = useSiteStore()
 
 const inputStatus = ref<'error' | 'success'>('success')
+
+const faviconMap = inject<Ref<Map<number, HTMLImageElement | HTMLDivElement>>>(FAVICON_MAP_SYMBOL)!
 
 function handleCommit() {
   if (
@@ -12,6 +17,30 @@ function handleCommit() {
     setTimeout(() => inputStatus.value = 'success', 500)
     return
   }
+
+  // 更新图标
+  if (modalStore.target === 'site') {
+    const site = siteStore.getCurrentSite()
+    const favicon = faviconMap.value.get(site.id)!
+
+    const parent = favicon.parentElement!
+    const img = new Image()
+
+    img.src = site.favicon || getFaviconUrl(modalStore.inputValues.url)
+    img.onload = () => {
+      faviconMap.value.set(site.id, img)
+      parent.removeChild(favicon)
+      parent.appendChild(img)
+    }
+    img.onerror = () => {
+      const divEl = document.createElement('div')
+      divEl.innerText = site.name.toLocaleUpperCase().charAt(0)
+      faviconMap.value.set(site.id, divEl)
+      parent.removeChild(favicon)
+      parent.appendChild(divEl)
+    }
+  }
+
   modalStore.handleCommit()
 }
 </script>

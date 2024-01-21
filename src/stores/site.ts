@@ -91,6 +91,10 @@ export const useSiteStore = defineStore('site', () => {
     localStorage.removeItem('cache')
   }
 
+  function getCurrentSite() {
+    return data.value[cateIndex.value].groupList[groupIndex.value].siteList[siteIndex.value]
+  }
+
   return {
     data,
     customData,
@@ -111,5 +115,6 @@ export const useSiteStore = defineStore('site', () => {
     deleteCate,
     setData,
     restoreData,
+    getCurrentSite,
   }
 })
