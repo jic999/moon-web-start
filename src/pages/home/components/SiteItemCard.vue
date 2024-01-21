@@ -35,7 +35,9 @@ defineProps({
     :href="site.url" :target="target"
     inline-flex cursor-pointer items-center gap-x-8 px-12 transition-300 h-40 max-w-100p
   >
-    <Favicon class="shrink-0" :site="site" />
+    <KeepAlive>
+      <component :is="Favicon" :site="site" />
+    </KeepAlive>
     <span whitespace-nowrap text-14 overflow-hidden>{{ site.name }}</span>
   </a>
   <a
@@ -46,7 +48,9 @@ defineProps({
     bg="white dark:dark-800"
     w-full inline-flex cursor-pointer items-center gap-x-8 transition-300 p-10
   >
-    <Favicon class="shrink-0" :site="site" :size="36" round />
+    <KeepAlive>
+      <component :is="Favicon" :site="site" />
+    </KeepAlive>
     <div>
       <div text-13 font-600 ellipsis-1>{{ site.name }}</div>
       <div text="13 $text-c-1" mt-6 ellipsis-1>{{ site.desc ?? site.name }}</div>
