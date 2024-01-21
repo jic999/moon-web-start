@@ -29,7 +29,7 @@ const linkStrategyValue = computed(() => settingStore.getSettingItem('linkStrate
 </script>
 
 <template>
-  <section text-14>
+  <section py-24>
     <draggable
       class="flex flex-col gap-y-12"
       :list="siteStore.data[siteStore.cateIndex].groupList"

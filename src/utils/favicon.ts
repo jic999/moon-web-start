@@ -22,7 +22,7 @@ otherUrls.forEach((url: string) => {
   siteToUrl.set(url, `https://0x3.com/icon?host=${url}`)
 })
 
-function getDomainName(url: string) {
+export function getDomainName(url: string) {
   let domain = url.replace(/(^\w+:|^)\/\//, '')
   domain = domain.replace(/^www\./, '')
 
