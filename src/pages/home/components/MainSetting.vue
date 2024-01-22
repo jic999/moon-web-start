@@ -68,6 +68,8 @@ function importData() {
           throw new Error('Invalid data')
         loadData(data)
         settingStore.setSettings({ websitePreference: 'Customize' })
+        // TODO 图标刷新方案优化
+        location.reload()
         $message.success(t('messages.imported'))
       }
       catch (err: any) {
@@ -90,6 +92,7 @@ function resetData() {
       settingStore.restoreSettings()
       toggleTheme(settingStore.settings.theme)
       loadLanguageAsync(settingStore.settings.language)
+      location.reload()
       $message.success(t('messages.reset'))
       // 重置分类索引
       siteStore.setCateIndex(0)
