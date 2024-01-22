@@ -62,26 +62,26 @@ function handleCommit() {
         v-model:value="modalStore.inputValues.name"
         :status="modalStore.inputValues.name ? undefined : inputStatus "
         :placeholder="$t('common.name')"
-        @keydown.enter="modalStore.handleCommit"
+        @keydown.enter="handleCommit"
       />
       <n-input
         v-if="modalStore.target === 'site'"
         v-model:value="modalStore.inputValues.url"
         :status="modalStore.inputValues.url.trim() ? undefined : inputStatus "
         :placeholder="$t('common.link')"
-        @keydown.enter="modalStore.handleCommit"
+        @keydown.enter="handleCommit"
       />
       <n-input
         v-if="modalStore.target === 'site'"
         v-model:value="modalStore.inputValues.desc"
         :placeholder="$t('siteDescPlaceholder')"
-        @keydown.enter="modalStore.handleCommit"
+        @keydown.enter="handleCommit"
       />
       <n-input
         v-if="modalStore.target === 'site'"
         v-model:value="modalStore.inputValues.favicon"
         :placeholder="$t('iconLinkPlaceholder')"
-        @keydown.enter="modalStore.handleCommit"
+        @keydown.enter="handleCommit"
       />
     </div>
     <template #action>
