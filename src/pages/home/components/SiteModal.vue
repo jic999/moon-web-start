@@ -26,7 +26,7 @@ function handleCommit() {
     const parent = favicon.parentElement!
     const img = new Image()
 
-    img.src = site.favicon || getFaviconUrl(modalStore.inputValues.url)
+    img.src = modalStore.inputValues.favicon || getFaviconUrl(modalStore.inputValues.url)
     img.onload = () => {
       faviconMap.value.set(site.id, img)
       parent.removeChild(favicon)
