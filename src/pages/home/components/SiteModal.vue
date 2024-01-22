@@ -19,7 +19,7 @@ function handleCommit() {
   }
 
   // 更新图标
-  if (modalStore.target === 'site') {
+  if (modalStore.target === 'site' && modalStore.action === 'update') {
     const site = siteStore.getCurrentSite()
     const favicon = faviconMap.value.get(site.id)!
 
