@@ -31,7 +31,7 @@ const linkStrategyValue = computed(() => settingStore.getSettingItem('linkStrate
 <template>
   <section py-24>
     <draggable
-      class="flex flex-col gap-y-12"
+      class="flex flex-col gap-y-10"
       :list="siteStore.data[siteStore.cateIndex].groupList"
       item-key="id"
       handle=".group__handle"
@@ -49,7 +49,7 @@ const linkStrategyValue = computed(() => settingStore.getSettingItem('linkStrate
           <!-- Group header -->
           <div
             :class="{ 'cursor-pointer bg-$site-hover-c': settingStore.isSetting, 'mb-12 w-full': isXsScreen || isFullTagMode }"
-            shrink-0 w-72
+            shrink-0 w-96
             @click="handleGroupClick(i)"
           >
             <div
@@ -88,7 +88,7 @@ const linkStrategyValue = computed(() => settingStore.getSettingItem('linkStrate
                 tag: 'div',
                 type: 'transition-group',
                 class: !isFullTagMode
-                  ? 'grid gap-x-8 gap-y-12 grid-cols-3 md:grid-cols-4 lg:grid-cols-6'
+                  ? 'grid gap-10 grid-cols-3 md:grid-cols-4 lg:grid-cols-6'
                   : 'grid gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4',
               }"
               v-bind="draggableOptions"
