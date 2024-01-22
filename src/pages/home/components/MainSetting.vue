@@ -28,6 +28,7 @@ function toggleLanguage(language: string) {
 function handleWebsitePreferenceChange(key: WebsitePreference) {
   siteStore.setCateIndex(0)
   settingStore.setSettings({ websitePreference: key })
+  settingStore.refreshSiteContainer()
 }
 
 /* 导入导出 */
@@ -68,8 +69,7 @@ function importData() {
           throw new Error('Invalid data')
         loadData(data)
         settingStore.setSettings({ websitePreference: 'Customize' })
-        // TODO 图标刷新方案优化
-        location.reload()
+        settingStore.refreshSiteContainer()
         $message.success(t('messages.imported'))
       }
       catch (err: any) {
@@ -92,7 +92,7 @@ function resetData() {
       settingStore.restoreSettings()
       toggleTheme(settingStore.settings.theme)
       loadLanguageAsync(settingStore.settings.language)
-      location.reload()
+      settingStore.refreshSiteContainer()
       $message.success(t('messages.reset'))
       // 重置分类索引
       siteStore.setCateIndex(0)

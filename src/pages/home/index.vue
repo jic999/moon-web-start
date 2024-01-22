@@ -18,7 +18,7 @@ const settingStore = useSettingStore()
       <MainHeader />
       <MainClock v-if="!settingStore.isSetting" />
       <MainSearch v-if="!settingStore.isSetting" my-24 />
-      <SiteContainer />
+      <SiteContainer :key="settingStore.siteContainerKey" />
       <MainSetting />
       <TheFooter v-if="settingStore.getSettingValue('showFooter')" />
     </div>

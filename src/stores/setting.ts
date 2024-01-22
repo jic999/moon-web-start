@@ -67,14 +67,23 @@ export const useSettingStore = defineStore('setting', () => {
     isDragging.value = status
   }
 
+  // ----------------- 其他 -----------------
+  const siteContainerKey = ref(0)
+
+  function refreshSiteContainer() {
+    siteContainerKey.value++
+  }
+
   return {
     isSetting,
     settings,
     isDragging,
+    siteContainerKey,
     setSettings,
     setIsDragging,
     getSettingItem,
     getSettingValue,
     restoreSettings,
+    refreshSiteContainer,
   }
 })
