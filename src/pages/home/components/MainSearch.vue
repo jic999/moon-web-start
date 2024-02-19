@@ -147,8 +147,15 @@ function handleLeave() {
   selectedIndex.value = 0
 }
 
-function handleFocus(_: Event) {
+function handleFocus() {
   handleInput(new Event('input'))
+}
+
+function handleFocusShortcut(e: KeyboardEvent) {
+  if (!(e.ctrlKey && e.key === 'Enter'))
+    return
+  searchInputRef.value?.focus()
+  handleFocus()
 }
 
 function setActive(i: number) {
@@ -161,6 +168,13 @@ function setInactive(_: number) {
 
 /* Icon style */
 const { iconStyle } = useIconStyle()
+
+onMounted(() => {
+  window.addEventListener('keydown', handleFocusShortcut)
+})
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleFocusShortcut)
+})
 </script>
 
 <template>
@@ -217,6 +231,7 @@ const { iconStyle } = useIconStyle()
       <input
         ref="searchInputRef"
         v-model="keyword"
+        autofocus
         text="15 $text-c-1"
         h-full w-full bg-inherit op-80
         @keydown.enter="search"
