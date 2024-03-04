@@ -3,6 +3,8 @@ import solarLunar from 'solarlunar-es'
 
 const settingStore = useSettingStore()
 
+const $time = ref<HTMLDivElement | null>(null)
+
 const date = ref('')
 const time = ref('')
 const lunarDate = ref('')
@@ -15,10 +17,16 @@ function refreshTime() {
   const lang = settingStore.settings.language === 'System' ? navigator.language : settingStore.settings.language
   date.value = now.toLocaleString(lang, { month: 'long', day: 'numeric' })
   week.value = now.toLocaleString(lang, { weekday: 'long' })
-  time.value = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`
+
+  if (settingStore.getSettingValue('showSecond'))
+    time.value = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`
+  else
+    time.value = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`
+  $time.value!.innerText = time.value
+
   // 若为0点 或阴历为空 刷新日期
   // en: If 00:00 or the lunar is empty, refresh date
-  if (!lunarDate.value || time.value === '00:00')
+  if (!lunarDate.value || time.value === '00:00' || time.value === '00:00:00')
     getDate()
   return refreshTime
 }
@@ -42,7 +50,7 @@ function timing() {
     refreshTime()
     // 若 nowMinute !== newMinute 说明开始了新的分钟
     // en: nowMinute !== newMinute means a new minute has started
-    if (nowMinute !== time.value) {
+    if (!settingStore.getSettingValue('showSecond') && nowMinute !== time.value) {
       // 清除每秒定时器 开启分钟定时器
       // en: Clear second timer and start minute timer
       clearInterval(timeInterval)
@@ -61,7 +69,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div text-center>
-    <div v-if="settingStore.getSettingValue('showTime')" text-48>
+    <div v-if="settingStore.getSettingValue('showTime')" ref="$time" text-48 tracking-wide>
       {{ time }}
     </div>
     <p text="14 $text-c-1">

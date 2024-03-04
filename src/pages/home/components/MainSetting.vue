@@ -187,6 +187,14 @@ function loadData(data: any) {
         :on-update-value="(key: string) => settingStore.setSettings({ showDate: key })"
       />
       <SettingSelection
+        v-model="settingStore.settings.showSecond"
+        :title="S.showSecond.name"
+        :options="S.showSecond.children"
+        label-field="name"
+        value-field="key"
+        :on-update-value="(key: string) => settingStore.setSettings({ showSecond: key })"
+      />
+      <SettingSelection
         v-model="settingStore.settings.showLunar"
         :title="S.showLunar.name"
         :options="S.showLunar.children"

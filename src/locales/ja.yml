@@ -51,6 +51,8 @@ settings:
     title: 時刻を表示
   showDate:
     title: 日付を表示
+  showSecond:
+    title: 秒を表示
   showLunar:
     title: 旧暦を表示
   showFooter:

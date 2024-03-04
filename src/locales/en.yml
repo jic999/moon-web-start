@@ -51,6 +51,8 @@ settings:
     title: Show Time
   showDate:
     title: Show Date
+  showSecond:
+    title: Show Second
   showLunar:
     title: Show Lunar
   showFooter:

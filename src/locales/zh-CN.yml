@@ -51,6 +51,8 @@ settings:
     title: 显示时间
   showDate:
     title: 显示日期
+  showSecond:
+    title: 显示秒钟
   showLunar:
     title: 显示农历
   showFooter:
