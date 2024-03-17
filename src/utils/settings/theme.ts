@@ -27,7 +27,7 @@ const themeChildren: SettingItemChildren<Theme> = [
       settingBorderC: '#115d80aa',
       bgC: '#0A4D68',
       mainBgC: '#f3f4f6',
-      searchBtnC: '#115d80',
+      searchBtnC: '#146C94',
     },
   },
   {
@@ -41,7 +41,7 @@ const themeChildren: SettingItemChildren<Theme> = [
       settingBorderC: '#96561eaa',
       bgC: '#BF9270',
       mainBgC: '#f3f4f6',
-      searchBtnC: '#BF9270',
+      searchBtnC: '#bc6c25',
     },
   },
   {
