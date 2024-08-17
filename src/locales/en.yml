@@ -6,6 +6,7 @@ common:
   site: Site
   link: Link
   name: Name
+  more: More
 button:
   resetData: Reset Data
   importData: Import Data

@@ -11,6 +11,8 @@ declare module 'vue' {
     AppProvider: typeof import('./components/AppProvider/index.vue')['default']
     Blank: typeof import('./components/Blank.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
+    NCollapse: typeof import('naive-ui')['NCollapse']
+    NCollapseItem: typeof import('naive-ui')['NCollapseItem']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NInput: typeof import('naive-ui')['NInput']

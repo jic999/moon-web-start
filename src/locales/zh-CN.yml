@@ -6,6 +6,7 @@ common:
   site: 网站
   link: 链接
   name: 名称
+  more: 更多
 button:
   resetData: 重置数据
   importData: 导入数据

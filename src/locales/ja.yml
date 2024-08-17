@@ -6,6 +6,7 @@ common:
   site: サイト
   link: リンク
   name: 名前
+  more: もっと
 button:
   resetData: データをリセット
   importData: データをインポート
