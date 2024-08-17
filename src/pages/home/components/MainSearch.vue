@@ -22,8 +22,12 @@ watch(() => settingStore.settings.search, () => {
   initcurSearchIndex()
 }, { immediate: true })
 
-function search() {
-  if (!keyword.value.trim())
+function search(e?: any) {
+  if (
+    !keyword.value.trim()
+    // 防止中文输入时回车键触发搜索
+    || e?.isComposing
+  )
     return
   const currentSearch = searchList[curSearchIndex.value]
   window.open(`${currentSearch.value.url}?${currentSearch.value.wd}=${keyword.value}`)
