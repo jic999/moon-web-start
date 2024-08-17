@@ -71,17 +71,15 @@ function handleCommit() {
         :placeholder="$t('common.link')"
         @keydown.enter="handleCommit"
       />
-      <n-collapse>
+      <n-collapse v-if="modalStore.target === 'site'">
         <n-collapse-item :title="$t('common.more')">
           <div flex flex-col gap-y-16>
             <n-input
-              v-if="modalStore.target === 'site'"
               v-model:value="modalStore.inputValues.desc"
               :placeholder="$t('siteDescPlaceholder')"
               @keydown.enter="handleCommit"
             />
             <n-input
-              v-if="modalStore.target === 'site'"
               v-model:value="modalStore.inputValues.favicon"
               :placeholder="$t('iconLinkPlaceholder')"
               @keydown.enter="handleCommit"
