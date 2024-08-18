@@ -46,6 +46,8 @@
 
 - 📦 浏览器插件 - 新建标签页时打开 [Moon](https://moon-start.netlify.app/)
 
+- 🚀 容器化部署 - 支持 Docker 一键部署
+
 
 ## TODO
 
@@ -77,6 +79,12 @@ pnpm install
 启动项目
 ```bash
 pnpm dev
+```
+
+## Docker 部署
+
+```bash
+docker run -d -p 80:80 --name moon-web-start jic999/moon-web-start
 ```
 
 ## 浏览器插件

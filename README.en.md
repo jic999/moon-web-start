@@ -46,6 +46,8 @@ A simple and elegant website navigation page, open source under the [MIT](./LICE
 
 - 📦 Browser extension - open [Moon](https://moon-start.netlify.app/) when opening a new tab
 
+- 🚀 Containerized deployment - support Docker one-click deployment
+
 ## TODO
 
 - Backend service
@@ -72,6 +74,11 @@ Install dependencies
 
 ```bash
 pnpm install
+
+## Docker deployment
+
+```bash
+docker run -d -p 80:80 --name moon-web-start jic999/moon-web-start
 ```
 
 Start project
