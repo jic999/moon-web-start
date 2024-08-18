@@ -1,0 +1,10 @@
+.git/
+.github/
+.husky/
+.vscode/
+.extensions/
+node_modules/
+.dockerignore
+.gitignore
+eslint.config.js
+netlify.toml
