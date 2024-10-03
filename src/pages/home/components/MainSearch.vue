@@ -30,7 +30,7 @@ function search(e?: any) {
   )
     return
   const currentSearch = searchList[curSearchIndex.value]
-  window.open(`${currentSearch.value.url}?${currentSearch.value.wd}=${keyword.value}`)
+  window.open(`${currentSearch.value.url}?${currentSearch.value.wd}=${encodeURIComponent(keyword.value)}`)
   clearNoticeKey()
   searchInputRef.value?.blur()
 }
