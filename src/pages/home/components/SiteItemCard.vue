@@ -2,6 +2,7 @@
 import type { PropType } from 'vue'
 import Favicon from './Favicon.vue'
 import type { Site, TagMode } from '@/types'
+import { extractDomainFromUrl } from '@/utils'
 
 defineProps({
   site: {
@@ -49,7 +50,7 @@ defineProps({
     <Favicon class="shrink-0" :site="site" :size="36" round />
     <div>
       <div text-13 font-600 ellipsis-1>{{ site.name }}</div>
-      <div text="13 $text-c-1" mt-6 ellipsis-1>{{ site.desc ?? site.name }}</div>
+      <div text="13 $text-c-1" mt-6 ellipsis-1>{{ site.desc ?? extractDomainFromUrl(site.url) }}</div>
     </div>
   </a>
 </template>

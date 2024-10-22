@@ -46,3 +46,9 @@ export function getRandomComplexNumber() {
 export function getText(value: string | TextGetter) {
   return typeof value === 'function' ? value() : value
 }
+
+export function extractDomainFromUrl(url: string) {
+  const pattern: RegExp = /:\/\/([^/]+)/
+  const match = url.match(pattern)
+  return match ? match[1] : ''
+}
