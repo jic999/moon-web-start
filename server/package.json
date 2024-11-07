@@ -7,7 +7,8 @@
   "license": "ISC",
   "keywords": [],
   "scripts": {
-    "dev": "nodemon --exec tsx src/index.ts"
+    "dev": "nodemon --exec tsx src/index.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "koa": "^2.15.3"
