@@ -1,4 +1,4 @@
-import type { DialogProviderInst, MessageProviderInst, NotificationProviderInst } from 'naive-ui'
+import type { DialogProviderInst, MessageProviderInst } from 'naive-ui'
 
 export {}
 
