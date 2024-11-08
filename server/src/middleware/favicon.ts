@@ -15,11 +15,16 @@ export function faviconInterceptor() {
       if (!isExist) {
         const domain = id.replace('.png', '')
         try {
-          const arrayBuffer = await ky.get(`https://www.google.com/s2/favicons?domain=${domain}&sz=${64}`).arrayBuffer()
-          fs.writeFileSync(path.join(import.meta.dirname, `../../public/favicon/${id}`), Buffer.from(arrayBuffer))
+          const arrayBuffer = await ky.get(
+            `https://www.google.com/s2/favicons?domain=${domain}&sz=${process.env.FAVICON_SIZE}`,
+          ).arrayBuffer()
+          fs.writeFileSync(
+            path.join(import.meta.dirname, `../../public/favicon/${id}`),
+            Buffer.from(arrayBuffer),
+          )
         }
         catch (error) {
-          ctx.throw(400, error.message)
+          throw error
         }
       }
     }

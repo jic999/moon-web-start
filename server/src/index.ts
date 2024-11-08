@@ -4,6 +4,7 @@ import { koaBody } from 'koa-body'
 import koaStatic from 'koa-static'
 import { router } from './router'
 import { exceptionInterceptor, faviconInterceptor } from './middleware'
+import 'dotenv/config'
 
 const app = new Koa()
 

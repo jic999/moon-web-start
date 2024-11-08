@@ -14,6 +14,7 @@ export default antfu(
       'node/prefer-global/process': 'off',
       'prefer-promise-reject-errors': 'off',
       'node/prefer-global/buffer': 'off',
+      'no-useless-catch': 'off',
     },
   },
 )
