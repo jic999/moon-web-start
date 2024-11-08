@@ -13,6 +13,7 @@ export default antfu(
       'vue/use-v-on-exact': 'off',
       'node/prefer-global/process': 'off',
       'prefer-promise-reject-errors': 'off',
+      'node/prefer-global/buffer': 'off',
     },
   },
 )
