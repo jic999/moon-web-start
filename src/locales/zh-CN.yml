@@ -15,6 +15,10 @@ button:
   confirm: 确认
   cancel: 取消
   delete: 删除
+  dataInSync: 数据同步中
+  save: 存储
+  read: 读取
+  stopSync: 停止同步
 settings:
   title: 设置
   theme:
@@ -74,5 +78,11 @@ messages:
   imported: 导入成功
   reset: 已重置~
   loading: 加载中...
+  warnSyncIdRequired: 请输入ID
+  saving: 保存中
+  saveSuccess: 保存成功
+  reading: 读取中
+  readSuccess: 读取成功
 iconLinkPlaceholder: 图标链接（选填）
 siteDescPlaceholder: 网站描述（选填）
+inputIdPlaceholder: 输入ID

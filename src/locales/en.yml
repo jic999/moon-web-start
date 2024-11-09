@@ -15,6 +15,10 @@ button:
   confirm: Confirm
   cancel: Cancel
   delete: Delete
+  dataInSync: Data synchronizing
+  save: Save
+  read: Read
+  stopSync: Stop synchronizing
 settings:
   title: Settings
   theme:
@@ -74,5 +78,11 @@ messages:
   imported: Imported successfully
   reset: Reset~
   loading: Loading...
+  warnSyncIdRequired: Please input ID
+  saving: Saving
+  saveSuccess: Saved successfully
+  reading: Reading
+  readingSuccess: Read successfully
 iconLinkPlaceholder: Icon Link (optional)
 siteDescPlaceholder: Site Description (optional)
+inputIdPlaceholder: Input ID

@@ -112,14 +112,14 @@ const syncId = ref('')
 
 function handleSaveData() {
   if (!syncId.value) {
-    $message.warning('请输入ID')
+    $message.warning(t('messages.warnSyncIdRequired'))
     return
   }
   if (settingStore.getSettingValue('websitePreference') !== 'Customize') {
-    $message.warning('请先将网站偏好设为自定义')
+    $message.warning(t('messages.warnCustomize'))
     return
   }
-  const loadingRef = $message.loading('存储中', { duration: 0 })
+  const loadingRef = $message.loading(t('messages.saving'), { duration: 0 })
   reqPostData({
     id: syncId.value,
     data: {
@@ -133,7 +133,7 @@ function handleSaveData() {
     secretIdStorage.set(res.data.id)
     secretId.value = res.data.id
     syncId.value = ''
-    $message.success('存储成功')
+    $message.success(t('messages.saveSuccess'))
   }).catch((err: Error) => {
     $message.error(err.message)
   }).finally(() => {
@@ -143,10 +143,10 @@ function handleSaveData() {
 
 function handleReadData() {
   if (!syncId.value) {
-    $message.warning('请输入ID')
+    $message.warning(t('messages.warnSyncIdRequired'))
     return
   }
-  const loadingRef = $message.loading('读取中', { duration: 0 })
+  const loadingRef = $message.loading(t('messages.reading'), { duration: 0 })
   reqGetData(syncId.value).then((res: any) => {
     if (res.code !== 0)
       throw new Error(res.msg)
@@ -158,7 +158,7 @@ function handleReadData() {
     loadData(res.data.data)
     settingStore.setSettings({ websitePreference: 'Customize' })
     settingStore.refreshSiteContainer()
-    $message.success('读取成功')
+    $message.success(t('messages.readSuccess'))
   }).catch((err: Error) => {
     $message.error(err.message)
   }).finally(() => {
@@ -279,17 +279,17 @@ function handleStopSync() {
     <div v-if="WITH_SERVER" mt-16 flex-center py-12>
       <div flex-center gap-12>
         <n-input v-if="!secretId" v-model:value="syncId" placeholder="输入ID" />
-        <n-button v-else type="success" disabled>数据同步中</n-button>
+        <n-button v-else type="success" disabled>{{ $t('button.dataInSync') }}</n-button>
         <div v-if="!secretId" flex gap-12>
           <n-button secondary @click="handleSaveData">
-            存储
+            {{ $t('button.save') }}
           </n-button>
           <n-button secondary @click="handleReadData">
-            读取
+            {{ $t('button.read') }}
           </n-button>
         </div>
         <n-button v-else secondary @click="handleStopSync">
-          停止同步
+          {{ $t('button.stopSync') }}
         </n-button>
       </div>
     </div>

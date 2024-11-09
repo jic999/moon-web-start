@@ -15,6 +15,10 @@ button:
   confirm: 確認
   cancel: キャンセル
   delete: 削除
+  dataInSync: データ同期中
+  save: 保存
+  read: 読み取り
+  stopSync: 同期停止
 settings:
   title: 設定
   theme:
@@ -72,5 +76,11 @@ messages:
   exported: インポート成功
   reset: リセットされました~
   loading: ロード中...
+  warnSyncIdRequired: IDを入力してください
+  saving: 保存中
+  saveSuccess: 正常に保存されました
+  reading: 読み込み中
+  readingSuccess: 読み込み成功
 iconLinkPlaceholder: アイコンリンク（任意）
 siteDescPlaceholder: サイトの説明（任意）
+inputIdPlaceholder: 入力ID
