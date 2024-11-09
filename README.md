@@ -50,10 +50,6 @@ npm i -g pnpm pm2
 pnpm prod
 ```
 
-### TODO
-
-- 获取网站 favicon
-
 ## 介绍
 
 一个简约风格的网址导航页，基于 [MIT](./LICENSE) 协议开源。你可以直接使用它，也可以在此基础上客制化自己的网址导航😊。
