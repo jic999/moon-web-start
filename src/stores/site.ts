@@ -1,7 +1,8 @@
+import { reqPostData } from '@/api'
 import preset from '@/preset.json'
 import globalPreset from '@/preset_global.json'
 import type { Category, Group, Site, WebsitePreference } from '@/types'
-import { deepClone } from '@/utils'
+import { deepClone, secretIdStorage } from '@/utils'
 
 function loadData(): Category[] | undefined {
   const data = localStorage.getItem('cache')
@@ -16,6 +17,16 @@ export const useSiteStore = defineStore('site', () => {
   // Custom data
   const customData = ref<Category[]>(loadData() || [])
   watch(customData, () => {
+    const secretId = secretIdStorage.get()
+    if (secretId && customData.value.length) {
+      reqPostData({
+        secretId,
+        data: {
+          data: customData.value,
+          settings: settingStore.settings,
+        },
+      })
+    }
     cachingData()
   }, { deep: true })
 

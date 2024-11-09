@@ -1,4 +1,4 @@
-const FAVICON_API = 'https://api.iowen.cn/favicon/'
+const FAVICON_API = import.meta.env.VITE_WITH_SERVER ? import.meta.env.VITE_FAVICON_API : 'https://api.iowen.cn/favicon'
 
 const siteToUrl: Map<string, string> = new Map()
 const sites: string[] = [
@@ -7,19 +7,9 @@ const sites: string[] = [
   'taobao.com',
   'pinduoduo.com',
 ]
-const otherUrls: string[] = [
-  'github.com',
-  'coding.net',
-  '500px.com',
-  'themeforest.net',
-]
 
 sites.forEach((e: string) => {
   siteToUrl.set(e, `/site/${e}.svg`)
-})
-
-otherUrls.forEach((url: string) => {
-  siteToUrl.set(url, `https://0x3.com/icon?host=${url}`)
 })
 
 export function getDomainName(url: string) {
@@ -43,5 +33,5 @@ export function getFaviconUrl(url: string) {
   if (optUrl)
     return optUrl
 
-  return `${FAVICON_API + paramsUrl}.png`
+  return `${FAVICON_API}/${paramsUrl}.png`
 }

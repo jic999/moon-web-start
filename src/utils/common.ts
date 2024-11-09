@@ -52,3 +52,5 @@ export function extractDomainFromUrl(url: string) {
   const match = url.match(pattern)
   return match ? match[1] : ''
 }
+
+export const WITH_SERVER = import.meta.env.VITE_WITH_SERVER === 'true'

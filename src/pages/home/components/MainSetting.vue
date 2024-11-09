@@ -2,8 +2,9 @@
 import type { VNode } from 'vue'
 import SettingSelection from './SettingSelection.vue'
 import type { Category, SettingItem, Settings, TagMode, Theme, WebsitePreference } from '@/types'
-import { getText, loadLanguageAsync } from '@/utils'
+import { WITH_SERVER, getText, loadLanguageAsync, secretIdStorage } from '@/utils'
 import * as S from '@/utils/settings'
+import { reqGetData, reqPostData } from '@/api'
 
 const settingStore = useSettingStore()
 const siteStore = useSiteStore()
@@ -104,6 +105,70 @@ function loadData(data: any) {
   siteStore.setData(data.data)
   settingStore.setSettings(data.settings)
   toggleTheme(data.settings.theme)
+}
+
+const secretId = ref(secretIdStorage.get())
+const syncId = ref('')
+
+function handleSaveData() {
+  if (!syncId.value) {
+    $message.warning('请输入ID')
+    return
+  }
+  if (settingStore.getSettingValue('websitePreference') !== 'Customize') {
+    $message.warning('请先将网站偏好设为自定义')
+    return
+  }
+  const loadingRef = $message.loading('存储中', { duration: 0 })
+  reqPostData({
+    id: syncId.value,
+    data: {
+      data: siteStore.data,
+      settings: settingStore.settings,
+    },
+  }).then((res: any) => {
+    if (res.code !== 0)
+      throw new Error(res.msg)
+
+    secretIdStorage.set(res.data.id)
+    secretId.value = res.data.id
+    syncId.value = ''
+    $message.success('存储成功')
+  }).catch((err: Error) => {
+    $message.error(err.message)
+  }).finally(() => {
+    loadingRef.destroy()
+  })
+}
+
+function handleReadData() {
+  if (!syncId.value) {
+    $message.warning('请输入ID')
+    return
+  }
+  const loadingRef = $message.loading('读取中', { duration: 0 })
+  reqGetData(syncId.value).then((res: any) => {
+    if (res.code !== 0)
+      throw new Error(res.msg)
+
+    secretIdStorage.set(res.data.id)
+    secretId.value = res.data.id
+    syncId.value = ''
+
+    loadData(res.data.data)
+    settingStore.setSettings({ websitePreference: 'Customize' })
+    settingStore.refreshSiteContainer()
+    $message.success('读取成功')
+  }).catch((err: Error) => {
+    $message.error(err.message)
+  }).finally(() => {
+    loadingRef.destroy()
+  })
+}
+
+function handleStopSync() {
+  secretIdStorage.remove()
+  secretId.value = ''
 }
 </script>
 
@@ -211,18 +276,35 @@ function loadData(data: any) {
         :on-update-value="(key: string) => settingStore.setSettings({ showFooter: key })"
       />
     </div>
-    <div mt-24 flex flex-wrap justify-center gap-12>
-      <n-button type="primary" secondary @click="resetData">
+    <div v-if="WITH_SERVER" mt-16 flex-center py-12>
+      <div flex-center gap-12>
+        <n-input v-if="!secretId" v-model:value="syncId" placeholder="输入ID" />
+        <n-button v-else type="success" disabled>数据同步中</n-button>
+        <div v-if="!secretId" flex gap-12>
+          <n-button secondary @click="handleSaveData">
+            存储
+          </n-button>
+          <n-button secondary @click="handleReadData">
+            读取
+          </n-button>
+        </div>
+        <n-button v-else secondary @click="handleStopSync">
+          停止同步
+        </n-button>
+      </div>
+    </div>
+    <div mt-16 flex flex-wrap justify-center gap-12>
+      <n-button type="primary" quaternary @click="resetData">
         {{ $t('button.resetData') }}
       </n-button>
-      <n-button type="success" secondary @click="importData">
+      <n-button type="success" tertiary @click="importData">
         {{ $t('button.importData') }}
       </n-button>
-      <n-button type="primary" @click="exportData">
+      <n-button type="success" secondary @click="exportData">
         {{ $t('button.exportData') }}
       </n-button>
     </div>
-    <div my-24 flex-center>
+    <div my-16 flex-center>
       <n-button size="large" type="primary" @click="$router.back()">
         {{ $t('button.complete') }}
       </n-button>

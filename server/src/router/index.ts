@@ -8,11 +8,18 @@ const ID_REG = /^\w+$/
 export const router = new Router()
 
 router.post('/sync', async (ctx) => {
-  let { id, data } = ctx.request.body
+  let { id, data, secretId } = ctx.request.body
+
+  if (secretId && (secretId as string).length !== 64)
+    throw new Error('illegal secretId')
+
   if (!ID_REG.test(id))
     throw new Error(`illegal id: ${id}`)
 
-  id = encryptId(id)
+  if (!data.data || !data.settings)
+    throw new Error('illegal data')
+
+  id = secretId || encryptId(id)
   await fs.writeFile(
     path.resolve(import.meta.dirname, `../../public/data/${id}.json`),
     JSON.stringify(data),
@@ -35,5 +42,5 @@ router.get('/sync/:id', async (ctx) => {
 
   const data = JSON.parse(await fs.readFile(targetPath, 'utf-8'))
 
-  ctx.body = R.ok(data)
+  ctx.body = R.ok({ data, id })
 })

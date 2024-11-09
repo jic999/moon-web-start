@@ -23,21 +23,21 @@ function handleCommit() {
     const site = siteStore.getCurrentSite()
     const favicon = faviconMap.value.get(site.id)!
 
-    const parent = favicon.parentElement!
+    const parent = favicon?.parentElement
     const img = new Image()
 
     img.src = modalStore.inputValues.favicon || getFaviconUrl(modalStore.inputValues.url)
     img.onload = () => {
       faviconMap.value.set(site.id, img)
-      parent.removeChild(favicon)
-      parent.appendChild(img)
+      parent?.removeChild(favicon)
+      parent?.appendChild(img)
     }
     img.onerror = () => {
       const divEl = document.createElement('div')
       divEl.innerText = site.name.toLocaleUpperCase().charAt(0)
       faviconMap.value.set(site.id, divEl)
-      parent.removeChild(favicon)
-      parent.appendChild(divEl)
+      parent?.removeChild(favicon)
+      parent?.appendChild(divEl)
     }
   }
 
