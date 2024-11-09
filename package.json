@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prod": "./scripts/deploy.sh"
   },
   "dependencies": {
     "@vueuse/components": "^10.1.2",
