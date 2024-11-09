@@ -29,9 +29,9 @@ router.get('/sync/:id', async (ctx) => {
 
   id = encryptId(id)
   const targetPath = path.resolve(import.meta.dirname, `../../public/data/${id}.json`)
-  const isExist = checkFileExist(targetPath)
+  const isExist = await checkFileExist(targetPath)
   if (!isExist)
-    throw new Error(`file not exist: ${id}`)
+    throw new Error(`id not exist: ${ctx.params.id}`)
 
   const data = JSON.parse(await fs.readFile(targetPath, 'utf-8'))
 

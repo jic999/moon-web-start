@@ -39,6 +39,9 @@ importers:
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
+      fix-esm-import-path:
+        specifier: ^1.10.1
+        version: 1.10.1
       nodemon:
         specifier: ^3.1.7
         version: 3.1.7
@@ -403,6 +406,10 @@ packages:
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
+
+  fix-esm-import-path@1.10.1:
+    resolution: {integrity: sha512-9PyPwTRujdf6UWDWMz4W1HUlPVHliD68aOC2tpRO+XvRfM1lQjJb8eo1yNVo8G9XZfYoWLPstoXxaUnnpP3TIA==}
+    hasBin: true
 
   formidable@2.1.2:
     resolution: {integrity: sha512-CM3GuJ57US06mlpQ47YcunuUZ9jpm8Vx+P2CGt2j7HpgkKZO/DJYQ0Bobim8G6PFQmK5lOqOOdUXboU+h73A4g==}
@@ -1051,6 +1058,12 @@ snapshots:
   fill-range@7.1.1:
     dependencies:
       to-regex-range: 5.0.1
+
+  fix-esm-import-path@1.10.1:
+    dependencies:
+      debug: 4.3.7(supports-color@5.5.0)
+    transitivePeerDependencies:
+      - supports-color
 
   formidable@2.1.2:
     dependencies:

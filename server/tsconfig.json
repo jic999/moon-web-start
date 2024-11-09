@@ -6,9 +6,10 @@
     "emitDecoratorMetadata": true,
     "module": "ESNext",
     "moduleResolution": "node",
+    "baseUrl": ".",
     "resolveJsonModule": true,
-    "sourceMap": true,
-    "outDir": "dist",
+    "sourceMap": false,
+    "outDir": "dist/src",
     "esModuleInterop": true
   },
   "include": ["src/**/*.ts"],

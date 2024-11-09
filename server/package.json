@@ -8,7 +8,10 @@
   "keywords": [],
   "scripts": {
     "dev": "nodemon --exec tsx src/index.ts",
-    "build": "tsc"
+    "build": "tsc && fix-esm-import-path dist/src/index.js && cp -r public dist",
+    "prod": "pm2 start pm2.config.cjs --name moon-web-start",
+    "stop": "pm2 stop pm2.config.cjs",
+    "delete": "pm2 delete pm2.config.cjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
@@ -23,6 +26,7 @@
     "@types/koa-router": "^7.4.8",
     "@types/koa-static": "^4.0.4",
     "@types/node": "^22.9.0",
+    "fix-esm-import-path": "^1.10.1",
     "nodemon": "^3.1.7",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
