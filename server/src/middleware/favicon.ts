@@ -6,7 +6,7 @@ import { checkFileExist } from '../utils'
 
 export function faviconInterceptor() {
   return async (ctx: Context, next: Next) => {
-    if (ctx.req.url.startsWith('/favicon')) {
+    if (ctx.req.url.startsWith('/favicon/')) {
       const id = ctx.req.url.split('/').pop()
       if (!id.endsWith('.png'))
         throw new Error('bad request')
