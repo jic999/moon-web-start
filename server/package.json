@@ -19,7 +19,8 @@
     "koa-body": "^6.0.1",
     "koa-router": "^13.0.1",
     "koa-static": "^5.0.0",
-    "ky": "^1.7.2"
+    "ky": "^1.7.2",
+    "pm2": "^5.4.3"
   },
   "devDependencies": {
     "@types/koa": "^2.15.0",
