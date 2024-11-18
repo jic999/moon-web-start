@@ -1,5 +1,10 @@
 import type { DialogProviderInst, MessageProviderInst } from 'naive-ui'
 
+import type {
+  ComponentCustomOptions as _ComponentCustomOptions,
+  ComponentCustomProperties as _ComponentCustomProperties,
+} from 'vue'
+
 export {}
 
 declare module 'vue' {
@@ -18,4 +23,9 @@ declare global {
 
     sug?: Function
   }
+}
+
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties extends _ComponentCustomProperties {}
+  interface ComponentCustomOptions extends _ComponentCustomOptions {}
 }

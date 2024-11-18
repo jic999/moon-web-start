@@ -2,7 +2,7 @@
 import type { VNode } from 'vue'
 import SettingSelection from './SettingSelection.vue'
 import type { Category, SettingItem, Settings, TagMode, Theme, WebsitePreference } from '@/types'
-import { WITH_SERVER, getText, loadLanguageAsync, secretIdStorage } from '@/utils'
+import { WITH_SERVER, getText, isEqual, loadLanguageAsync, secretIdStorage } from '@/utils'
 import * as S from '@/utils/settings'
 import { reqGetData, reqPostData } from '@/api'
 
@@ -110,11 +110,18 @@ function loadData(data: any) {
 const secretId = ref(secretIdStorage.get())
 const syncId = ref('')
 
+function validateSyncId() {
+  if (/^\w{5,20}$/.test(syncId.value))
+    return true
+
+  $message.warning(t('messages.warnValidateId'))
+  return false
+}
+
 function handleSaveData() {
-  if (!syncId.value) {
-    $message.warning(t('messages.warnSyncIdRequired'))
+  if (!validateSyncId())
     return
-  }
+
   if (settingStore.getSettingValue('websitePreference') !== 'Customize') {
     $message.warning(t('messages.warnCustomize'))
     return
@@ -142,10 +149,9 @@ function handleSaveData() {
 }
 
 function handleReadData() {
-  if (!syncId.value) {
-    $message.warning(t('messages.warnSyncIdRequired'))
+  if (!validateSyncId())
     return
-  }
+
   const loadingRef = $message.loading(t('messages.reading'), { duration: 0 })
   reqGetData(syncId.value).then((res: any) => {
     if (res.code !== 0)
@@ -170,6 +176,32 @@ function handleStopSync() {
   secretIdStorage.remove()
   secretId.value = ''
 }
+
+function replaceLocalData(id: string) {
+  reqGetData(id).then((res: any) => {
+    if (res.code !== 0)
+      throw new Error(res.msg)
+
+    const remoteData = res.data.data
+    const localData = {
+      data: siteStore.data,
+      settings: settingStore.settings,
+    }
+
+    if (!isEqual(remoteData, localData)) {
+      loadData(remoteData)
+      settingStore.refreshSiteContainer()
+    }
+  }).catch((err) => {
+    console.error(err)
+  })
+}
+
+onMounted(() => {
+  const id = secretIdStorage.get()
+  if (WITH_SERVER && id)
+    replaceLocalData(id)
+})
 </script>
 
 <template>

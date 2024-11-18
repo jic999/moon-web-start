@@ -83,6 +83,7 @@ messages:
   saveSuccess: Saved successfully
   reading: Reading
   readingSuccess: Read successfully
+  warnValidateId: The ID should be a combination of 5 to 20 digits, letters, or underscores
 iconLinkPlaceholder: Icon Link (optional)
 siteDescPlaceholder: Site Description (optional)
 inputIdPlaceholder: Input ID

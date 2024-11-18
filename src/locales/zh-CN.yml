@@ -83,6 +83,7 @@ messages:
   saveSuccess: 保存成功
   reading: 读取中
   readSuccess: 读取成功
+  warnValidateId: ID 应为 5-20 位数字、字母或下划线组合
 iconLinkPlaceholder: 图标链接（选填）
 siteDescPlaceholder: 网站描述（选填）
 inputIdPlaceholder: 输入ID

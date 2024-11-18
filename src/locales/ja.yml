@@ -81,6 +81,7 @@ messages:
   saveSuccess: 正常に保存されました
   reading: 読み込み中
   readingSuccess: 読み込み成功
+  warnValidateId: IDは5～20文字の数字、英字、またはアンダースコアで構成される必要があります
 iconLinkPlaceholder: アイコンリンク（任意）
 siteDescPlaceholder: サイトの説明（任意）
 inputIdPlaceholder: 入力ID

@@ -3,7 +3,7 @@ import path from 'node:path'
 import Router from 'koa-router'
 import { R, checkFileExist, encryptId } from '../utils'
 
-const ID_REG = /^\w+$/
+const ID_REG = /^\w{5,64}$/
 
 export const router = new Router()
 
@@ -34,7 +34,9 @@ router.get('/sync/:id', async (ctx) => {
   if (!ID_REG.test(id))
     throw new Error(`illegal id: ${id}`)
 
-  id = encryptId(id)
+  if (id.length < 64)
+    id = encryptId(id)
+
   const targetPath = path.resolve(import.meta.dirname, `../../public/data/${id}.json`)
   const isExist = await checkFileExist(targetPath)
   if (!isExist)
