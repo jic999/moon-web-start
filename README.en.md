@@ -11,7 +11,7 @@
   <a href="https://github.com/antfu/eslint-config"><img alt="MIT License" src="https://antfu.me/badge-code-style.svg"/></a>
 </p>
 <p align="center">
-  <a href="https://moon-start.netlify.app/">Live demo</a>
+  <a href="https://start.heroism.me/">Live demo</a>
 </p>
 <p align="center">
   <a href="./README.md">简体中文</a> |
@@ -44,7 +44,7 @@ A simple and elegant website navigation page, open source under the [MIT](./LICE
 
 - 📤 Import/export data - synchronize data between different devices
 
-- 📦 Browser extension - open [Moon](https://moon-start.netlify.app/) when opening a new tab
+- 📦 Browser extension - open [Moon](https://start.heroism.me/) when opening a new tab
 
 - 🚀 Containerized deployment - support Docker one-click deployment
 
@@ -88,7 +88,7 @@ pnpm dev
 
 ## Browser extension
 
-The extension is suitable for Google Chrome, which can automatically enter [Moon](https://moon-start.netlify.app/) when opening a new tab.
+The extension is suitable for Google Chrome, which can automatically enter [Moon](https://start.heroism.me/) when opening a new tab.
 
 The extension has not been released in the Chrome Web Store yet. To use it, please follow these steps:
 

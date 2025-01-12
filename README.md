@@ -11,7 +11,7 @@
   <a href="https://github.com/antfu/eslint-config"><img alt="MIT License" src="https://antfu.me/badge-code-style.svg"/></a>
 </p>
 <p align="center">
-  <a href="https://moon-start.netlify.app/">在线体验</a>
+  <a href="https://start.heroism.me/">在线体验</a>
 </p>
 <p align="center">
   <span>简体中文</span> |
@@ -20,9 +20,9 @@
 
 ## 2024-11-10
 
-大概一两周前，原来用的 Favicon 接口挂了。好吧，我早料到有这么一天，所以提前想好了方案。不过因为忙碌和拖延，到现在才实现。
+大概一两周前，原来用的 Favicon 接口挂了。好吧，我早料到有这么一天，所以提前想好了方案。
 
-后端项目在 server 目录下，使用 koa 编写。主要包括获取 favicon 和同步数据两个功能，我尝试用尽可能简单的方式去实现。
+后端项目在 server 目录下，使用 koa 编写。主要包括获取 favicon 和同步数据两个功能，我尝试尽可能让一切保持简单。
 
 获取网站 favicon 一般有两种方式，自己爬取，或调第三方接口。
 
@@ -35,7 +35,7 @@ https://www.google.com/s2/favicons?domain=${domain}&sz=${size}
 
 当然，后面也会实现自动爬取 favicon 的方案。
 
-顺便提一下，[0x3]((https://0x3.com/)) 的接口可以在国内访问，也没有跨域限制。条件不允许的同学可以先在后端项目中把接口换成这个，这样第一次获取时会从 0x3 获取，后面会走自己的服务。不建议在前端直接调，别人也是个人服务。
+顺便提一下，[0x3]((https://0x3.com/)) 的接口可以在国内访问，也没有跨域限制。条件不允许的同学可以先在后端项目中把接口换成这个，这样第一次获取时会从 0x3 获取，后面会走自己的服务，不建议在前端直接调。
 
 ```bash
 https://0x3.com/icon?host=${domain}
@@ -76,7 +76,7 @@ pnpm prod
 
 - 📤 导入/导出数据 - 在不同设备间同步数据
 
-- 📦 浏览器插件 - 新建标签页时打开 [Moon](https://moon-start.netlify.app/)
+- 📦 浏览器插件 - 新建标签页时打开 [Moon](https://start.heroism.me/)
 
 - 🚀 容器化部署 - 支持 Docker 一键部署
 
@@ -121,7 +121,7 @@ docker run -d -p 80:80 --name moon-web-start jic999/moon-web-start
 
 ## 浏览器插件
 
-插件适用于谷歌浏览器，可以在新建标签页时自动进入[Moon](https://moon-start.netlify.app/)。
+插件适用于谷歌浏览器，可以在新建标签页时自动进入[Moon](https://start.heroism.me/)。
 
 该插件暂未在Chrome应用商店发布，若要使用，请按照以下步骤：
 
