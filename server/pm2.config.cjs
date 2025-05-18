@@ -16,6 +16,7 @@ module.exports = {
       env: {
         NODE_ENV: ENV.Production,
         PORT: 1890,
+        FAVICON_API: 'google',
       },
     },
   ],

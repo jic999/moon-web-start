@@ -1,7 +1,11 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import Router from 'koa-router'
 import { R, checkFileExist, encryptId } from '../utils'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const ID_REG = /^\w{5,64}$/
 
@@ -21,7 +25,7 @@ router.post('/sync', async (ctx) => {
 
   id = secretId || encryptId(id)
   await fs.writeFile(
-    path.resolve(import.meta.dirname, `../../public/data/${id}.json`),
+    path.resolve(__dirname, `../../public/data/${id}.json`),
     JSON.stringify(data),
     'utf-8',
   )
@@ -37,7 +41,7 @@ router.get('/sync/:id', async (ctx) => {
   if (id.length < 64)
     id = encryptId(id)
 
-  const targetPath = path.resolve(import.meta.dirname, `../../public/data/${id}.json`)
+  const targetPath = path.resolve(__dirname, `../../public/data/${id}.json`)
   const isExist = await checkFileExist(targetPath)
   if (!isExist)
     throw new Error(`id not exist: ${ctx.params.id}`)

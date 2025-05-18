@@ -9,9 +9,11 @@
   "scripts": {
     "dev": "nodemon --exec tsx src/index.ts",
     "build": "tsc && fix-esm-import-path dist/src/index.js && cp -r public dist",
-    "prod": "pm2 start pm2.config.cjs --name moon-web-start",
+    "prod": "pm2 start pm2.config.cjs",
+    "prod:docker": "pm2-runtime start pm2.config.cjs",
     "stop": "pm2 stop pm2.config.cjs",
-    "delete": "pm2 delete pm2.config.cjs"
+    "delete": "pm2 delete pm2.config.cjs",
+    "clean:favicon": "rm -rf public/favicon/* && rm -rf dist/public/favicon/*"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
