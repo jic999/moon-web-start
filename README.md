@@ -115,8 +115,13 @@ pnpm dev
 
 ## Docker 部署
 
+获取 favicon 默认调用 `google` 接口，国内环境可以将 `FAVICON_API` 环境变量设置为 `0x3`。这样第一次会从 [0x3](https://0x3.com/) 获取，后面会走自己的服务。
+
 ```bash
-docker run -d -p 80:80 --name moon-web-start jic999/moon-web-start
+docker run -d --name moon-web-start \
+  -p 1890:1890 \
+  -e FAVICON_API=0x3 \
+  jic999/moon-web-start:latest
 ```
 
 ## 浏览器插件
