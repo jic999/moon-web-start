@@ -3,7 +3,7 @@
 .husky/
 .vscode/
 .extensions/
-node_modules/
+**/node_modules
 .dockerignore
 .gitignore
 eslint.config.js
